@@ -6,7 +6,7 @@
 get_header(); ?>
 
 <main>
-    <h1>Front Page</h1>
+    <h1>FroAustinnt Page</h1>
     <p>Content for Front Page goes here.</p>
 </main>
 

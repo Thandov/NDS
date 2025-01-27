@@ -1,0 +1,21 @@
+/*
+Theme Name: NDS Academy Theme
+Theme URI: 
+Author: Thando Hlophe
+Author URI: https://kayiseit.co.za
+Description: NDS Academy
+Version: 0.0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: bootstrap
+Text Domain: kayiseittheme
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+#wpadminbar {
+	bottom: 0 !important;
+	position: relative;
+	top: auto;
+}
