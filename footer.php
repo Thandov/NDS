@@ -1,29 +1,49 @@
 
 </body>
-<footer class="footer-04">
-    <div class="w-100 border-top py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-8">
+<footer class="footer-04" style="background:#2A344E">
+        <div class="w-100 border-top py-3">
+            <div class="container">
+                <div class="row p-3">
+                    <div class="col-sm-2">
+                        <h5 class="text-white fw-bold">Education</h5>
+                        <ul>
+                            <li>Short courses</li>
+                            <li>Full Qualification</li>
+                            <li>Skills Program</li>
+                            <li>Trade Test</li>
+                            <li>Learnerships</li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5 class="text-white fw-bold">Information</h5>
+                      <ul>
+                        <li>FAQ</li>
+                        <li>Blog</li>
+                        <li>sUPPORT</li>
+                      </ul> 
+                    </div>
+                    <div class="col-sm-2">
+                        <h5 class="text-white fw-bold">Company</h5>
+                        <UL>
+                            <li>About us</li>
+                            <li>Careers</li>
+                            <li>Contacts</li>
+                        </UL>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5 class="text-white fw-bold">Subscribe</h5>
 
-                    <p class="copyright">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved | This website is made with <i class="ion-ios-heart"></i>
-                    </p>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-4 text-md-right">
-                    <p class="mb-0 list-unstyled">
-                        <a class="ms-3" href="#">Terms</a>
-                        <a class="ms-3" href="#">Privacy</a>
-                        <a class="ms-3" href="#">Compliances</a>
-                    </p>
-                </div>
+                <div class="row p-3">
+                    <div class="col-sm-2">Logo here </div>
+                    <div class="col-sm-8">t@c </div>
+                    <div class="col-sm-2">Social media links here</div>
+                    </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
 <?php wp_footer(); ?>
 

@@ -1,13 +1,20 @@
 <?php
 /**
- * Template: Contact Us
+ * Template Name: Contact Us
  */
 
 get_header(); ?>
 
-<main>
-    <h1>Contact Us</h1>
-    <p>Content for Contact Us goes here.</p>
-</main>
+
+
+<?php
+if ( have_posts() ) :
+    while ( have_posts() ) : the_post();
+        the_content();
+    endwhile;
+else:
+    _e( 'Sorry, no pages matched your criteria.', 'textdomain' );
+endif;
+?>
 
 <?php get_footer(); ?>

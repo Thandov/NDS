@@ -21,20 +21,31 @@
 
 </head>
 
-<nav class="navbar navbar-light bg-light" id="navbar">
-    <a class="navbar-brand" href="/home">Austin</a>
-
-
-    <?php wp_nav_menu([
-            'theme_location' => 'primary',
-            'depth' => 2, // 1 = no dropdowns, 2 = with dropdowns.
-            'container' => 'div',
-            'container_class' => 'sidenav',
-            'menu_class' => 'list-unstyled components mb-5',
-            'fallback_cb' => 'WP_Bootstrap_Navwalker::fallback',
-            'walker' => new WP_Bootstrap_Navwalker(),
-        ]);
-        ?>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+    <div class="container-fluid">
+        <!-- Brand Name -->
+        <a class="navbar-brand" href="/home">Austin</a>
+        
+        <!-- Toggler Button for Mobile View -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Collapsible Menu -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <?php 
+                wp_nav_menu([
+                    'theme_location' => 'primary', // Register this location in functions.php
+                    'depth' => 2, // Supports dropdowns
+                    'container' => false, // No extra container
+                    'menu_class' => 'navbar-nav ms-auto', // Align menu to the right
+                    'fallback_cb' => 'WP_Bootstrap_Navwalker::fallback', // Fallback if no menu assigned
+                    'walker' => new WP_Bootstrap_Navwalker(), // Use Bootstrap Navwalker for dropdown functionality
+                ]); 
+            ?>
+        </div>
+    </div>
 </nav>
+
 
 <body <?php body_class(); ?> id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">

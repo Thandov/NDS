@@ -1,6 +1,6 @@
 <?php
 /**
- * Template: Admissions
+ * Template Names: Admissions
  */
 
 get_header(); ?>
