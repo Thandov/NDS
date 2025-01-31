@@ -1,0 +1,125 @@
+$pcolor: rgb(192, 155, 77);
+$headSize: 3rem;
+$parag: calc($headSize/2);
+
+#headercara {
+  height: 95vh;
+
+  .owl-stage-outer {
+    height: 100%;
+    background-color: gray;
+
+    .owl-stage {
+      height: 100%;
+
+      .owl-item {
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+
+        .item {
+          height: 100%;
+
+          .black-overlay {
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 99999999999;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+          }
+
+          .zoom-container {
+            height: 100%;
+            position: relative;
+            width: 100%;
+
+            .caraimg {
+              height: 100%;
+              width: auto;
+              position: absolute;
+              top: 0;
+              right: 0;
+              left: 0;
+              bottom: 0;
+              object-fit: cover;
+            }
+          }
+
+          .hero-content {
+            z-index: 99999999999;
+            position: absolute;
+
+            .middleTxt {
+              font-size: 3rem;
+              font-weight: bolder;
+              color: $pcolor;
+            }
+
+            .parag {
+              font-size: $parag;
+              font-weight: bolder;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  #headercara {
+    .owl-stage-outer {
+      .owl-stage {
+        .owl-item {
+          .item {
+            .zoom-container {
+              .caraimg {
+                width: 100%;
+              }
+            }
+
+            .hero-content {
+              position: absolute;
+
+              .middleTxt {
+                font-size: calc($headSize * 2.5);
+                font-weight: bolder;
+                color: $pcolor;
+                opacity: 0;
+              }
+
+              .parag {
+                font-size: $parag;
+                font-weight: bolder;
+                color: #fff;
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.vela {
+  opacity: 1 !important;
+  transition: 2s ease-in;
+}
+
+.zoom-effect {
+  animation: zoom-effect 20s;
+}
+
+@keyframes zoom-effect {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
