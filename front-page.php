@@ -3,9 +3,10 @@
  * Template Name: Front Page
  */
 
-get_header(); ?>
+get_header();
 
-<?php
+require 'carousel-temp1.php';
+
 if ( have_posts() ) :
     while ( have_posts() ) : the_post();
         the_title( '<h1>', '</h1>' );
@@ -14,6 +15,5 @@ if ( have_posts() ) :
 else:
     _e( 'Sorry, no pages matched your criteria.', 'textdomain' );
 endif;
-?>
 
-<?php get_footer(); ?>
+get_footer(); ?>

@@ -1,0 +1,95 @@
+#headercara {
+  height: 95vh;
+}
+#headercara .owl-stage-outer {
+  height: 100%;
+  background-color: gray;
+}
+#headercara .owl-stage-outer .owl-stage {
+  height: 100%;
+}
+#headercara .owl-stage-outer .owl-stage .owl-item {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+#headercara .owl-stage-outer .owl-stage .owl-item .item {
+  height: 100%;
+}
+#headercara .owl-stage-outer .owl-stage .owl-item .item .black-overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99999999999;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+#headercara .owl-stage-outer .owl-stage .owl-item .item .zoom-container {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+#headercara .owl-stage-outer .owl-stage .owl-item .item .zoom-container .caraimg {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content {
+  z-index: 99999999999;
+  position: absolute;
+}
+#headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .middleTxt {
+  font-size: 3rem;
+  font-weight: bolder;
+  color: rgb(192, 155, 77);
+}
+#headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .parag {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  #headercara .owl-stage-outer .owl-stage .owl-item .item .zoom-container .caraimg {
+    width: 100%;
+  }
+  #headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content {
+    position: absolute;
+  }
+  #headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .middleTxt {
+    font-size: 7.5rem;
+    font-weight: bolder;
+    color: rgb(192, 155, 77);
+    opacity: 0;
+  }
+  #headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .parag {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: #fff;
+    opacity: 0;
+  }
+}
+.vela {
+  opacity: 1 !important;
+  transition: 2s ease-in;
+}
+
+.zoom-effect {
+  animation: zoom-effect 20s;
+}
+
+@keyframes zoom-effect {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}/*# sourceMappingURL=headcara.css.map */

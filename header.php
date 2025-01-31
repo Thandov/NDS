@@ -21,8 +21,8 @@
 
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+    <div class="container">
         <!-- Brand Name -->
         <a class="navbar-brand" href="/home">Austin</a>
         
@@ -37,7 +37,7 @@
                 wp_nav_menu([
                     'theme_location' => 'primary', // Register this location in functions.php
                     'depth' => 2, // Supports dropdowns
-                    'container' => false, // No extra container
+                    'container' => true, // No extra container
                     'menu_class' => 'navbar-nav ms-auto', // Align menu to the right
                     'fallback_cb' => 'WP_Bootstrap_Navwalker::fallback', // Fallback if no menu assigned
                     'walker' => new WP_Bootstrap_Navwalker(), // Use Bootstrap Navwalker for dropdown functionality
