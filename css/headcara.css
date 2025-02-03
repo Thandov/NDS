@@ -1,5 +1,6 @@
 #headercara {
   height: 95vh;
+  overflow: hidden;
 }
 #headercara .owl-stage-outer {
   height: 100%;
@@ -15,81 +16,71 @@
 }
 #headercara .owl-stage-outer .owl-stage .owl-item .item {
   height: 100%;
+  position: relative;
 }
 #headercara .owl-stage-outer .owl-stage .owl-item .item .black-overlay {
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 99999999999;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  inset: 0;
 }
 #headercara .owl-stage-outer .owl-stage .owl-item .item .zoom-container {
   height: 100%;
-  position: relative;
   width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 #headercara .owl-stage-outer .owl-stage .owl-item .item .zoom-container .caraimg {
+  width: 100%;
   height: 100%;
-  width: auto;
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
   -o-object-fit: cover;
      object-fit: cover;
+  animation: zoom-effect 10s linear infinite;
 }
 #headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content {
-  z-index: 99999999999;
   position: absolute;
+  z-index: 10;
+  text-align: left;
 }
 #headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .middleTxt {
   font-size: 3rem;
   font-weight: bolder;
   color: rgb(192, 155, 77);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
-#headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .parag {
+#headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .topTxt,
+#headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .btmTxt {
   font-size: 1.5rem;
   font-weight: bolder;
-  color: #fff;
-}
-
-@media (min-width: 600px) {
-  #headercara .owl-stage-outer .owl-stage .owl-item .item .zoom-container .caraimg {
-    width: 100%;
-  }
-  #headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content {
-    position: absolute;
-  }
-  #headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .middleTxt {
-    font-size: 7.5rem;
-    font-weight: bolder;
-    color: rgb(192, 155, 77);
-    opacity: 0;
-  }
-  #headercara .owl-stage-outer .owl-stage .owl-item .item .hero-content .parag {
-    font-size: 1.5rem;
-    font-weight: bolder;
-    color: #fff;
-    opacity: 0;
-  }
-}
-.vela {
-  opacity: 1 !important;
-  transition: 2s ease-in;
-}
-
-.zoom-effect {
-  animation: zoom-effect 20s;
+  color: rgb(192, 155, 77);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 @keyframes zoom-effect {
   0% {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
   100% {
-    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+.show-text {
+  animation: show-hide-text 10s linear infinite;
+}
+
+@keyframes show-hide-text {
+  0%, 10% {
+    opacity: 0;
+  }
+  11%, 89% {
+    opacity: 1;
+  }
+  90%, 100% {
+    opacity: 0;
   }
 }/*# sourceMappingURL=headcara.css.map */

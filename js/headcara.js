@@ -1,43 +1,47 @@
 jQuery(document).ready(function () {
-    var headerCarousel = jQuery('#headercara');
-    var topTxt = jQuery('.topTxt');
-    var middleTxt = jQuery('.middleTxt');
-    var btmTxt = jQuery('.btmTxt');
-
+    var headerCarousel = jQuery("#headercara");
+    var timer = 10000; // 10s cycle
     headerCarousel.owlCarousel({
         items: 1,
         loop: true,
         autoplay: true,
-        autoplayTimeout: 10000,
+        autoplayTimeout: timer, // 10s cycle
         autoplayHoverPause: false,
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        dots: false, // Hide navigation dots
-        nav: false, // Hide navigation bars
+        animateOut: "fadeOut",
+        animateIn: "fadeIn",
+        dots: false,
+        nav: false,
+        smartSpeed: 1000, // Smooth transition
         onInitialized: startZoomAnimation,
         onTranslated: startZoomAnimation,
     });
 
     function startZoomAnimation(event) {
-        var activeSlide = jQuery(event.target).find('.owl-item.active');
-        activeSlide.find('.caraimg').addClass('zoom-effect');
+        var activeSlide = jQuery(event.target).find(".owl-item.active");
 
-        // Remove zoom effect from other slides
+        // Remove zoom from non-active slides
         jQuery(event.target)
-            .find('.owl-item')
-            .not('.active')
-            .find('.caraimg')
-            .removeClass('zoom-effect');
+            .find(".owl-item")
+            .not(".active")
+            .find(".caraimg")
+            .removeClass("zoom-effect");
 
-        // Handle looped carousel
-        if (event.item.index === 0) {
-            var lastSlide = jQuery(event.target).find('.owl-item').last();
-            lastSlide.find('.caraimg').addClass('zoom-effect');
-        }
+        // Add zoom effect
+        activeSlide.find(".caraimg").addClass("zoom-effect");
 
-        // Add vela class to topTxt in the active slide
-        activeSlide.find('.topTxt').addClass('vela');
-        activeSlide.find('.middleTxt').addClass('vela');
-        activeSlide.find('.btmTxt').addClass('vela');
+
+
+        // Handle text visibility
+        activeSlide.find(".topTxt").addClass("animate__animated animate__fadeIn").removeClass("hide-text");
+        activeSlide.find(".middleTxt").addClass("animate__animated animate__fadeIn").removeClass("hide-text");
+
+        // Ensure other slides have hidden text
+        jQuery(event.target)
+            .find(".owl-item")
+            .not(".active")
+            .find(".topTxt, .middleTxt")
+            .removeClass("animate__animated animate__fadeIn")
+            .addClass("hide-text");
     }
+
 });

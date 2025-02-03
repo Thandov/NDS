@@ -1,9 +1,13 @@
+// Variables
 $pcolor: rgb(192, 155, 77);
 $headSize: 3rem;
-$parag: calc($headSize/2);
+$parag: calc($headSize / 2);
+$zoom-scale: 1.2;
+$zoom-duration: 10s; // Match Owl Carousel timing
 
 #headercara {
   height: 95vh;
+  overflow: hidden; // Prevent overflow issues
 
   .owl-stage-outer {
     height: 100%;
@@ -19,48 +23,52 @@ $parag: calc($headSize/2);
 
         .item {
           height: 100%;
+          position: relative;
 
           .black-overlay {
             background-color: rgba(0, 0, 0, 0.2);
-            z-index: 99999999999;
             position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
+            inset: 0;
           }
 
           .zoom-container {
             height: 100%;
-            position: relative;
             width: 100%;
+            position: relative;
+            overflow: hidden;
 
             .caraimg {
+              width: 100%;
               height: 100%;
-              width: auto;
               position: absolute;
-              top: 0;
-              right: 0;
-              left: 0;
-              bottom: 0;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%) scale(1);
               object-fit: cover;
+              animation: zoom-effect $zoom-duration linear infinite;
             }
           }
 
           .hero-content {
-            z-index: 99999999999;
             position: absolute;
+            z-index: 10;
+            text-align: left;
 
             .middleTxt {
-              font-size: 3rem;
+              font-size: $headSize;
               font-weight: bolder;
               color: $pcolor;
+              opacity: 0;
+              transition: opacity 0.5s ease-in-out;
             }
 
-            .parag {
+            .topTxt,
+            .btmTxt {
               font-size: $parag;
               font-weight: bolder;
-              color: #fff;
+              color: $pcolor;
+              opacity: 0;
+              transition: opacity 0.5s ease-in-out;
             }
           }
         }
@@ -69,57 +77,32 @@ $parag: calc($headSize/2);
   }
 }
 
-@media (min-width: 600px) {
-  #headercara {
-    .owl-stage-outer {
-      .owl-stage {
-        .owl-item {
-          .item {
-            .zoom-container {
-              .caraimg {
-                width: 100%;
-              }
-            }
-
-            .hero-content {
-              position: absolute;
-
-              .middleTxt {
-                font-size: calc($headSize * 2.5);
-                font-weight: bolder;
-                color: $pcolor;
-                opacity: 0;
-              }
-
-              .parag {
-                font-size: $parag;
-                font-weight: bolder;
-                color: #fff;
-                opacity: 0;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-.vela {
-  opacity: 1 !important;
-  transition: 2s ease-in;
-}
-
-.zoom-effect {
-  animation: zoom-effect 20s;
-}
-
+// Zoom Effect Animation (Only Scale Up)
 @keyframes zoom-effect {
   0% {
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
-
   100% {
-    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale($zoom-scale);
+  }
+}
+
+// Show text at 10% and hide it at 90%
+.show-text {
+  animation: show-hide-text $zoom-duration linear infinite;
+}
+
+@keyframes show-hide-text {
+  0%,
+  10% {
+    opacity: 0;
+  }
+  11%,
+  89% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    opacity: 0;
   }
 }
