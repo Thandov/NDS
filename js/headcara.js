@@ -1,6 +1,8 @@
 jQuery(document).ready(function () {
     var headerCarousel = jQuery("#headercara");
     var timer = 10000; // 10s cycle
+    var textDelay = timer * 0.05; // 5% of timer for each text
+
     headerCarousel.owlCarousel({
         items: 1,
         loop: true,
@@ -28,18 +30,23 @@ jQuery(document).ready(function () {
 
         // Add zoom effect
         activeSlide.find(".caraimg").addClass("zoom-effect");
-
-
-
+        
         // Handle text visibility
         activeSlide.find(".topTxt").addClass("animate__animated animate__fadeIn").removeClass("hide-text");
-        activeSlide.find(".middleTxt").addClass("animate__animated animate__fadeIn").removeClass("hide-text");
+        
+        setTimeout(() => {
+            activeSlide.find(".middleTxt").addClass("animate__animated animate__fadeIn").removeClass("hide-text");
+        }, textDelay * 1);
+        
+        setTimeout(() => {
+            activeSlide.find(".btmTxt").addClass("animate__animated animate__fadeIn").removeClass("hide-text");
+        }, textDelay * 1.5);
 
         // Ensure other slides have hidden text
         jQuery(event.target)
             .find(".owl-item")
             .not(".active")
-            .find(".topTxt, .middleTxt")
+            .find(".topTxt, .middleTxt, .btmTxt")
             .removeClass("animate__animated animate__fadeIn")
             .addClass("hide-text");
     }

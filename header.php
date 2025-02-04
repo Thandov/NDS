@@ -22,9 +22,9 @@
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
-    <div class="container">
+    <div class="container h-100">
         <!-- Brand Name -->
-        <a class="navbar-brand" href="/home">Austin</a>
+        <a class="navbar-brand" href="/home"><?php dynamic_sidebar('navbar_logo'); ?></a>
         
         <!-- Toggler Button for Mobile View -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

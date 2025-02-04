@@ -34,7 +34,16 @@ if (! function_exists('NDStheme_setup')) :
 			'primary'   => __('Primary Menu', 'NDStheme'),
 			'secondary' => __('Secondary Menu', 'NDStheme'),
 		));
-
+		
+		register_sidebar(array(
+			'name'          => 'Navbar Logo',
+			'id'            => 'navbar_logo',
+			'description'   => 'Add the logo for the company',
+			'before_widget' => '',
+			'after_widget'  => '',
+			'before_title'  => '',
+			'after_title'   => '',
+		));
 		/**
 		 * Enable support for the following post formats:
 		 * aside, gallery, quote, image, and video
@@ -48,6 +57,9 @@ if (! function_exists('NDStheme_setup')) :
 			wp_enqueue_style('animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), '4.1.1');
 
 
+			wp_register_style('styles', get_stylesheet_directory_uri() . '/css/styles.css', [], 1, 'all');
+			wp_enqueue_style('styles');
+			
 			wp_register_style('style', get_stylesheet_directory_uri() . '/style.css', [], 1, 'all');
 			wp_enqueue_style('style');
 
@@ -56,6 +68,8 @@ if (! function_exists('NDStheme_setup')) :
 
 			wp_register_style('owlcarousel', get_stylesheet_directory_uri() . '/css/owl.carousel.min.css', [], 1, 'all');
 			wp_enqueue_style('owlcarousel');
+			
+			wp_enqueue_style('icons-css','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css', [], 1, 'all');
 		}
 		add_action('wp_enqueue_scripts', 'load_stylesheets');
 
@@ -83,7 +97,6 @@ if (! function_exists('NDStheme_setup')) :
 			// file exists... require it.
 			require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
 		}
-
 
 		function showitemslide($attachment_id)
 		{
