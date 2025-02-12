@@ -34,13 +34,22 @@ if (! function_exists('NDStheme_setup')) :
 			'primary'   => __('Primary Menu', 'NDStheme'),
 			'secondary' => __('Secondary Menu', 'NDStheme'),
 		));
-		
+
 		register_sidebar(array(
 			'name'          => 'Navbar Logo',
 			'id'            => 'navbar_logo',
 			'description'   => 'Add the logo for the company',
 			'before_widget' => '',
 			'after_widget'  => '',
+			'before_title'  => '',
+			'after_title'   => '',
+		));
+		register_sidebar(array(
+			'name'          => 'Partners',
+			'id'            => 'partners',
+			'description'   => 'Our partners',
+			'before_widget' => '<div class="partner_wrapper">',
+			'after_widget'  => '</div>',
 			'before_title'  => '',
 			'after_title'   => '',
 		));
@@ -107,6 +116,42 @@ if (! function_exists('NDStheme_setup')) :
 			} else {
 				echo 'Image has not been uploaded yet.';
 			}
+		}
+
+		function wpb_displayTagDestination() {
+			static $has_run = false; // Prevent multiple executions
+
+    if ($has_run) {
+        return ''; // Stop duplicate rendering
+    }
+    $has_run = true;
+
+    global $wpdb;
+
+    $query = "SELECT * FROM `wp_kit_services`";
+    $out = '';
+
+    $result = $wpdb->get_results($query);
+
+	$out .= '<div class="serviceContainer">';
+    if (!empty($result)) {
+        foreach ($result as $row) {
+            $out .= '<div class="serviceWrp">';
+            $out .= '<img src="' . esc_url($row->image) . '" alt="Service Image">';
+            $out .= '<h5 class="fw-bold mt-4">' . esc_html($row->name) . '</h5>';
+            $out .= '</div>';
+        }
+    }
+	$out .= '</div>';
+
+    return $out;
+}
+		
+		add_shortcode('displayTagDestination', 'wpb_displayTagDestination');
+		
+
+		function wpb_partners() {
+
 		}
 	}
 endif; // NDStheme_setup

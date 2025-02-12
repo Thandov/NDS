@@ -1,5 +1,9 @@
-<div class="owl-carousel owl-theme p-0" id="headercara">
-    <?php
+<div class="carwrap">
+    <div class="bgfloat">
+        <p class="bold">Our Partners: </p><?php dynamic_sidebar('partners'); ?>
+    </div>
+    <div class="owl-carousel owl-theme p-0" id="headercara">
+        <?php
     global $wpdb;
     $query = 'SELECT * FROM `wp_carkit`';
     $out = '';
@@ -20,5 +24,7 @@
             </div>
         </div>
 
-    <?php } ?>
+        <?php } ?>
+
+    </div>
 </div>

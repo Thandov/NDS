@@ -11,7 +11,6 @@
                         <li>Skills Program</li>
                         <li>Trade Test</li>
                         <li>Learnerships</li>
-
                     </ul>
                 </div>
                 <div class="col-sm-2">
@@ -22,7 +21,6 @@
                         <li>Support</li>
                     </ul>
                 </div>
-
                 <div class="col-sm-2">
                     <h5 class="fw-bold" style="color: #FFFFFF;">Company</h5>
                     <ul class="list-unstyled" style="color: #F5F5F5; opacity: 0.5;">
@@ -35,7 +33,6 @@
                     <div class="bg-white p-3">
                     <?php echo do_shortcode('[contact-form-7 id="d4cc3d7" title="Contact form 1"]'); ?>
                     </div>
-
                 </div>
             </div>
             <div class="row p-3">
@@ -60,9 +57,6 @@
             </div>
         </div>
     </div>
-
-
     <?php wp_footer(); ?>
 </footer>
-
 </html>
