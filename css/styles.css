@@ -3,12 +3,12 @@
 }
 
 .bglight {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 .head_section {
   height: 200px;
-  background-color: #2A344E;
+  background-color: #2a344e;
 }
 .head_section .header_txt {
   font-size: 64px;
@@ -25,7 +25,20 @@
 }
 
 .smltxt {
-  color: #2A344E;
+  color: #2a344e;
+}
+
+.cta2_wrp {
+  padding: 30px 50px;
+}
+.cta2_wrp .head_header {
+  font-size: 64px;
+  font-weight: 900;
+  text-align: center;
+}
+.cta2_wrp .ctap {
+  color: #874d0a;
+  text-align: center;
 }
 
 .head_and_desc {
@@ -39,7 +52,7 @@
 }
 .head_and_desc .desc_descript {
   font-size: 24px;
-  color: #2A344E;
+  color: #2a344e;
 }
 
 .scp {
@@ -47,7 +60,7 @@
 }
 
 .nds_btn {
-  background-color: #2A344E;
+  background-color: #2a344e;
   border: none;
   border-radius: 20px;
   height: 35px;
@@ -70,14 +83,14 @@
 
 .nds_outline_btn {
   background-color: none;
-  border: 3px solid #2A344E;
+  border: 3px solid #2a344e;
   border-radius: 20px;
   height: 35px;
   width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #2A344E;
+  color: #2a344e;
 }
 .nds_outline_btn:hover {
   background-color: #252d44;
@@ -101,7 +114,7 @@
   border: none;
   border-bottom: 3px solid #ffc500;
   margin-bottom: 20px;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 .contact_form_wrp textarea.form-control {
   border-radius: 0;
@@ -109,7 +122,7 @@
   border: none;
   border-bottom: 3px solid #ffc500;
   margin-bottom: 20px;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 .coursecard {
@@ -134,7 +147,7 @@
   border-radius: 5px;
   height: 100%;
   width: 100px;
-  background-color: #2A344E;
+  background-color: #2a344e;
 }
 
 .navbar {
@@ -196,7 +209,7 @@
 }
 
 .imgbox .imgbox_p {
-  color: #2A344E !important;
+  color: #2a344e !important;
 }
 
 .bgprimary {
@@ -204,13 +217,13 @@
 }
 
 .bgsecondary {
-  background-color: #2A344E;
+  background-color: #2a344e;
 }
 
 .videobox {
   height: 250px;
   width: 450px;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
 }
 
 .secsmall {
@@ -246,7 +259,7 @@
   color: rgba(0, 0, 0, 0.3);
 }
 .email-form .submit-btn {
-  background-color: #F4C03F;
+  background-color: #f4c03f;
   border: none;
   padding: 15px 20px;
   display: flex;
@@ -375,23 +388,58 @@
     background-position: right;
   }
   .sec {
-    height: 550px;
+    min-height: 350px;
+    padding: 40px 50px;
   }
-  .sec .row {
-    height: 100%;
-  }
-  .sec .row .col {
-    height: 100%;
+  .sec#about_sec {
+    height: 550px !important;
   }
 }
-.circles {
-  height: 180px;
-  width: 180px;
-  background-color: #ffc500;
-  border-radius: 180px;
+.about-logo {
+  width: 50px;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
 }
 
-.shutup {
+.circles {
+  height: 100px;
+  width: 100px;
+  background-color: #ffc500;
+  border-radius: 100px;
+}
+
+.team_wrp {
+  border: 1px;
+  width: 200px;
+}
+.team_wrp .circleprofile {
+  height: 100px;
+  width: 100px;
+  background-color: #ffc500;
+  border-radius: 100px;
+  overflow: hidden;
+}
+.team_wrp .circleprofile img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover; /* or "contain" */
+}
+.team_wrp .empname {
+  font-size: 24px;
+  color: #2a344e;
+}
+.team_wrp .jobtitle {
+  font-size: 20px;
+  color: #969696;
+}
+
+.recipe_card .card-body {
+  border-left: 5px solid #ffc500;
+}
+
+.shutup, .pathlink {
   text-decoration: none;
   color: inherit;
 }/*# sourceMappingURL=styles.css.map */

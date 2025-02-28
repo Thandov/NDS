@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Front Page
  */
@@ -8,10 +9,10 @@ require 'carousel-temp1.php';
 ?>
 <div class="sec" id="landsideimg">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-3">
             img
         </div>
-        <div class="col-md-7 d-flex align-items-center">
+        <div class="col-md-9 d-flex align-items-center">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -65,7 +66,7 @@ require 'carousel-temp1.php';
                             <div class="imgbox text-center">
                                 <a class="shutup" href="#">
                                     <div class="mx-auto" id=""><img
-                                            src="<?php bloginfo('template_directory');?>/img/course_icons/1.svg"
+                                            src="<?php bloginfo('template_directory'); ?>/img/course_icons/1.svg"
                                             alt="1"></div>
                                     <h4 class="imgbox_p fw-bold">Reception Management</h4>
                                 </a>
@@ -75,7 +76,7 @@ require 'carousel-temp1.php';
                             <div class="imgbox text-center">
                                 <a class="shutup" href="#">
                                     <div class="mx-auto" id=""><img
-                                            src="<?php bloginfo('template_directory');?>/img/course_icons/1.svg"
+                                            src="<?php bloginfo('template_directory'); ?>/img/course_icons/2.svg"
                                             alt="1"></div>
                                     <h4 class="imgbox_p fw-bold">Hospitality Management</h4>
                                 </a>
@@ -85,7 +86,7 @@ require 'carousel-temp1.php';
                             <div class="imgbox text-center">
                                 <a class="shutup" href="#">
                                     <div class="mx-auto" id=""><img
-                                            src="<?php bloginfo('template_directory');?>/img/course_icons/1.svg"
+                                            src="<?php bloginfo('template_directory'); ?>/img/course_icons/3.svg"
                                             alt="1"></div>
                                     <h4 class="imgbox_p fw-bold">Culinary Arts</h4>
                                 </a>
@@ -95,7 +96,7 @@ require 'carousel-temp1.php';
                             <div class="imgbox text-center">
                                 <a class="shutup" href="#">
                                     <div class="mx-auto" id=""><img
-                                            src="<?php bloginfo('template_directory');?>/img/course_icons/1.svg"
+                                            src="<?php bloginfo('template_directory'); ?>/img/course_icons/4.svg"
                                             alt="1"></div>
                                     <h4 class="imgbox_p fw-bold">Food & Beverage</h4>
                                 </a>
@@ -155,11 +156,20 @@ require 'carousel-temp1.php';
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 ctarel"><p class="ctaspecial">1</p><p class="ctatxtspc">Choose a course</p></div>
-            <div class="col-md-3 ctarel"><p class="ctaspecial">2</p><p class="ctatxtspc">Enroll Online</p></div>
-            <div class="col-md-3 ctarel"><p class="ctaspecial">3</p><div class="ctatxtspc"><button class="nds_btn">Start Journey</button></div></div>
+            <div class="col-md-3 ctarel">
+                <p class="ctaspecial">1</p>
+                <p class="ctatxtspc">Choose a course</p>
+            </div>
+            <div class="col-md-3 ctarel">
+                <p class="ctaspecial">2</p>
+                <p class="ctatxtspc">Enroll Online</p>
+            </div>
+            <div class="col-md-3 ctarel">
+                <p class="ctaspecial">3</p>
+                <div class="ctatxtspc"><button class="nds_btn">Start Journey</button></div>
+            </div>
             <div class="col-md-3">
-                <img src="<?php bloginfo('template_directory');?>/img/cheflady.png" alt="" srcset="">
+                <img src="<?php bloginfo('template_directory'); ?>/img/cheflady.png" alt="" srcset="">
             </div>
         </div>
     </div>
@@ -205,23 +215,7 @@ require 'carousel-temp1.php';
         </div>
     </div>
 </div>
-<div class="sec blogrecipies d-flex align-items-center">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="head_and_desc">
-                <p class="desc_descript">We’ve been cooking up a storm</p>
-                <h2 class="head_header">Recipes Blogs</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                
-                <?php echo do_shortcode('[recipes_blog]');; ?>
-            </div>
-        </div>
-    </div>
-</div>
-<?php
+
+<?php require get_template_directory() . '/includes/recipe_blog.php';
+
 get_footer(); ?>
