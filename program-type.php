@@ -1,10 +1,11 @@
 <?php
-
-
+/**
+ * Template Name: Programs Page
+ */
 get_header();
-$path_slug = get_query_var('education_path_slug');
-$pagename = ucwords(str_replace('-', ' ', $path_slug));
-
+$page_name = get_post_field('post_name', get_queried_object_id());
+$pagename = ucwords(str_replace('-', ' ', $page_name));
+$page_slug = sanitize_title($page_name);
 ?>
 
 <div class="head_section d-flex align-items-center justify-content-center">
@@ -22,7 +23,7 @@ $pagename = ucwords(str_replace('-', ' ', $path_slug));
             </div>
         </div>
         <div class="row">
-            <?php echo do_shortcode('[displaySelectedPathPrgramTypes slug="' . $path_slug . '"]'); ?>
+            <?php echo do_shortcode('[displaySelectedPathPrgramTypes slug="' . $page_slug . '"]'); ?>
         </div>
     </div>
 </div>

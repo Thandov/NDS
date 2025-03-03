@@ -178,7 +178,7 @@ if (! function_exists('NDStheme_setup')) :
 			$out .= '<div class="row">';
 			if (!empty($paths)) {
 				foreach ($paths as $path) {
-					$out .= '<div class="col-sm-12 col-md-3"><a href="' . sanitize_title_with_dashes($path->name) . '" class="pathlink text-decoration-none">';
+					$out .= '<div class="col-sm-12 col-md-3"><a href="/' . sanitize_title_with_dashes($path->name) . '" class="pathlink text-decoration-none">';
 					$out .= '<div class="circles mx-auto"></div>';
 					$out .= '<div class="text-center"><h6 id="' . $path->id . '" class="theSelectedPath mt-3 fw-bold">' . $path->name . '</h6></a></div>';
 					$out .= '</div>';
@@ -189,6 +189,7 @@ if (! function_exists('NDStheme_setup')) :
 
 			return $out;
 		}
+
 		function wpb_path_page()
 		{
 
@@ -223,12 +224,15 @@ if (! function_exists('NDStheme_setup')) :
 
 		function progCards($out, $rname, $program_type)
 		{
-
+			echo '<pre>';
+			print_r($program_type);
+			echo '</pre>';
+			exit();
 			$out .= '<div class="col-md-3 dfddf">';
 			$path_slug = sanitize_title_with_dashes($rname);
 			$program_slug = sanitize_title_with_dashes($program_type->name);
 
-			$out .= '<a href="' . site_url('/education-path/' . $path_slug . '/' . $program_slug) . '" class="text-decoration-none text-reset">';
+			$out .= '<a href="/' . site_url('/' . $path_slug . '/' . $program_slug) . '" class="text-decoration-none text-reset">';
 			$out .= '<div class="coursecard">';
 			$out .= '<div class="row">';
 			$out .= '<div class="col-5">';
@@ -263,11 +267,10 @@ if (! function_exists('NDStheme_setup')) :
 			$path_slug = sanitize_title_with_dashes($rname);
 			$program_slug = sanitize_title_with_dashes($program_type->name);
 			ob_start();
+
 ?>
 			<div class="card border-0 mb-3 recipe_card" style="max-width: 350px;">
-				<a href="<?php echo (get_page_by_path('education-path/full-time-qualification/chef')); ?>">View Course</a>
-
-				<a class="shutup" href="<?php echo site_url('/education-path/' . $path_slug . '/' . $program_slug); ?>">
+				<a class="shutup" href="<?php echo site_url('/category/' . $program_slug); ?>">
 					<div class="g-0 d-flex align-items-center">
 						<div class="">
 							<img src="<?php bloginfo('template_directory'); ?>/img/recipes/<?php echo (isset($program_type->image)) ? $program_type->image : "r1.png"; ?>" height="100" class="rounded" alt="recipe pic">
@@ -293,11 +296,13 @@ if (! function_exists('NDStheme_setup')) :
 
 			global $wpdb;
 
-			$query = "SELECT * FROM `wp_nds_education_paths` WHERE `name` = '$slu';";
+			$query = "SELECT * FROM `wp_nds_education_paths` WHERE LOWER(`name`) = LOWER('$slu');";
 			$out = '';
 			$result = $wpdb->get_row($query);
+
 			$query2 = "SELECT * FROM `wp_nds_program_types` WHERE `path_id` = '$result->id';";
 			$program_types = $wpdb->get_results($query2);
+
 			foreach ($program_types as $key => $program_type) {
 				echo progCard($out, $result->name, $program_type);
 			}
@@ -308,75 +313,13 @@ if (! function_exists('NDStheme_setup')) :
 	}
 
 
-	function nds_custom_rewrite_rule()
-	{
-		// This tells WordPress to look for the URL structure /education-path/{slug}
-		add_rewrite_rule(
-			'^education-path/([^/]+)/?$',
-			'index.php?education_path_slug=$matches[1]',
-			'top'
-		);
-	}
-	add_action('init', 'nds_custom_rewrite_rule');
-
-	function custom_rewrite_rules()
-	{
-		add_rewrite_rule(
-			'^education-path/([^/]+)/([^/]+)/?$',
-			'index.php?post_type=course&name=$matches[2]',
-			'top'
-		);
-	}
-	add_action('init', 'custom_rewrite_rules');
-
-	function nds_add_query_vars($vars)
-	{
-		$vars[] = 'education_path_slug';
-		return $vars;
-	}
-	add_filter('query_vars', 'nds_add_query_vars');
-
-	function nds_template_redirect()
-	{
-		// Check if the education_path_slug is set
-		$education_path_slug = get_query_var('education_path_slug');
-
-		if ($education_path_slug) {
-			// Check if a page or custom post type exists for the slug
-			$template = locate_template('program-type.php'); // Locate the program-type.php file in the theme directory
-
-			if ($template) {
-				include($template);
-				exit; // Ensure WordPress doesn't continue processing and uses this template
-			}
-		}
-	}
-	add_action('template_redirect', 'nds_template_redirect');
-
-	function register_course_post_type()
-	{
-		$args = array(
-			'labels'      => array(
-				'name'          => __('Courses'),
-				'singular_name' => __('Course'),
-			),
-			'public'      => true,
-			'has_archive' => false,
-			'rewrite'     => false,  // Disable default rewrite, we will add a custom one
-			'supports'    => array('title', 'editor', 'thumbnail'),
-		);
-		register_post_type('course', $args);
-	}
-	add_action('init', 'register_course_post_type');
-
-
-
 endif; // NDStheme_setup
 add_action('after_setup_theme', 'NDStheme_setup');
 
 function recp_card($recipe = null)
 {
 	ob_start();
+	echo "dfsdfsdf";
 	?>
 	<div class="card border-0 mb-3 recipe_card" style="max-width: 350px;">
 		<div class="g-0 d-flex align-items-center">
@@ -430,28 +373,218 @@ function display_staff()
 }
 add_shortcode('show_staff_members', 'display_staff');
 
-function nds_custom_rewrite_rules()
+function showCourses($category_id)
 {
-	// Match: /education-path/{page}/
-	add_rewrite_rule(
-		'^education-path/([^/]+)/?$',
-		'index.php?program_type=$matches[1]',
-		'top'
+
+	global $wpdb;
+	$out = "";
+	$category_id = $category_id['id'];
+	$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE category_id = $category_id;";
+
+	$program_name = $wpdb->get_row($program_query);
+
+	$category = get_category($category_id);
+	$program_slug = $category->slug;
+
+	$query = "SELECT * FROM `wp_nds_courses` WHERE program_id = $program_name->id;";
+	$courses = $wpdb->get_results($query);
+?>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th scope="col">Course Image</th>
+				<th scope="col">Course Name</th>
+				<th scope="col">Course Level</th>
+				<th scope="col">Duration</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			foreach ($courses as $key => $course):
+				$post = get_post($course->post_id);
+				$course_slug = $post->post_name;
+			?>
+				<tr>
+					<td><img src="receptionist-level-2.jpg" alt="<?php echo $course->name; ?>" class="img-fluid" style="max-width: 100px;"></td>
+					td><a class="shutup" href="<?php echo site_url('/' . $program_slug . '/' . $course_slug); ?>"><strong><?php echo $course->name; ?></strong></a></td>
+					td>Intermediate</td>
+					<td><?php echo $course->duration; ?> Months</td>
+					<td><button class="btn btn-primary">Apply Now</button> <button class="btn btn-secondary">Book a Visit</button></td>
+				</tr>
+			<?php
+			endforeach;
+			?>
+		</tbody>
+	</table>
+<?php
+}
+add_shortcode('wpd_showCourses', 'showCourses');
+
+function coursePanel($course)
+{
+?>
+	<div class="container py-3">
+		<div class="row">
+			<div class="col">
+				<div class="head_and_desc">
+					<div class="row">
+						<div class="col-sm-5">
+							<p class="desc_descript m-0 txt-small" style="color: #2a344e;"><?php echo ($course && $course->program_type_name) ? $course->program_type_name : "eeeeee"; ?></p>
+							<h2 class="fw-bold" style="color: #ffc500;"><?php echo ($course && $course->course_name) ? $course->course_name : "eeeeee"; ?></h2>
+						</div>
+						<div class="col d-flex align-items-center">
+							<div class="d-flex align-items-center gap-3">
+								<img class="s" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 0.png" style="height: 40px; width: 140px; " alt="./img/partners/Asset 0.png" />
+								<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 1.png" alt="./img/partners/Asset 1.png" />
+								<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 2.png" alt="./img/partners/Asset 2.png" />
+								<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 3.png" alt="./img/partners/Asset 3.png" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<p><span class="fw-bold">post_id:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
+				<p><span class="fw-bold">program_id:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
+				<p><span class="fw-bold">nqf_level:</span> <?php echo ($course && $course->nqf_level) ? $course->nqf_level : "eeeeee"; ?></p>
+				<p><span class="fw-bold">Duration:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
+				<p><span class="fw-bold">Enrollment Date:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
+			</div>
+		</div>
+	</div>
+<?php
+}
+
+function wpd_showCoursesNavTabs($category_id)
+{
+	global $wpdb;
+	$out = "";
+	$category_id = $category_id['id'];
+
+	$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE category_id = $category_id;";
+	$program_name = $wpdb->get_row($program_query);
+
+	$category = get_category($category_id);
+	$program_slug = $category->slug;
+
+	$query = "SELECT * FROM `wp_nds_courses` WHERE program_id = $program_name->id;";
+	$courses = $wpdb->get_results($query);
+?>
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<?php
+		foreach ($courses as $key => $course):
+			$slugish = str_replace(' ', '-', $course->name);
+			// Add the 'active' class to the first tab
+			$active_class = ($key === 0) ? 'active' : '';
+		?>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link <?php echo $active_class; ?>" id="<?php echo $slugish; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $slugish; ?>" type="button" role="tab" aria-controls="<?php echo $slugish; ?>" aria-selected="true"><?php echo $course->name; ?></button>
+			</li>
+		<?php endforeach; ?>
+	</ul>
+<?php
+}
+
+add_shortcode('showCoursesNavTabs', 'wpd_showCoursesNavTabs');
+
+function wpd_showPanelCoursesNavTabs($category_id)
+{
+	global $wpdb;
+	$out = "";
+	$category_id = $category_id['id'];
+
+	$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE category_id = $category_id;";
+	$program_name = $wpdb->get_row($program_query);
+
+	$category = get_category($category_id);
+	$program_slug = $category->slug;
+
+	$query = "SELECT 
+    courses.id AS course_id,
+    courses.name AS course_name,
+    courses.nqf_level,
+    courses.description AS course_description,
+    courses.duration,
+    program_types.id AS program_type_id,
+    program_types.name AS program_type_name,
+    program_types.description AS program_type_description,
+    education_paths.id AS education_path_id,
+    education_paths.name AS education_path_name,
+    education_paths.description AS education_path_description
+	FROM 
+    wp_nds_courses AS courses
+	JOIN 
+    wp_nds_program_types AS program_types ON courses.program_id = program_types.id
+	JOIN 
+    wp_nds_education_paths AS education_paths ON program_types.path_id = education_paths.id
+	WHERE 
+    courses.program_id = $program_name->id;
+	";
+	$courses = $wpdb->get_results($query);
+?>
+
+	<div class="tab-content" id="myTabContent">
+		<?php
+		foreach ($courses as $key => $course):
+			echo '<pre>';
+			print_r($course);
+			echo '</pre>';
+			$slugish = str_replace(' ', '-', $course->course_name);
+			// Add the 'active show' class to the first tab panel
+			$active_panel_class = ($key === 0) ? 'active show' : '';
+		?>
+			<div class="tab-pane fade <?php echo $active_panel_class; ?>" id="<?php echo $slugish; ?>" role="tabpanel" aria-labelledby="<?php echo $slugish; ?>-tab">
+				<?php coursePanel($course); ?>
+			</div>
+		<?php endforeach; ?>
+	</div>
+<?php
+}
+
+add_shortcode('showPanelCoursesNavTabs', 'wpd_showPanelCoursesNavTabs');
+//austin work with the below wpd_breadcrumbs function
+//austin
+//austin
+function wpd_breadcrumbs($atts)
+{
+	// Set default attributes
+	$atts = shortcode_atts(
+		array(
+			'data' => '[]', // Default is an empty array
+		),
+		$atts,
+		'custom_breadcrumbs'
 	);
 
-	// Match: /education-path/{page}/{course-slug}/
-	add_rewrite_rule(
-		'^education-path/([^/]+)/([^/]+)/?$',
-		'index.php?post_type=course&name=$matches[2]',
-		'top'
-	);
-}
-add_action('init', 'nds_custom_rewrite_rules');
+	// Decode the JSON data passed to the shortcode
+	$breadlinks = json_decode(urldecode($atts['data']), true);
 
-// Register custom query var
-function add_custom_query_vars($vars)
-{
-	$vars[] = 'program_type';
-	return $vars;
+	// Check if the decoded data is valid
+	if (!is_array($breadlinks)) {
+		return "Invalid breadcrumb data.";
+	}
+
+	// Start the Bootstrap breadcrumb container
+	$output = '<div class="container"><div class="row"><div class="col"></div><nav aria-label="breadcrumb"><ol class="breadcrumb">';
+
+	// Loop through each breadcrumb and generate the list items
+	$total_links = count($breadlinks);
+	foreach ($breadlinks as $index => $link) {
+		// If it's the last item, make it active
+		if ($index === $total_links - 1) {
+			$output .= '<li class="breadcrumb-item active" aria-current="page">' . $link['name'] . '</li>';
+		} else {
+			$output .= '<li class="breadcrumb-item"><a class="shutup" href="/' . $link['slug'] . '">' . $link['name'] . '</a></li>';
+		}
+	}
+
+	// Close the breadcrumb container
+	$output .= '</ol></nav></div></div></div>';
+
+	return $output;
 }
-add_filter('query_vars', 'add_custom_query_vars');
+add_shortcode('crumbs', 'wpd_breadcrumbs');
