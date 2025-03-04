@@ -224,10 +224,6 @@ if (! function_exists('NDStheme_setup')) :
 
 		function progCards($out, $rname, $program_type)
 		{
-			echo '<pre>';
-			print_r($program_type);
-			echo '</pre>';
-			exit();
 			$out .= '<div class="col-md-3 dfddf">';
 			$path_slug = sanitize_title_with_dashes($rname);
 			$program_slug = sanitize_title_with_dashes($program_type->name);
@@ -423,6 +419,8 @@ add_shortcode('wpd_showCourses', 'showCourses');
 
 function coursePanel($course)
 {
+
+
 ?>
 	<div class="container py-3">
 		<div class="row">
@@ -430,7 +428,7 @@ function coursePanel($course)
 				<div class="head_and_desc">
 					<div class="row">
 						<div class="col-sm-5">
-							<p class="desc_descript m-0 txt-small" style="color: #2a344e;"><?php echo ($course && $course->program_type_name) ? $course->program_type_name : "eeeeee"; ?></p>
+							<p class="desc_descript m-0 txt-small" style="color: #2a344e;"><a href="/category/<?php echo  str_replace(' ', '-', $course->program_type_name); ?>" class="text-decoration-none text-reset"><?php  echo ($course && $course->program_type_name) ? $course->program_type_name : "eeeeee"; ?></a></p>
 							<h2 class="fw-bold" style="color: #ffc500;"><?php echo ($course && $course->course_name) ? $course->course_name : "eeeeee"; ?></h2>
 						</div>
 						<div class="col d-flex align-items-center">
@@ -448,11 +446,21 @@ function coursePanel($course)
 		</div>
 		<div class="row">
 			<div class="col">
-				<p><span class="fw-bold">post_id:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
+				<!-- xxxxxxx -->
+				<?php echo '<pre>';
+				print_r($course);
+				echo '</pre>';
+				?>
+				<p style="color: #969696"><span class="fw-bold text-black">Enrollment date:</span> <?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></p>
+				<p><span class="fw-bold">Duration:</span> <?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></p>
 				<p><span class="fw-bold">program_id:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
 				<p><span class="fw-bold">nqf_level:</span> <?php echo ($course && $course->nqf_level) ? $course->nqf_level : "eeeeee"; ?></p>
-				<p><span class="fw-bold">Duration:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
 				<p><span class="fw-bold">Enrollment Date:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
+				<button class="nds_btn me-3">Apply Here</button>
+			</div>
+			<div class="col bg-white p-3">
+				<p class="fw-bold">Course Description</p>
+				<p><?php echo ($course && $course->course_description) ? $course->course_description : "eeeeee"; ?></p>
 			</div>
 		</div>
 	</div>
@@ -530,9 +538,6 @@ function wpd_showPanelCoursesNavTabs($category_id)
 	<div class="tab-content" id="myTabContent">
 		<?php
 		foreach ($courses as $key => $course):
-			echo '<pre>';
-			print_r($course);
-			echo '</pre>';
 			$slugish = str_replace(' ', '-', $course->course_name);
 			// Add the 'active show' class to the first tab panel
 			$active_panel_class = ($key === 0) ? 'active show' : '';

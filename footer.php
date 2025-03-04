@@ -3,7 +3,7 @@
     <div class="w-100 border-top py-3">
         <div class="container">
             <div class="row p-3">
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <h5 class="fw-bold" style="color: #FFFFFF;">Education</h5>
                     <ul class="list-unstyled" style="color: #F5F5F5; opacity: 0.5;">
                         <li>Short courses</li>
@@ -13,7 +13,7 @@
                         <li>Learnerships</li>
                     </ul>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <h5 class="fw-bold" style="color: #FFFFFF;">Information</h5>
                     <ul class="list-unstyled" style="color: #F5F5F5; opacity: 0.5;">
                         <li>FAQ</li>
@@ -21,7 +21,7 @@
                         <li>Support</li>
                     </ul>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <h5 class="fw-bold" style="color: #FFFFFF;">Company</h5>
                     <ul class="list-unstyled" style="color: #F5F5F5; opacity: 0.5;">
                         <li>About us</li>
@@ -29,8 +29,7 @@
                         <li>Contacts</li>
                     </UL>
                 </div>
-                <div class="col-sm-6">
-
+                <div class="col-sm-3">
                     <!-- Background Container with 5% Opacity -->
                     <div class="p-4 rounded-lg" style="background-color: rgba(255, 255, 255, 0.05);">
                         <?php echo do_shortcode('[contact-form-7 id="d4cc3d7" title="Contact form 1"]'); ?>
