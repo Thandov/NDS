@@ -15,11 +15,7 @@ $page_slug = sanitize_title($page_name);
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class="head_and_desc scp">
-                    <p class="desc_descript">We Have</p>
-                    <h2 class="head_header"><?php echo $pagename; ?></h2>
-                    <hr>
-                </div>
+                <?php echo do_shortcode('[marqueText smTxt="We Have" bgTxt="'. $pagename.'"]'); ?>
             </div>
         </div>
         <div class="row">

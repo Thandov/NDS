@@ -22,7 +22,6 @@ $gfont: #969696;
 .head_section {
     height: 200px;
     background-color: $secondaryColor;
-
     .header_txt {
         font-size: $bossTxt;
         color: $primaryColor;
@@ -61,11 +60,6 @@ $gfont: #969696;
         color: $primaryColor;
         font-weight: 900;
         margin-top: -30px;
-    }
-
-    .desc_descript {
-        font-size: $smallTxt;
-        color: $secondaryColor;
     }
 }
 
@@ -266,8 +260,9 @@ $gfont: #969696;
     background-color: $secondaryColor;
 }
 .videobox {
-    height: 250px;
+    height: 150px;
     width: 450px;
+    margin-bottom: 10px;
     background-color: $grey;
 }
 .secsmall {

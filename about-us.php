@@ -11,10 +11,7 @@ get_header(); ?>
 <div class="sec" id="about_sec">
     <div class="row h-100">
         <div class="col h-100">
-            <div class="head_and_desc scp">
-                <p class="desc_descript">About Us</p>
-                <h2 class="head_header">NDS Academy</h2>
-            </div>
+            <?php echo do_shortcode('[marqueText smTxt="About Us" bgTxt="NDS Academy"]'); ?>
             <p>Founded in 2013, NDS Chefs Academy was established to bridge the gap for students unable to meet traditional university admission requirements. We provide an alternative pathway to quality education, helping students build rewarding careers in hospitality.<br><br>
                 At NDS, we take pride in delivering exceptional customer service and fostering long-term partnerships. Our commitment to service excellence ensures that we exceed expectations for both students and industry clients, enhancing their experiences and supporting their success.<br><br>
                 Our executive leadership brings over 20 years of experience across Hospitality, Tourism, Information Technology, Business Management, and Education and Training. This expertise drives our hands-on approach, focused on achieving outstanding results and building lasting relationships that speak to our commitment to quality and professionalism.</p>
@@ -50,10 +47,7 @@ get_header(); ?>
 </div>
 <div class="sec d-flex align-items-center">
     <div>
-        <div class="head_and_desc scp">
-            <p class="desc_descript">Meet The Team</p>
-            <h2 class="head_header">Our Team</h2>
-        </div>
+        <?php echo do_shortcode('[marqueText smTxt="Meet The Team" bgTxt="Our Team"]'); ?>
         <?php echo do_shortcode('[show_staff_members]'); ?>
     </div>
 </div>

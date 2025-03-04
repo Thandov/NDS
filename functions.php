@@ -82,8 +82,10 @@ if (! function_exists('NDStheme_setup')) :
 		}
 		add_action('wp_enqueue_scripts', 'load_stylesheets');
 
+
 		function addjs()
 		{
+
 			wp_register_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js', [], 1, 1, 1);
 			wp_enqueue_script('bootstrap');
 
@@ -94,6 +96,9 @@ if (! function_exists('NDStheme_setup')) :
 			wp_enqueue_script('headcara');
 
 			wp_enqueue_script('jquery-form');
+
+
+
 
 			wp_localize_script('custom', 'ajax_object', ['ajax_url' => admin_url('admin-ajax.php'), 'nonce' => wp_create_nonce('ajax-nonce')]);
 		}
@@ -417,50 +422,63 @@ function showCourses($category_id)
 }
 add_shortcode('wpd_showCourses', 'showCourses');
 
-function coursePanel($course)
+function coursePanel($course, $possible_employment)
 {
-
-
 ?>
 	<div class="container py-3">
 		<div class="row">
-			<div class="col">
-				<div class="head_and_desc">
-					<div class="row">
-						<div class="col-sm-5">
-							<p class="desc_descript m-0 txt-small" style="color: #2a344e;"><a href="/category/<?php echo  str_replace(' ', '-', $course->program_type_name); ?>" class="text-decoration-none text-reset"><?php  echo ($course && $course->program_type_name) ? $course->program_type_name : "eeeeee"; ?></a></p>
-							<h2 class="fw-bold" style="color: #ffc500;"><?php echo ($course && $course->course_name) ? $course->course_name : "eeeeee"; ?></h2>
-						</div>
-						<div class="col d-flex align-items-center">
-							<div class="d-flex align-items-center gap-3">
-								<img class="s" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 0.png" style="height: 40px; width: 140px; " alt="./img/partners/Asset 0.png" />
-								<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 1.png" alt="./img/partners/Asset 1.png" />
-								<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 2.png" alt="./img/partners/Asset 2.png" />
-								<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 3.png" alt="./img/partners/Asset 3.png" />
-							</div>
-						</div>
-					</div>
+			<div class="col-md-7 head_and_desc">
+				<p class="text-base/7 font-semibold m-0 text-base/7 font-semibold" style="color: #2a344e;"><a href="/category/<?php echo  str_replace(' ', '-', $course->program_type_name); ?>" class="text-decoration-none text-reset"><?php echo ($course && $course->program_type_name) ? $course->program_type_name : "eeeeee"; ?></a></p>
+				<h2 class="mt-2 text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl" style="color: #ffc500;"><?php echo ($course && $course->course_name) ? $course->course_name : "eeeeee"; ?></h2>
+			</div>
+			<div class="col-md-5 d-flex align-items-center">
+				<div class="d-flex align-items-center gap-3">
+					<?php echo $course->accrediation_body; ?>
+					<img class="s" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 0.png" style="height: 40px; width: 140px; " alt="./img/partners/Asset 0.png" />
+					<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 1.png" alt="./img/partners/Asset 1.png" />
+					<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 2.png" alt="./img/partners/Asset 2.png" />
+					<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 3.png" alt="./img/partners/Asset 3.png" />
 				</div>
-				<hr>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col">
-				<!-- xxxxxxx -->
-				<?php echo '<pre>';
-				print_r($course);
-				echo '</pre>';
-				?>
-				<p style="color: #969696"><span class="fw-bold text-black">Enrollment date:</span> <?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></p>
-				<p><span class="fw-bold">Duration:</span> <?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></p>
-				<p><span class="fw-bold">program_id:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
-				<p><span class="fw-bold">nqf_level:</span> <?php echo ($course && $course->nqf_level) ? $course->nqf_level : "eeeeee"; ?></p>
-				<p><span class="fw-bold">Enrollment Date:</span> <?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></p>
+			<div class="col-md-7">
+				<div class="grid grid-cols-2 mb-4">
+					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Enrollment date:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
+					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Duration:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
+					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">program_id:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></span></p>
+					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">course_name:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->course_name) ? "     " . $course->course_name : " " ?></span></p>
+					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Accredited By:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->accrediation_body) ? "     " . $course->accrediation_body : " " ?></span></p>
+					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Credits:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->credits) ? "     " . $course->credits : " " ?></span></p>
+					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Price:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->price) ? "     " . $course->price : " " ?></span></p>
+				</div>
+				<hr>
+				<h5 class="fw-bold text-base mt-4">Course Description:</h5>
+				<p><?php echo ($course && $course->course_description) ? $course->course_description : "eeeeee"; ?></p>
 				<button class="nds_btn me-3">Apply Here</button>
 			</div>
-			<div class="col bg-white p-3">
-				<p class="fw-bold">Course Description</p>
-				<p><?php echo ($course && $course->course_description) ? $course->course_description : "eeeeee"; ?></p>
+			<div class="col-md-5">
+				<div class="boxing bg-white shadwo-sm rounded p-3 mb-4">
+					<p class="fw-bold">Related <a href="/category/<?php echo  str_replace(' ', '-', $course->program_type_name); ?>" class="text-decoration-none text-reset"><?php echo ($course && $course->program_type_name) ? $course->program_type_name : "eeeeee"; ?></a> </p>
+				</div>
+				<div class="boxing bg-white shadow-sm rounded p-3">
+					<p class="fw-bold">Course Potential careers</p>
+					<ul role="list" class="divide-y divide-gray-100">
+						<?php
+						foreach ($possible_employment as $key => $pe):
+						?>
+							<li class="flex justify-between gap-x-6 px-2">
+								<div class="flex min-w-0 gap-x-4">
+									<div class="min-w-0 flex-auto">
+										<p class="text-sm/6 font-semibold text-gray-900"><?php echo $pe->job_title; ?></p>
+										<p class="truncate text-xs/5 text-gray-500"><?php echo $pe->salary_range; ?></p>
+									</div>
+								</div>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+
+				</div>
 			</div>
 		</div>
 	</div>
@@ -490,7 +508,7 @@ function wpd_showCoursesNavTabs($category_id)
 			$active_class = ($key === 0) ? 'active' : '';
 		?>
 			<li class="nav-item" role="presentation">
-				<button class="nav-link <?php echo $active_class; ?>" id="<?php echo $slugish; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $slugish; ?>" type="button" role="tab" aria-controls="<?php echo $slugish; ?>" aria-selected="true"><?php echo $course->name; ?></button>
+				<button class="fw-bold text-base mt-4 shutup nav-link <?php echo $active_class; ?>" id="<?php echo $slugish; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $slugish; ?>" type="button" role="tab" aria-controls="<?php echo $slugish; ?>" aria-selected="true"><?php echo $course->name; ?></button>
 			</li>
 		<?php endforeach; ?>
 	</ul>
@@ -512,25 +530,33 @@ function wpd_showPanelCoursesNavTabs($category_id)
 	$program_slug = $category->slug;
 
 	$query = "SELECT 
-    courses.id AS course_id,
-    courses.name AS course_name,
-    courses.nqf_level,
-    courses.description AS course_description,
-    courses.duration,
-    program_types.id AS program_type_id,
-    program_types.name AS program_type_name,
-    program_types.description AS program_type_description,
-    education_paths.id AS education_path_id,
-    education_paths.name AS education_path_name,
-    education_paths.description AS education_path_description
-	FROM 
-    wp_nds_courses AS courses
-	JOIN 
-    wp_nds_program_types AS program_types ON courses.program_id = program_types.id
-	JOIN 
-    wp_nds_education_paths AS education_paths ON program_types.path_id = education_paths.id
-	WHERE 
-    courses.program_id = $program_name->id;
+		courses.id AS course_id,
+		courses.name AS course_name,
+		courses.accrediation_body,
+		courses.code,
+		courses.nqf_level,
+		courses.description AS course_description,
+		courses.duration,
+		courses.credits,
+		courses.price,
+		courses.start_date,
+		courses.end_date,
+		courses.status,
+		courses.max_students,
+		program_types.id AS program_type_id,
+		program_types.name AS program_type_name,
+		program_types.description AS program_type_description,
+		education_paths.id AS education_path_id,
+		education_paths.name AS education_path_name,
+		education_paths.description AS education_path_description
+		FROM 
+		wp_nds_courses AS courses
+		JOIN 
+		wp_nds_program_types AS program_types ON courses.program_id = program_types.id
+		JOIN 
+		wp_nds_education_paths AS education_paths ON program_types.path_id = education_paths.id
+		WHERE 
+		courses.program_id = $program_name->id;
 	";
 	$courses = $wpdb->get_results($query);
 ?>
@@ -541,9 +567,12 @@ function wpd_showPanelCoursesNavTabs($category_id)
 			$slugish = str_replace(' ', '-', $course->course_name);
 			// Add the 'active show' class to the first tab panel
 			$active_panel_class = ($key === 0) ? 'active show' : '';
+
+			$query_possible_employment = "SELECT * FROM `wp_nds_possible_employment` WHERE `course_id` = $course->course_id;";
+			$possible_employment = $wpdb->get_results($query_possible_employment);
 		?>
 			<div class="tab-pane fade <?php echo $active_panel_class; ?>" id="<?php echo $slugish; ?>" role="tabpanel" aria-labelledby="<?php echo $slugish; ?>-tab">
-				<?php coursePanel($course); ?>
+				<?php coursePanel($course, $possible_employment); ?>
 			</div>
 		<?php endforeach; ?>
 	</div>
@@ -551,9 +580,8 @@ function wpd_showPanelCoursesNavTabs($category_id)
 }
 
 add_shortcode('showPanelCoursesNavTabs', 'wpd_showPanelCoursesNavTabs');
+
 //austin work with the below wpd_breadcrumbs function
-//austin
-//austin
 function wpd_breadcrumbs($atts)
 {
 	// Set default attributes
@@ -593,3 +621,56 @@ function wpd_breadcrumbs($atts)
 	return $output;
 }
 add_shortcode('crumbs', 'wpd_breadcrumbs');
+
+function wpd_Textmarque($atts)
+{
+	$out = "";
+	$out .= '<div class="head_and_desc scp">';
+	$out .= '<p class="text-base/7 font-semibold">'. $atts['smtxt'].'</p>';
+	$out .= '<h2 class="text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl" style="color: #ffc500;">'. $atts['bgtxt'].'</h2>';
+	$out .= ' </div>';
+
+	return $out;
+}
+add_shortcode('marqueText', 'wpd_Textmarque');
+
+function custom_image_gallery()
+{
+	$base_dir = get_template_directory() . '/img/gallery/';
+	$base_url = get_template_directory_uri() . '/img/gallery/';
+
+	$output = '<div class="">';
+
+	$years = array('2022', '2023', '2024'); // Add/remove years as needed
+
+	foreach ($years as $year) {
+		$year_path = $base_dir . $year;
+		$year_url = $base_url . $year;
+
+		if (is_dir($year_path)) {
+			$output .= "<h2 class='mt-4'>$year</h2>";
+			$output .= '<div class="row g-3">'; // Bootstrap grid row
+
+			$images = glob($year_path . '/*.{jpg,png,gif}', GLOB_BRACE);
+
+			foreach ($images as $image) {
+				$img_url = $year_url . '/' . basename($image);
+				$output .= '
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card shadow-sm overflow-hidden" style="height: 140px">
+                            <a href="' . $img_url . '" data-lightbox="gallery">
+                                <img src="' . $img_url . '" class="card-img-top img-fluid object-fit-cover" loading="lazy" alt="Gallery Image" style="height: 100%; width: 100%; object-fit: cover;">
+                            </a>
+                        </div>
+                    </div>
+                ';
+			}
+
+			$output .= '</div>'; // Close row
+		}
+	}
+
+	$output .= '</div>'; // Close container
+	return $output;
+}
+add_shortcode('custom_gallery', 'custom_image_gallery');

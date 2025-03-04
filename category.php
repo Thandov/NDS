@@ -20,19 +20,12 @@ if ($category) {
     <h1 class="header_txt"><?php echo $category->name; ?></h1>
 </div>
 <div class="py-3 bgprimary"><?php echo do_shortcode('[crumbs data="' . $breadlinks_json . '"]'); ?></div>
-<div class="container" id="">
-    <div class="row">
-        <div class="col pt-3">
-            <div class="head_and_desc scp">
-                <?php echo do_shortcode('[showCoursesNavTabs id="' . $category_id . '"]'); ?>
-            </div>
-        </div>
-    </div>
-</div>
+<?php require 'course-slider.php'; ?>
 <div style="background-color: #F8F8F8;">
     <div class="container">
         <div class="row">
             <div class="col">
+                <?php echo do_shortcode('[showCoursesNavTabs id="' . $category_id . '"]'); ?>
                 <?php echo do_shortcode('[showPanelCoursesNavTabs id="' . $category_id . '"]'); ?>
             </div>
         </div>

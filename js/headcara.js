@@ -50,5 +50,13 @@ jQuery(document).ready(function () {
             .removeClass("animate__animated animate__fadeIn")
             .addClass("hide-text");
     }
-
+    var slider = jQuery('#courses-slider');
+    slider.owlCarousel({
+        items: 3,
+        loop: true,
+        margin: 10,
+        autoplay: true,
+        autoplayTimeout: 6000,
+        autoplayHoverPause: true
+    });
 });
