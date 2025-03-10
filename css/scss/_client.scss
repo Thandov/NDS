@@ -1,0 +1,12 @@
+.single-logo-wrapper {
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: .5;
+	transition: .3s;
+}
+
+.single-logo-wrapper:hover {
+	opacity: 1;
+}

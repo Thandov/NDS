@@ -21,32 +21,65 @@
 
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-topa" id="navbar">
-    <div class="container h-100">
-        <!-- Brand Name -->
-        <a class="navbar-brand" href="/home"><?php dynamic_sidebar('navbar_logo'); ?></a>
+<div id="header-sticky" class="header-area">
+    <div class="navigation">
+        <div class="container">
+            <div class="header-inner-box">
 
-        <!-- Toggler Button for Mobile View -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+                <div class="logo">
+                    <a class="navbar-brand" href="home"><?php dynamic_sidebar('navbar_logo'); ?></a>
+                </div>
 
-        <!-- Collapsible Menu -->
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <?php 
-                wp_nav_menu([
-                    'theme_location' => 'primary', 
-                    'depth' => 2, // Allow dropdowns
-                    'container' => false,
-                    'menu_class' => 'navbar-nav ms-auto', 
-                    'fallback_cb' => 'WP_Bootstrap_Navwalker::fallback',
-                    'walker' => new WP_Bootstrap_Navwalker()
-                ]); 
-            ?>
+                <div class="main-menu d-none d-lg-block">
+                    <?php
+                    wp_nav_menu(array(
+                        'theme_location' => 'primary', // Change this to your menu location
+                        'menu_class'     => 'main-menu d-none d-lg-block',
+                        'walker'         => new Custom_Navwalker()
+                    ));
+                    ?>
+                </div>
+
+                <div class="header-right-content">
+                    <a href="/quote" class="theme-btn">Login</a>
+                </div>
+
+                <div class="mobile-nav-bar d-block col-sm-1 col-6 d-lg-none">
+                    <div class="mobile-nav-wrap">
+                        <div id="hamburger">
+                            <i class="las la-bars"></i>
+                        </div>
+                        <!-- mobile menu - responsive menu  -->
+                        <div class="mobile-nav">
+                            <button type="button" class="close-nav">
+                                <i class="las la-times-circle"></i>
+                            </button>
+                            <nav class="sidebar-nav">
+                                <?php
+                                wp_nav_menu(array(
+                                    'theme_location'  => 'primary',
+                                    'depth'           => 2, // Allows dropdowns.
+                                    'container'       => 'ul', // Wraps the menu in a nav tag.
+                                    'container_class' => 'xwxw', // Add Bootstrap navbar class.
+                                    'menu_class'      => 'metismenu', // Bootstrap compatible class.
+                                    'menu_id'         => 'mobile-menu',
+                                    'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+                                    'walker'          => new WP_Bootstrap_Navwalker(),
+                                ));
+                                ?>
+                            </nav>
+                            <div class="action-bar">
+                                <a href="mailto:<?php echo esc_html(get_option('email_address', 'No address set')); ?>"><i class="las la-envelope"></i><?php echo esc_html(get_option('email_address', 'No address set')); ?></a>
+                                <a href="tel:<?php echo esc_html(get_option('contact_1', 'No contact set')); ?>"><i class="fal fa-phone"></i><?php echo esc_html(get_option('contact_1', 'No contact set')); ?></a>
+                                <a href="/contact" class="theme-btn bordered-btn">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
-
+</div>
 <!-- Initialize Tooltip in Bootstrap 5 -->
 <script>
     var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');

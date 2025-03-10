@@ -1,0 +1,380 @@
+.services-area {
+	position: relative;
+	z-index: 1;
+}
+
+
+.service-icon i:before {
+	font-size: 50px;
+	color: #0099F7;
+}
+
+.single-service-area {
+	text-align: center;
+	height: 320px;
+	padding: 40px;
+	background: #fff;
+	position: relative;
+	z-index: 1;
+	box-shadow: 0 0 9px 0 rgba(29, 33, 67, 0.10);
+
+    h4 {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 26px;
+        letter-spacing: 1px;
+        margin: 30px 0 20px;
+    }
+
+    p {
+        color: $body_text;
+    }
+
+    a.read-more {
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        margin: 20px 0;
+    }
+    
+    &:hover{
+        h4{
+            color:#fff;
+        }
+        p{
+            color: #fff;
+        }
+        a.read-more{
+            color: $primary_color;
+        }
+    }
+    
+}
+
+
+
+.single-service-area:before {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	opacity: 0;
+	visibility: hidden;
+	transition: all .3s ease-out;
+	background-size: cover;
+	background-position: center;
+}
+
+.single-service-area:before {
+	background-image: url(../img/service/01.jpg);
+}
+
+.service-2:before {
+	background-image: url(../img/service/03.jpg);
+}
+
+.service-3:before {
+	background-image: url(../img/service/04.jpg);
+}
+
+.service-4:before {
+	background-image: url(../img/service/02.jpg);
+}
+
+.service-5:before {
+	background-image: url(../img/service/05.jpg);
+}
+
+.service-6:before {
+	background-image: url(../img/service/06.jpg);
+}
+
+.single-service-area:after {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: #03102A;
+	z-index: -1;
+	opacity: 0;
+	visibility: hidden;
+	transition: all .4s ease-out;
+}
+
+.single-service-area:hover::before {
+	visibility: visible;
+	opacity: .5;
+}
+
+.single-service-area:hover::after {
+	visibility: visible;
+	opacity: .9;
+}
+
+
+// Service # 02
+
+
+.single-serv-item {
+	background: #fff;
+	height: 350px;
+	text-align: left;
+	position: relative;
+	z-index: 1;
+	transform: translateY(-20px);
+	transition: .5s;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	margin-top: 50px;
+}
+
+.single-serv-item:hover {
+	transform: translateY(-20px);
+}
+
+.serv-content {
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #efefef;
+	padding: 20px 40px 10px;
+}
+
+.serv-content h5 {
+	margin: 5px 0 15px;
+	color: #1d2143;
+	font-weight: 500;
+	font-size: 22px;
+}
+
+.serv-icon {
+	padding: 35px 40px 30px;
+}
+
+.serv-icon i:before {
+	font-size: 60px;
+	color: #0099F7;
+}
+
+.single-serv-item a {
+	text-transform: uppercase;
+	font-size: 16px;
+	letter-spacing: 1px;
+	font-weight: 500;
+	padding: 10px 40px;
+}
+
+.service-slider .owl-dots button.owl-dot span {
+	width: 10px;
+	height: 10px;
+	background: #ddd;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+
+.service-slider .owl-dots button.owl-dot.active span {
+	width: 35px;
+	height: 10px;
+	background: #0099F7;
+}
+
+.service-slider .owl-dots {
+	text-align: center;
+	margin-top: 30px;
+}
+
+// Service # 03
+
+#service-3.services-area {
+	background: #fff;
+}
+
+#service-3 .single-service-area {
+	text-align: center;
+	height: 320px;
+	padding: 40px;
+	background: #fff;
+	position: relative;
+	z-index: 1;
+}
+
+.service-bg {
+	background-image: url(../img/service/01.jpg);
+	height: 270px;
+	transform: scale(1.3);
+	transition: all 2s ease-out;
+}
+
+.bg-2 {
+	background-image: url(../img/service/02.jpg);
+}
+
+.bg-3 {
+	background-image: url(../img/service/03.jpg);
+}
+
+.bg-4 {
+	background-image: url(../img/service/04.jpg);
+}
+
+.bg-5 {
+	background-image: url(../img/service/05.jpg);
+}
+
+.bg-6 {
+	background-image: url(../img/service/06.jpg);
+}
+
+#service-3 .single-service {
+	position: relative;
+	margin-top: 30px;
+	margin-bottom: 50px;
+	overflow: hidden;
+}
+
+.single-service .service-content {
+	position: absolute;
+	bottom: -20px;
+	left: 20px;
+	right: 20px;
+	background: #fff;
+	padding: 20px;
+	box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.10);
+}
+
+.service-content h3 {
+	font-size: 20px;
+	line-height: 22px;
+	margin: 10px 0;
+	transform: translateY(0);
+	transition: all .3s ease-in-out;
+	position: relative;
+	padding-left: 15px;
+}
+
+.service-content h3:before {
+	position: absolute;
+	content: "";
+	top: 50%;
+	left: 0;
+	width: 4px;
+	height: 30px;
+	background: #0099F7;
+	margin-top: -15px;
+}
+
+.service-content a.read-more {
+	position: absolute;
+	bottom: 37px;
+	left: 20px;
+	opacity: 0;
+	transform: translateY(50%);
+	transition: all .3s ease-in-out;
+	text-transform: uppercase;
+	font-size: 15px;
+	font-weight: 500;
+	color: #0099F7;
+	padding-left: 15px;
+}
+
+.single-service:hover .service-content h3 {
+	transform: translateY(-12px);
+	-webkit-transition-delay: .2s;
+	transition-delay: .2s;
+}
+
+.single-service:hover .service-content a.read-more {
+	transform: translateY(22px);
+	opacity: 1;
+	-webkit-transition-delay: .3s;
+	transition-delay: .3s;
+}
+
+.single-service:hover .service-bg {
+	transform: scale(1.07);
+}
+
+/* Single Service Page
+============== */
+
+.service-list {
+	background: #F6F6F6;
+	padding: 30px;
+	margin-bottom: 30px;
+}
+
+.service-list h5 {
+	margin: 30px 0;
+}
+
+.service-list a {
+	display: block;
+	color: #333;
+	font-size: 16px;
+	font-weight: 500;
+	padding: 10px;
+	margin-bottom: 20px;
+	background: #fff;
+}
+
+.service-list a.active {
+	background: #0099F7;
+	color: #fff;
+}
+
+.service-list a span {
+	float: right;
+}
+
+.single-service h2 {
+	margin: 30px 0;
+}
+
+.single-service h5 {
+	margin: 20px 0;
+}
+
+.single-service p {
+	font-size: 16px;
+	line-height: 28px;
+}
+
+.single-service-bg img {
+	width: 100%;
+}
+
+.helpline-section {
+	background: #020E28;
+	color: #fff;
+	padding: 20px;
+	margin-top: 35px;
+	height: 272px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.helpline-section h4 {
+	color: #fff;
+	margin-top: 15px;
+}
+
+.helpline-section button {
+	margin-top: 15px;
+}
+
+#service-page .single-service {
+    padding: 40px;
+    padding-top: 0;
+}
+
+.question-section input, .question-section textarea {
+    margin-top: 20px;
+}
+
+.question-section button {
+    margin-top: 30px;
+}

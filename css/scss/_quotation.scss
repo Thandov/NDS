@@ -1,0 +1,156 @@
+
+.quotation-section {
+	background-image: url(../img/consult-bg.jpg);
+	position: relative;
+	z-index: 1;
+	background-size: cover;
+}
+
+.quotation-section .section-title h2 {
+	color: #fff;
+}
+
+.quotation-form {
+	padding: 80px 115px;
+	background-color: #FFF;
+}
+
+.quotation-form .form-group {
+	margin-bottom: 30px;
+    li{
+        display: block;
+    }
+}
+
+.quotation-form .form-control {
+	border-radius: 4px;
+	box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.05);
+	font-size: 16px;
+	color: #777;
+	height: 50px;
+    width: 100%;
+}
+
+.quotation-form select.form-control:not([size]):not([multiple]) {
+	height: 50px;
+	padding: 8px 10px;
+}
+
+.quotation-form .form-group label:after {
+	content: "*";
+	padding-left: 5px;
+	color: #F8A555;
+}
+
+.request-button .btn-primary {
+	margin-top: 30px;
+	padding: 13px 60px;
+	width: 100%;
+}
+
+.request-button .btn-primary:hover {
+	color: #FFF;
+	background: #050D3C;
+}
+
+.request-button i {
+	margin-left: 8px;
+}
+
+.request-button button:hover {
+	background: #092A45;
+	color: #fff;
+}
+
+.quotation-dtl {
+	background-color: $primary_color;
+	width: 100%;
+	height: 70px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.quotation-dtl p {
+	display: flex;
+	color: #FFF;
+	font-size: 18px;
+	padding: 15px 150px;
+	margin: 0;
+	text-align: center;
+}
+
+.quotation-dtl p i {
+	color: #fff;
+	padding-right: 15px;
+	font-size: 25px;
+}
+
+.quotation-dtl [class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
+	font-size: 28px;
+	vertical-align: middle;
+}
+
+.quotation-dtl a:hover {
+	color: #0099F7;
+}
+
+/*Quotation Page */
+
+.quote-form {
+	margin-top: 50px;
+}
+
+.form-list {
+	width: 100%;
+	vertical-align: middle;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.quote-form input,
+.quote-form select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+.form-list select {
+	color: #555;
+}
+
+.cost-center .btn-1 span {
+	padding: 15px 25px;
+	position: relative;
+	text-align: left;
+	background: #0C4D52;
+	color: #fff;
+	display: inline-block;
+	margin-top: 10px;
+	margin-right: -4px;
+}
+
+.cost-center .btn-1 .dark {
+	background: #0099F7;
+}
+
+.quote-form .btn:hover {
+	background: navy;
+	color: #fff;
+}
+
+.cost-center .btn.btn-primary {
+	margin-top: 10px;
+}
+
+.form-list .nice-select {
+    width: 100%;
+}

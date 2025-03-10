@@ -1,0 +1,166 @@
+
+.testimonial-area {
+	background-image: url(../img/testimonial-bg.jpg);
+	background-size: cover;
+	background-position: center;
+	height: 600px;
+	position: relative;
+	z-index: 1;
+}
+
+
+.testimonial-avatar img {
+	max-width: 100px;
+	border-radius: 50%;
+	margin: 0 auto;
+}
+
+.single-testimonial-item {
+	text-align: center;
+}
+
+.testimonial-content p {
+	font-size: 18px;
+	line-height: 30px;
+	color: #f5f3f3;
+	margin: 20px 0;
+}
+
+.testimonial-content h4 {
+	font-size: 18px;
+	font-weight: 400;
+	color: #fff;
+	margin: 50px 0;
+}
+
+.testimonial-content h4 span {
+	display: block;
+	font-size: 90%;
+	margin-top: 7px;
+	opacity: .5;
+}
+
+.testimonial-carousel .owl-dots button {
+	width: 15px;
+	height: 15px;
+	background: #999;
+	display: inline-block;
+	border-radius: 50%;
+	margin: 5px;
+}
+
+.testimonial-carousel .owl-dots button.active {
+	background: #0099F7;
+}
+
+.testimonial-carousel .owl-dots {
+	display: block;
+	text-align: center;
+	margin: 30px 0;
+}
+
+.testimonial-area .testimonial-icon-before i {
+	font-size: 40px;
+	background: none;
+	padding: 10px;
+	position: absolute;
+	top: 55px;
+	z-index: 9;
+	left: -10px;
+	color: #0099F7;
+}
+
+.testimonial-area .testimonial-icon-after i {
+	font-size: 40px;
+	background: none;
+	padding: 10px;
+	position: absolute;
+	bottom: 100px;
+	z-index: 9;
+	right: 0;
+	color: #0099F7;
+}
+
+// Testimonial # 02
+
+
+#testimonial-2.testimonial-area {
+	background-image: none;
+	height: auto;
+}
+
+#testimonial-2.testimonial-area .section-title {
+	padding: 0;
+}
+
+#testimonial-2 .single-team-item p {
+	margin-bottom: 40px;
+}
+
+#testimonial-2 .single-team-item img {
+	max-width: 70px;
+	height: auto;
+	float: left;
+}
+
+#testimonial-2 .author-desc {
+	margin-top: 60px;
+}
+
+#testimonial-2 .author-desc h5 {
+	font-size: 18px;
+	padding-left: 80px;
+	margin: 0;
+}
+
+#testimonial-2 .author-desc span {
+	font-size: 90%;
+	color: #0099F7;
+	padding-left: 10px;
+}
+
+#testimonial-2 .single-team-item {
+	background: #fff;
+	padding: 75px 50px 70px;
+	position: relative;
+	z-index: 1;
+	margin-top: 50px;
+	border: 1px solid #eee;
+	border-bottom: 3px solid #eee;
+	transition: .3s;
+	border-radius: 5px;
+}
+
+#testimonial-2 .single-team-item:hover {
+	border-bottom: 3px solid #0099F7;
+}
+
+#testimonial-2 .testimonial-icon i {
+	font-size: 30px;
+	background: #0099F7;
+	padding: 18px;
+	position: absolute;
+	top: -38px;
+	color: #fff;
+	z-index: 9;
+	border-radius: 5px;
+}
+
+#testimonial-2.testimonial-area .owl-dots button.owl-dot span {
+	width: 10px;
+	height: 10px;
+	background: #ddd;
+	margin-right: 10px;
+	margin-top: 20px;
+}
+
+#testimonial-2.testimonial-area .owl-dots button.owl-dot.active span {
+	width: 35px;
+	height: 10px;
+	background: #0099F7;
+}
+
+#testimonial-2.testimonial-area .team-carousel .owl-dots {
+	text-align: center;
+	margin-top: 30px;
+}

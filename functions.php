@@ -65,6 +65,8 @@ if (! function_exists('NDStheme_setup')) :
 
 			wp_enqueue_style('animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), '4.1.1');
 
+			wp_register_style('otherstyle', get_stylesheet_directory_uri() . '/css/otherstyle.css', [], 1, 'all');
+			wp_enqueue_style('otherstyle');
 
 			wp_register_style('styles', get_stylesheet_directory_uri() . '/css/styles.css', [], 1, 'all');
 			wp_enqueue_style('styles');
@@ -104,26 +106,16 @@ if (! function_exists('NDStheme_setup')) :
 		}
 		add_action('wp_enqueue_scripts', 'addjs');
 
-		if (!file_exists(get_template_directory() . '/class-wp-bootstrap-navwalker.php')) {
+
+		if (! file_exists(get_template_directory() . '/class-wp-bootstrap-navwalker.php')) {
 			// file does not exist... return an error.
 			return new WP_Error('class-wp-bootstrap-navwalker-missing', __('It appears the class-wp-bootstrap-navwalker.php file may be missing.', 'wp-bootstrap-navwalker'));
 		} else {
 			// file exists... require it.
 			require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+			require_once get_template_directory() . '/class-custom-navwalker.php';
 		}
-		// Define the Custom Nav Walker class to modify dropdown with tooltips
-		class Custom_Nav_Walker extends WP_Bootstrap_Navwalker
-		{
-			public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
-			{
-				parent::start_el($output, $item, $depth, $args, $id);
 
-				// Add tooltip only to menu items with children (dropdowns)
-				if (in_array('menu-item-has-children', $item->classes)) {
-					$output = str_replace('<a', '<a data-bs-toggle="tooltip" title="Click to view more options"', $output);
-				}
-			}
-		}
 		function showitemslide($attachment_id)
 		{
 			$image_src = wp_get_attachment_image_src($attachment_id, 'full');

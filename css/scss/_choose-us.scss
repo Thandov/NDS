@@ -1,0 +1,146 @@
+.chooseus-area {
+	border-top: 1px solid #eee;
+}
+
+.chooseus-area .section-heading:after {
+	margin: 0;
+}
+
+.feature-area-wrap {
+    max-width: calc(100% - 60px);
+}
+
+.single-feature-item .num {
+	font-size: 24px;
+	line-height: 24px;
+	background: #0099F7;
+	display: inline-block;
+	padding: 10px;
+	color: #fff;
+	width: 45px;
+	height: 45px;
+	text-align: center;
+	float: left;
+	border-radius: 5px;
+}
+
+.feature-image img {
+	width: 100%;
+	box-shadow: 0 5px 25px 0 rgba(27, 20, 100, 0.15);
+}
+
+.feature-image {
+	position: relative;
+	z-index: 1;
+}
+
+.feature-image:before {
+	position: absolute;
+	content: " ";
+	top: -50px;
+	right: -50px;
+	width: 100%;
+	height: 100%;
+	background: #0099F7;
+	z-index: -1;
+}
+
+.feature-content h5 {
+	font-size: 22px;
+	margin: 0;
+}
+
+.feature-content {
+	padding-left: 70px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-bottom: 1px solid #eee;
+}
+
+.feature-content p {
+	font-size: 16px;
+	line-height: 26px;
+	margin: 10px 0;
+}
+
+// Choose Us # 02
+
+.choose-us-area {
+	background-image: url(../img/choose-bg.jpg);
+	background-size: cover;
+	position: relative;
+	z-index: 1;
+}
+
+.choose-us-area .section-title h2 {
+	color: #fff;
+}
+
+.choose-us-wrapper {
+	background: #fff;
+	margin-top: 50px;
+	position: relative;
+}
+
+.choose-us-inner {
+	text-align: center;
+	padding: 50px 30px;
+	border-right: 1px solid #eee;
+}
+
+.choose-us-inner h5 {
+	font-size: 22px;
+	margin: 40px 0 20px;
+}
+
+.choose-us-inner:nth-last-child(4) {
+	border-right: none;
+}
+
+.choose-us-icon {
+	position: relative;
+	z-index: 1;
+}
+
+.choose-us-icon:after {
+	position: absolute;
+	content: "";
+	top: 0;
+	left: 50px;
+	width: 80px;
+	height: 80px;
+	background: #f6f6f6;
+	border-radius: 50%;
+	z-index: -1;
+	transition: .3s;
+}
+
+.choose-us-inner:hover .choose-us-icon:after {
+	width: 100px;
+	height: 100px;
+	top: -18px;
+	left: 65px;
+	background: #0099F7;
+	opacity: .2;
+}
+
+/* Spacer
+============== */
+
+.spacer {
+	position: relative;
+}
+
+.spacer-bg {
+	/*	background-image: url(../img/divider.jpg);*/
+	background-attachment: fixed;
+	height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.spacer-bg .main-btn {
+	z-index: 9;
+	margin-top: 190px;
+}

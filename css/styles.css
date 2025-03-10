@@ -166,7 +166,7 @@
   margin: 0;
 }
 .navbar .navbar-brand figure img {
-  width: 50px;
+  width: 50px !important;
 }
 .navbar .nav-item {
   position: relative;

@@ -1,0 +1,53 @@
+
+.achievement-area {
+	background-image: url(../img/achievement.jpg);
+	height: 350px;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	position: relative;
+	z-index: 1;
+}
+
+.achievement-area.home2 {
+	background-color: #020E28;
+}
+
+.fact-icon i:before {
+	font-size: 50px;
+	line-height: 35px;
+	color: #FF5316;
+	margin: 25px 0;
+	display: inline-block;
+}
+
+.single-counter-box {
+	text-align: center;
+	h6 {
+		color: #0099F7;
+		font-size: 18px;
+		font-weight: 500;
+	}
+}
+
+.single-counter-box .counter-number span {
+	font-size: 70px;
+	font-weight: 700;
+	color: #fff;
+	margin: 50px 0 20px;
+}
+
+.single-counter-box p.counter-number {
+	font-size: 40px;
+	color: #fff;
+}
+

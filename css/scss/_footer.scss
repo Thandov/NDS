@@ -1,0 +1,111 @@
+.footer-area {
+	background: #050913;
+	color: #fff;
+	position: relative;
+    .logo {
+        height: 90px;
+        display: flex;
+        align-items: center;
+        padding-right: 30px;
+        font-size: 30px;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+    }
+	h5 {
+		font-size: 22px;
+		font-weight: 500;
+		color: #fff;
+		margin: 20px 0;
+	}
+	p {
+		font-size: 16px;
+        margin-top: 18px;
+		color: #9BA2AD;		
+	}
+	ul li a {
+		font-size: 16px;
+		display: block;
+		color: #9BA2AD;
+		padding: 10px 0;
+		position: relative;
+		@media #{$xs} {
+			padding: 6px 0;
+		}
+		&:hover{
+			opacity: .5;			
+		}		
+	}
+}
+
+.contact-info p {
+	margin-bottom: 10px;
+}
+
+
+.subscribe-form {
+	position: relative;
+	button {
+		padding: 18px 40px;
+		font-size: 17px;
+		line-height: 13px;
+		background: #F35C27;
+		color: #fff;
+		-webkit-transition: all 0.3s ease-out 0s;
+		transition: all 0.3s ease-out 0s;
+		border: 0;
+		cursor: pointer;
+	}
+	input {
+		border: 0;
+		background: #fff;
+		&::placeholder {
+			color: #797A7E;
+			font-size: 16px;
+		}
+	}
+}
+
+.footer-up {
+	padding: 80px 0;
+	.social-area i {
+		color: #eee;
+		font-size: 20px;
+		margin-right: 10px;
+	}
+}
+
+.footer-bottom {
+	font-size: 15px;
+	font-weight: 400;
+	padding: 20px 0;
+	background: #050913;
+	border-top: 1px solid;
+	p {
+		margin: 0;
+		color: #fff;
+        font-size: 15px;
+	}
+	@media #{$xs} {
+		text-align: center;
+	}
+}
+
+
+.company-email a {
+	color: #f6f6f6;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: underline;
+    margin-top: 10px;
+	&:hover{
+		color: #fff;
+	}
+}
+
+.phone-number p {
+    font-size: 20px;
+    color: #fff;
+}

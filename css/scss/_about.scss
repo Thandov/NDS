@@ -1,0 +1,170 @@
+
+.info-img {
+	background-image: url(../img/map.png);
+	background-size: cover;
+	background-position: top center;
+}
+
+.info-content-area .section-title h2 {
+	position: relative;
+	padding-left: 35px;
+}
+
+.info-content-area .section-title h2:before {
+	position: absolute;
+	content: " ";
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-left: 5px solid #0099F7;
+}
+
+.info-content-area p.highlight {
+	position: relative;
+	padding-left: 35px;
+	margin: 10px 0;
+}
+
+.info-content-area p.highlight:before {
+	position: absolute;
+	content: "";
+	width: 15px;
+	height: 15px;
+	top: 5px;
+	left: 0;
+	background: #DDD;
+}
+
+.info-content-area .main-btn {
+	background: transparent;
+	color: #0099F7;
+	border: 2px solid;
+	margin: 40px 0;
+}
+
+.info-content-area .main-btn:hover {
+	background: #0099F7;
+	color: #fff;
+	border-color: #0099F7;
+}
+
+.info-img {
+	margin-right: 30px;
+}
+
+.founded {
+	padding: 10px;
+	padding-top: 30px;
+}
+
+.years {
+	font-family: 'Teko', sans-serif;
+	font-size: 25px;
+	font-weight: 300;
+	line-height: 10px;
+	letter-spacing: 1px;
+}
+
+.years span {
+	font-family: 'Teko', sans-serif;
+	font-size: 140px;
+	font-weight: 600;
+	line-height: 120px;
+	background-color: #0099F7;
+	background-image: url(../img/trans-bg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	padding-right: 20px;
+}
+
+.about-area .text {
+	font-size: 22px;
+	font-weight: 500;
+	font-style: italic;
+	line-height: 30px;
+	color: #00676C;
+	border-left: 5px solid #eee;
+	padding-left: 35px;
+	margin-top: 20px;
+}
+
+// About # 02
+
+
+.about-bg-wrapper {
+	height: 100%;
+}
+
+.about-content-wrapper {
+	padding: 80px;
+	background: #fff;
+	margin-top: -40px;
+	position: relative;
+	z-index: 9;
+}
+
+.about-bg-wrapper {
+	height: 100%;
+	border: 10px solid #fff;
+	border-right: 0;
+}
+
+.about-bg-innner {
+	background-image: url(../img/about/about.jpg);
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.key-feature {
+	margin-top: 20px;
+}
+
+.key-feature h4 {
+	font-size: 22px;
+	margin: 15px 0 10px;
+}
+
+
+.single-bar-item h4 {
+	font-size: 17px;
+	margin-bottom: 10px;
+}
+
+.progress-bar-area {
+	margin-top: 20px;
+}
+
+.barfiller .fill {
+	background: #0099F7 !important;
+}
+
+#about-3 .choose-certify {
+	text-align: center;
+	margin-top: 30px;
+}
+
+#about-3 .choose-certify i {
+	position: relative;
+}
+
+#about-3 .choose-certify i {
+	font-size: 45px;
+	color: #0099F7;
+}
+
+#about-3 .choose-certify h5 {
+	font-size: 20px;
+	font-weight: 500;
+	margin: 20px 0;
+	color: #002c42;
+}
+
+#about-3 .choose-certify p {
+	padding-left: 0;
+}

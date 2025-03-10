@@ -1,0 +1,233 @@
+
+.single-logistic-bg {
+	background-image: url(../img/freight/1.jpg);
+	height: 325px;
+}
+
+.logistic-bg-2 {
+	background-image: url(../img/freight/2.jpg);
+}
+
+.logistic-bg-3 {
+	background-image: url(../img/freight/3.jpg);
+}
+
+.logistic-bg-4 {
+	background-image: url(../img/freight/4.jpg);
+}
+
+#logistic-1 .single-logistic-area {
+	padding: 50px;
+	box-shadow: none;
+	margin-top: 0;
+	height: 325px;
+	text-align: center;
+	background: #fff;
+	transition: .3s;
+}
+
+.single-logistic-area h5 {
+	font-size: 20px;
+	margin: 25px 0;
+}
+
+#logistic-1 .logistic-icon i:before {
+	color: #002C42;
+}
+
+#logistic-1 .single-logistic-area a.read-more {
+	margin: 12px 0 0;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+#logistic-1 .single-logistic-area:hover {
+	background: #02223A;	
+}
+
+#logistic-1 .single-logistic-area:hover a.read-more {
+	color: #fff;	
+}
+
+#logistic-1 .single-logistic-area:hover .logistic-icon i:before {
+	color: #fff;
+}
+
+#logistic-1 .single-logistic-area:hover h5 {
+	color: #fff;
+}
+
+#logistic-1 .single-logistic-area:hover p {
+	color: #fff;
+}
+
+// Logistics # 02
+
+
+
+.freight-bg-1 {
+	background-image: url(../img/freight/1.png);
+}
+
+.freight-bg-2 {
+	background-image: url(../img/freight/2.png);
+}
+
+.freight-bg-3 {
+	background-image: url(../img/freight/3.png);
+}
+
+.single-freight-area {
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	transition: all 2s ease-out;
+}
+
+.freight-icon {
+	position: absolute;
+	top: 50px;
+	left: 35px;
+}
+
+.freight-icon i:before {
+	font-size: 45px;
+	color: #fff;
+}
+
+.single-freight-area h5 {
+	font-size: 22px;
+	letter-spacing: 1px;
+	color: #fff;
+	position: absolute;
+	top: 50%;
+	left: 25px;
+}
+
+.single-freight-area h5:after {
+	position: absolute;
+	content: " ";
+	width: 80px;
+	height: 3px;
+	background: #ffff;
+	bottom: -15px;
+	left: 0;
+}
+
+.single-freight-area .read-more {
+	position: absolute;
+	bottom: 25px;
+	left: 25px;
+	color: #0099F7;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.single-freight-area .read-more:before {
+	position: absolute;
+	content: "";
+	width: 10px;
+	height: 2px;
+	background: #fff;
+	top: 50%;
+	left: 0;
+	margin-left: -5px;
+	opacity: 0;
+	visibility: hidden;
+}
+
+
+.single-freight-area:hover .read-more {
+	padding-left: 15px;
+}
+
+.single-freight-area:hover .read-more:before {
+	opacity: 1;
+	visibility: visible;
+}
+
+.single-freight-area img {
+	transition: transform ease 0.3s;
+}
+
+.single-freight-area img:hover {
+	transform: scale(1.3);
+	transition: all 2s ease-out;
+}
+
+
+/*Logistics Section # 03
+========================*/
+
+.logistic-service-area {
+	background-image: url(../img/icon/air-freight.png);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.logistic-service-area.sea {
+	background-image: url(../img/icon/sea.png);
+}
+
+.logistic-service-area.road {
+	background-image: url(../img/icon/truck.png);
+}
+
+.logistic-service-area.rail {
+	background-image: url(../img/icon/freight-wagon-bg.png);
+}
+
+.logistic-service-area.store {
+	background-image: url(../img/icon/wholesale.png);
+}
+
+.logistic-service-area.ware {
+	background-image: url(../img/icon/pallet.png);
+}
+
+
+.logistic-service-area {
+	text-align: left;
+	height: 320px;
+	padding: 45px 40px;
+	border-radius: 5px;
+	border: 1px solid #eee;
+}
+
+.logistic-service-area:hover {
+	border-color: #ddd;
+}
+
+.logistic-service-area h4 {
+	color: #1d2143;
+	margin: 30px 0 20px;
+}
+
+.logistic-service-area p {
+	color: #898a9c;
+}
+
+.logistic-service-area .read-more {
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: 500;
+	margin: 20px 0;
+}
+
+.service-icon i {
+	transform: perspective(1px) translateZ(0);
+	box-shadow: 0 0 1px transparent;
+}
+
+.logistic-service-area:hover i {
+	-webkit-animation-name: hvr-buzz-out;
+	animation-name: hvr-buzz-out;
+	-webkit-animation-duration: 1.5s;
+	animation-duration: 1.5s;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+}
