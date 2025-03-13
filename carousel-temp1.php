@@ -15,7 +15,7 @@
         <div class="item d-flex justify-content-center align-items-center">
             <?php showitemslide($caritem->banner); ?>
             <div class="black-overlay"></div>
-            <div class="container hero-content d-flex align-items-center">
+            <div class="container  hero-content d-flex align-items-center">
                 <div class="text-start">
                     <p class="topTxt parag"><?php echo $caritem->toptxt; ?></p>
                     <h1 class="middleTxt"> <?php echo $caritem->middletxt; ?></h1>

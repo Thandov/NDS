@@ -7,98 +7,88 @@
 get_header();
 require 'carousel-temp1.php';
 ?>
-<div class="sec" id="landsideimg">
-    <div class="row">
-        <div class="col-md-3">
-            img
-        </div>
-        <div class="col-md-9 d-flex align-items-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <?php echo do_shortcode('[marqueText smTxt="Culinary Arts & Hospitality" bgTxt="Excellence"]'); ?>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="imgbox text-center">
-                                    <a class="shutup" href="#">
-                                        <div class="circles mx-auto" id="grads"></div>
-                                        <h4 class="imgbox_p fw-bold">Total Graduates</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="imgbox text-center">
-                                    <a class="shutup" href="#">
-                                        <div class="circles mx-auto" id="lectures"></div>
-                                        <h4 class="imgbox_p fw-bold">Experienced Lecturers</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="imgbox text-center">
-                                    <a class="shutup" href="#">
-                                        <div class="circles mx-auto" id="employ"></div>
-                                        <h4 class="imgbox_p fw-bold">Employment Guaranteed</h4>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+<div class="sec grid md:grid-cols-5">
+    <div class="md:col-span-2" id="landsideimg"></div>
+    <div class="md:col-span-3 flex items-center justify-center">
+        <div class="w-[100%] mr-32">
+            <?php echo do_shortcode('[marqueText smTxt="Culinary Arts & Hospitality" bgTxt="Excellence" align="center"]'); ?>
+            <div class="grid md:grid-cols-3">
+                <div class="md:col">
+                    <div class="imgbox text-center">
+                        <a class="shutup space-y-3" href="#">
+                            <div class="circles mx-auto" id="grads"></div>
+                            <p class="imgbox_p fw-bold">Total Graduates</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:col">
+                    <div class="imgbox text-center">
+                        <a class="shutup space-y-3" href="#">
+                            <div class="circles mx-auto" id="lectures"></div>
+                            <p class="imgbox_p fw-bold">Experienced Lecturers</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:col">
+                    <div class="imgbox text-center">
+                        <a class="shutup space-y-3" href="#">
+                            <div class="circles mx-auto" id="employ"></div>
+                            <p class="imgbox_p fw-bold">Employment Guaranteed</p>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="sec bglight fv500 d-flex align-items-center text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <?php echo do_shortcode('[marqueText smTxt="Taking you on a your culinary & hospitality journey" bgTxt="Our Courses"]'); ?>
-                <div class="container scp">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="imgbox text-center">
-                                <a class="shutup" href="#">
-                                    <div class="mx-auto" id=""><img
-                                            src="<?php bloginfo('template_directory'); ?>/img/course_icons/1.svg"
-                                            alt="1"></div>
-                                    <h4 class="imgbox_p fw-bold">Reception Management</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="imgbox text-center">
-                                <a class="shutup" href="#">
-                                    <div class="mx-auto" id=""><img
-                                            src="<?php bloginfo('template_directory'); ?>/img/course_icons/2.svg"
-                                            alt="1"></div>
-                                    <h4 class="imgbox_p fw-bold">Hospitality Management</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="imgbox text-center">
-                                <a class="shutup" href="#">
-                                    <div class="mx-auto" id=""><img
-                                            src="<?php bloginfo('template_directory'); ?>/img/course_icons/3.svg"
-                                            alt="1"></div>
-                                    <h4 class="imgbox_p fw-bold">Culinary Arts</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="imgbox text-center">
-                                <a class="shutup" href="#">
-                                    <div class="mx-auto" id=""><img
-                                            src="<?php bloginfo('template_directory'); ?>/img/course_icons/4.svg"
-                                            alt="1"></div>
-                                    <h4 class="imgbox_p fw-bold">Food & Beverage</h4>
-                                </a>
-                            </div>
-                        </div>
+<div class="sec bglight fv500 flex items-center justify-center text-center">
+    <div class="md:w-[85%]">
+        <?php echo do_shortcode('[marqueText smTxt="Taking you on a your culinary & hospitality journey" bgTxt="Our Courses" align="center"]'); ?>
+        <div class=" space-y-4">
+            <div class="md:grid md:grid-cols-4 md:gap-4">
+                <div class="col">
+                    <div class="imgbox text-center">
+                        <a class="shutup space-y-3" href="#">
+                            <div class="mx-auto" id=""><img
+                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/1.svg"
+                                    alt="1"></div>
+                            <p class="imgbox_p fw-bold">Reception <br> Management</p>
+                        </a>
                     </div>
                 </div>
-                <div class="d-flex align-items-center justify-content-center">
+                <div class="col">
+                    <div class="imgbox text-center">
+                        <a class="shutup space-y-3" href="#">
+                            <div class="mx-auto" id=""><img
+                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/2.svg"
+                                    alt="1"></div>
+                            <p class="imgbox_p fw-bold">Hospitality <br>Management</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="imgbox text-center">
+                        <a class="shutup space-y-3" href="#">
+                            <div class="mx-auto" id=""><img
+                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/3.svg"
+                                    alt="1"></div>
+                            <p class="imgbox_p fw-bold">Culinary <br>Arts</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="imgbox text-center">
+                        <a class="shutup space-y-3" href="#">
+                            <div class="mx-auto" id=""><img
+                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/4.svg"
+                                    alt="1"></div>
+                            <p class="imgbox_p fw-bold">Food & <br>Beverage</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center">
+                <div class="md:w-3/4 flex items-center justify-center">
                     <button class="nds_btn me-3">Apply Here</button>
                     <button class="nds_outline_btn">Apply Here</button>
                 </div>
@@ -106,44 +96,30 @@ require 'carousel-temp1.php';
         </div>
     </div>
 </div>
-</div>
-<div class="sec d-flex align-items-center" id="sideright">
-    <div class="container h-100">
-        <div class="row">
-            <div class="col-md-5 d-flex align-items-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <?php echo do_shortcode('[marqueText smTxt="Walk With Us" bgTxt="Walk with Us"]'); ?>
-                        </div>
-                        <div class="row">
-                            <div class="col scp">
-                                <p>At NDSCA we pride ourselves with our excellent customer and personal service which
-                                    ensures we meet and exceed our students and clients expectations. </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col scp">
-                                <div class="videobox"></div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <button class="nds_btn">Book Visit</button>
-                            </div>
-                        </div>
+
+<div class="h-[500px] flex items-center justify-center">
+    <div class="md:grid md:grid-cols-5 h-[100%]">
+        <div class="md:col-span-3 flex items-center justify-center">
+            <div class="md:grid md:grid-cols-12">
+                <div class="col-start-3 col-span-11 space-y-4">
+                    <?php echo do_shortcode('[marqueText smTxt="Walk With Us" bgTxt="Walk with Us" align=""]'); ?>
+                    <div class="space-y-4">
+                        <p>At NDSCA we pride ourselves with our excellent customer and personal service which ensures we meet and exceed our students and clients expectations. </p>
+                        <div class="videobox h-[200px] w-[100%]"></div>
+                        <button class="nds_btn">Book Visit</button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-7"></div>
         </div>
+        <div class="md:col-span-2" id="sideright"></div>
     </div>
 </div>
-<div class="secsmall bgprimary position-relative">
-    <div class="container">
+
+<div class="secsmall flex items-center justify-center bgprimary position-relative">
+    <div class="md:w-[85%]">
         <div class="row">
             <div class="col">
-                <h3 class="ctaspecialhead fw-bold">Lets begin your journey</h3>
+                <h3 class="ctaspecialhead fw-bold text-white">Lets begin your journey</h3>
             </div>
         </div>
         <div class="row">
@@ -165,37 +141,39 @@ require 'carousel-temp1.php';
         </div>
     </div>
 </div>
-<div class="sec" id="gallery">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <?php echo do_shortcode('[marqueText smTxt="We’ve been cooking up a storm" bgTxt="Our Gallery"]'); ?>
-                <?php echo do_shortcode('[custom_gallery]'); ?>
-            </div>
-        </div>
+
+<!-- Gallery Section -->
+<div class="h-[500px] flex items-center justify-center" id="gallery">
+    <div class="md:w-[85%]">
+        <?php echo do_shortcode('[marqueText smTxt="We’ve been cooking up a storm" bgTxt="Our Gallery" align="center"]'); ?>
+        <?php echo do_shortcode('[custom_gallery]'); ?>
     </div>
 </div>
-<div class="sec d-flex align-items-center bgsecondary">
-    <div class="grid grid-cols-3 gap-4">
+<div class="sec flex items-center justify-center bgsecondary">
+    <div class="md:w-[85%] md:grid md:grid-cols-3 md:gap-4">
         <div class="col-span-1">
             <img src="<?php bloginfo('template_directory'); ?>/img/students.png" alt="Students">
         </div>
         <div class="col-span-2 flex items-center" style="color: #fff">
-            <div class="">
-                <div class="testimonials_head">
-                    <h3>Testimonials</h3>
-                </div>
-                <div class="testimonials_body">
-                    <figure class="text-center">
-                        <blockquote class="blockquote" style="color: #ffc500;">
-                            <p>A well-known quote, contained in a blockquote element.</p>
+            <div class="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:px-8">
+                <div class="mx-auto max-w-2xl lg:max-w-4xl">
+                    <figure class="mt-10">
+                        <blockquote class="text-center text-xl/8 font-semibold text-white sm:text-2xl/9">
+                            <p>“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”</p>
                         </blockquote>
-                        <figcaption class="blockquote-footer text-white">
-                            Someone famous in <cite title="Source Title">Source Title</cite>
+                        <figcaption class="mt-10">
+                            <div class="mt-4 flex items-center justify-center space-x-3 text-base">
+                                <div class="font-semibold text-white">Judith Black</div>
+                                <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true" class="fill-gray-900">
+                                    <circle cx="1" cy="1" r="1" />
+                                </svg>
+                                <div class="text-gray-600">CEO of Workcation</div>
+                            </div>
                         </figcaption>
                     </figure>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

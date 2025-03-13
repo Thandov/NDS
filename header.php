@@ -25,7 +25,6 @@
     <div class="navigation">
         <div class="container">
             <div class="header-inner-box">
-
                 <div class="logo">
                     <a class="navbar-brand" href="home"><?php dynamic_sidebar('navbar_logo'); ?></a>
                 </div>

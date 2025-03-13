@@ -59,8 +59,11 @@ if (! function_exists('NDStheme_setup')) :
 		 */
 		add_theme_support('post-formats', array('aside', 'gallery', 'quote', 'image', 'video'));
 
+
 		function load_stylesheets()
 		{
+			wp_enqueue_style('tailwindcss', get_stylesheet_directory_uri() . '/css/frontend.css', __FILE__);
+
 			wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css', [], 1, 'all');
 
 			wp_enqueue_style('animate-css', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), '4.1.1');
@@ -73,6 +76,8 @@ if (! function_exists('NDStheme_setup')) :
 
 			wp_register_style('style', get_stylesheet_directory_uri() . '/style.css', [], 1, 'all');
 			wp_enqueue_style('style');
+
+			wp_enqueue_style('flaticon', get_template_directory_uri() . '/assets/css/flaticon.css', array(), null, 'all');
 
 			wp_register_style('headcara', get_stylesheet_directory_uri() . '/css/headcara.css', [], 1, 'all');
 			wp_enqueue_style('headcara');
@@ -171,17 +176,34 @@ if (! function_exists('NDStheme_setup')) :
 			$result = $wpdb->get_results($query);
 			$paths = $result;
 
-			$out .= '<div class="container pathContainer">';
-			$out .= '<div class="row">';
+
 			if (!empty($paths)) {
 				foreach ($paths as $path) {
-					$out .= '<div class="col-sm-12 col-md-3"><a href="/' . sanitize_title_with_dashes($path->name) . '" class="pathlink text-decoration-none">';
-					$out .= '<div class="circles mx-auto"></div>';
-					$out .= '<div class="text-center"><h6 id="' . $path->id . '" class="theSelectedPath mt-3 fw-bold">' . $path->name . '</h6></a></div>';
+					// Split the name into words
+					$words = explode(' ', $path->name);
+
+					// Create an empty string to store the formatted name
+					$formattedName = '';
+
+					// Loop through the words and wrap each one in a <span> with a line break
+					foreach ($words as $word) {
+						$formattedName .= '<span class="block">' . $word . '</span>';
+					}
+
+					$out .= '<div class="flex items-center justify-start">';
+					$out .= '<div>';
+					$out .= '<a href="/' . sanitize_title_with_dashes($path->name) . '" class="pathlink text-decoration-none">';
+					$out .= '<div class="circles mx-auto flex items-center justify-center">';
+					//$out .= '<img src="' . $path->name . '" alt="image" class="w-full h-auto object-cover opacity-80 hover:opacity-100">';
+					$out .= '</div>';
+					$out .= '<div class="text-center">';
+					$out .= '<h6 id="' . $path->id . '" class="theSelectedPath mt-3 fw-bold">' . $path->name . '</h6>';
+					$out .= '</a>';
+					$out .= '</div>';
+					$out .= '</div>';
 					$out .= '</div>';
 				}
 			}
-			$out .= '</div>';
 			$out .= '</div>';
 
 			return $out;
@@ -314,20 +336,21 @@ function recp_card($recipe = null)
 	ob_start();
 	echo "dfsdfsdf";
 	?>
-	<div class="card border-0 mb-3 recipe_card" style="max-width: 350px;">
-		<div class="g-0 d-flex align-items-center">
-			<div class="">
-				<img src="<?php bloginfo('template_directory'); ?>/img/recipes/<?php echo ($recipe) ? $recipe['img'] : "r1.png"; ?>" height="100" class="rounded" alt="recipe pic">
+	<div class="max-w-xs border-0 mb-3 recipe_card">
+		<div class="flex items-center space-x-3">
+			<div>
+				<img src="<?php bloginfo('template_directory'); ?>/img/recipes/<?php echo ($recipe) ? $recipe['img'] : 'r1.png'; ?>" height="100" class="rounded" alt="recipe pic">
 			</div>
-			<div class="">
-				<div class="card-body ms-3">
-					<h5 class="card-title"><?php echo ($recipe) ? $recipe["recipe_name"] : "Recipe Name"; ?></h5>
-					<p class="card-text m-0"><?php echo ($recipe) ? $recipe["recipe_desc"] : "Description"; ?></p>
-					<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+			<div>
+				<div class="p-3 border-l-2 border-yellow-300">
+					<h5 class="text-lg font-semibold"><?php echo ($recipe) ? $recipe["recipe_name"] : "Recipe Name"; ?></h5>
+					<p class="text-sm text-gray-500"><?php echo ($recipe) ? $recipe["recipe_desc"] : "Description"; ?></p>
+					<p class="text-xs text-gray-400"><small>Last updated 3 mins ago</small></p>
 				</div>
 			</div>
 		</div>
 	</div>
+
 <?php
 	return ob_get_clean(); // Capture and return the output
 }
@@ -616,10 +639,11 @@ add_shortcode('crumbs', 'wpd_breadcrumbs');
 
 function wpd_Textmarque($atts)
 {
+	$alignmenting =  ($atts['align'] === "center") ? "text-center" : "";
 	$out = "";
-	$out .= '<div class="head_and_desc scp">';
-	$out .= '<p class="text-base/7 font-semibold">'. $atts['smtxt'].'</p>';
-	$out .= '<h2 class="text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl" style="color: #ffc500;">'. $atts['bgtxt'].'</h2>';
+	$out .= '<div class="head_and_desc scp ' . $alignmenting . '">';
+	$out .= '<p class="text-base/7 font-semibold">' . $atts['smtxt'] . '</p>';
+	$out .= '<h2 class="text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl" style="color: #ffc500;">' . $atts['bgtxt'] . '</h2>';
 	$out .= ' </div>';
 
 	return $out;
@@ -666,3 +690,53 @@ function custom_image_gallery()
 	return $output;
 }
 add_shortcode('custom_gallery', 'custom_image_gallery');
+
+function student_register_form()
+{
+	ob_start();
+?>
+	<div class="flex items-center justify-center min-h-screen bg-gray-100">
+		<div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+			<h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Student Register</h2>
+
+			<form method="POST" class="space-y-4">
+				<div>
+					<label class="block text-gray-700 font-medium">Full Name</label>
+					<input type="text" name="name" required
+						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+				</div>
+				<div>
+					<label class="block text-gray-700 font-medium">Email</label>
+					<input type="email" name="email" required
+						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+				</div>
+				<div>
+					<label class="block text-gray-700 font-medium">Phone</label>
+					<input type="text" name="phone"
+						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+				</div>
+				<div>
+					<label class="block text-gray-700 font-medium">Course</label>
+					<select name="course"
+						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+						<option value="Web Development">Web Development</option>
+						<option value="Data Science">Data Science</option>
+						<option value="Cyber Security">Cyber Security</option>
+					</select>
+				</div>
+				<div>
+					<label class="block text-gray-700 font-medium">Password</label>
+					<input type="password" name="password" required
+						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+				</div>
+				<button type="submit"
+					class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition">
+					Register
+				</button>
+			</form>
+		</div>
+	</div>
+<?php
+	return ob_get_clean();
+}
+add_shortcode('student_register', 'student_register_form');

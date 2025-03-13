@@ -2,70 +2,80 @@
 <footer class="footer-04" style="background:#2A344E">
     <div class="w-100 border-top py-3">
         <div class="container">
-            <div class="row p-3">
-                <div class="col-sm-3">
-                    <h5 class="fw-bold" style="color: #FFFFFF;">Education</h5>
-                    <ul class="list-unstyled" style="color: #F5F5F5; opacity: 0.5;">
-                        <li>Short courses</li>
-                        <li>Full Qualification</li>
-                        <li>Skills Program</li>
-                        <li>Trade Test</li>
-                        <li>Learnerships</li>
+            <div class="p-3 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Education Section -->
+                <div>
+                    <h5 class="font-bold text-white">Education</h5>
+                    <ul class="list-none text-[#F5F5F5] opacity-50">
+                        <li class="block">Short courses</li>
+                        <li class="block">Full Qualification</li>
+                        <li class="block">Skills Program</li>
+                        <li class="block">Trade Test</li>
+                        <li class="block">Learnerships</li>
                     </ul>
                 </div>
-                <div class="col-sm-3">
-                    <h5 class="fw-bold" style="color: #FFFFFF;">Information</h5>
-                    <ul class="list-unstyled" style="color: #F5F5F5; opacity: 0.5;">
-                        <li>FAQ</li>
-                        <li>Blog</li>
-                        <li>Support</li>
+
+                <!-- Information Section -->
+                <div>
+                    <h5 class="font-bold text-white">Information</h5>
+                    <ul class="list-none text-[#F5F5F5] opacity-50">
+                        <li class="block">FAQ</li>
+                        <li class="block">Blog</li>
+                        <li class="block">Support</li>
                     </ul>
                 </div>
-                <div class="col-sm-3">
-                    <h5 class="fw-bold" style="color: #FFFFFF;">Company</h5>
-                    <ul class="list-unstyled" style="color: #F5F5F5; opacity: 0.5;">
-                        <li>About us</li>
-                        <li>Careers</li>
-                        <li>Contacts</li>
-                    </UL>
-                </div>
-                <div class="col-sm-3">
-                    <!-- Background Container with 5% Opacity -->
-                    <div class="p-4 rounded-lg" style="background-color: rgba(255, 255, 255, 0.05);">
-                        <?php echo do_shortcode('[contact-form-7 id="d4cc3d7" title="Contact form 1"]'); ?>
 
-                        <!-- Description Text -->
-                        <p class="text-white mt-4 text-sm">
-                            At NDSCA we pride ourselves on our excellent customer and personal service.
-                        </p>
-                    </div>
+                <!-- Company Section -->
+                <div>
+                    <h5 class="font-bold text-white">Company</h5>
+                    <ul class="list-none text-[#F5F5F5] opacity-50">
+                        <li class="block">About us</li>
+                        <li class="block">Careers</li>
+                        <li class="block">Contacts</li>
+                    </ul>
                 </div>
 
-                <div class="row p-3">
-                    <div class="col-sm-2">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyymzm38d1o9TCnSZVDPm8kyV3n4A-UzSovw&s"
-                            alt="Logo" style="width: 74px; height: 71.49px; border-radius: 50%; object-fit: cover;">
+                <!-- Contact Form Section with Background -->
+                <div class="p-4 rounded-lg bg-white bg-opacity-5">
+                    <!-- PHP shortcode for form -->
+                    <div class="mb-4">
+                        <!-- Assuming you have your contact form code here -->
                     </div>
 
-                    <div class="col-sm-8 d-flex justify-content-center align-items-center py-4">
-                        <ul class="list-unstyled" style="color: #F5F5F5;">
-                            <li class="list-inline-item p-3 fs-7">Terms</li>
-                            <li class="list-inline-item p-3 fs-7">Privacy</li>
-                            <li class="list-inline-item p-3 fs-7">Cookies</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-2 d-flex justify-content-center align-items-center">
-                        <a href="https://linkedin.com" target="_blank" class="text-white mx-2"><i
-                                class="fab fa-linkedin fa-lg"></i></a>
-                        <a href="https://facebook.com" target="_blank" class="text-white mx-2"><i
-                                class="fab fa-facebook fa-lg"></i></a>
-                        <a href="https://twitter.com" target="_blank" class="text-white mx-2"><i
-                                class="fab fa-twitter fa-lg"></i></a>
-                    </div>
+                    <p class="text-white mt-4 text-sm">
+                        At NDSCA we pride ourselves on our excellent customer and personal service.
+                    </p>
                 </div>
             </div>
+
+            <!-- Footer Section -->
+            <div class="p-3 flex items-center justify-between">
+                <!-- Logo -->
+                <div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyymzm38d1o9TCnSZVDPm8kyV3n4A-UzSovw&s"
+                        alt="Logo" class="w-[74px] h-[71.49px] rounded-full object-cover">
+                </div>
+
+                <!-- Footer Links -->
+                <div class="flex justify-center items-center py-4 space-x-4">
+                    <ul class="list-none text-[#F5F5F5] flex space-x-3 text-xs">
+                        <li>Terms</li>
+                        <li>Privacy</li>
+                        <li>Cookies</li>
+                    </ul>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="flex justify-center items-center space-x-2">
+                    <a href="https://linkedin.com" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="text-white hover:text-gray-400"><i class="fab fa-twitter fa-lg"></i></a>
+                </div>
+            </div>
+
         </div>
         <?php wp_footer(); ?>
+    </div>
 </footer>
 
 </html>

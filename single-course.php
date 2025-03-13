@@ -10,7 +10,7 @@ get_header();
 $category_id = $_GET['category_id'];
 ?>
 <div class="head_section d-flex align-items-center justify-content-center">
-    <h1 class="header_txt"><?php the_title(); ?></h1>
+    <h1 class="header_txt">dsfgdsfgdsfg<?php the_title(); ?></h1>
 </div>
 <div class="" id="">
     <div class="row h-100">

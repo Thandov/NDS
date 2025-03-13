@@ -1,7 +1,7 @@
 .bgfloat {
   position: absolute;
   left: 50%;
-  bottom: 10%;
+  bottom: 5%;
   transform: translateX(-50%);
   width: auto;
   height: 95px;
