@@ -16,15 +16,20 @@ require 'carousel-temp1.php';
                 <div class="md:col">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
-                            <div class="circles mx-auto" id="grads"></div>
+                            <div class="circles mx-auto overflow-hidden" id="grads">
+                                <img style="width: 100%; height: 100%; object-fit: cover; object-position: center;" src="<?php bloginfo('template_directory'); ?>/img/front/p1.jpg" alt="p1.jpg">
+                            </div>
                             <p class="imgbox_p fw-bold">Total Graduates</p>
                         </a>
                     </div>
                 </div>
+
                 <div class="md:col">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
-                            <div class="circles mx-auto" id="lectures"></div>
+                            <div class="circles mx-auto" id="lectures">
+                                <img style="width: 100%; height: auto; object-fit: cover;" src="<?php bloginfo('template_directory'); ?>/img/front/p2.jpg" alt="p1.jpg">
+                            </div>
                             <p class="imgbox_p fw-bold">Experienced Lecturers</p>
                         </a>
                     </div>
@@ -32,7 +37,9 @@ require 'carousel-temp1.php';
                 <div class="md:col">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
-                            <div class="circles mx-auto" id="employ"></div>
+                            <div class="circles mx-auto" id="employ">
+                                <img style="width: 100%; height: auto; object-fit: cover;" src="<?php bloginfo('template_directory'); ?>/img/front/p3.jpg" alt="p1.jpg">
+                            </div>
                             <p class="imgbox_p fw-bold">Employment Guaranteed</p>
                         </a>
                     </div>
@@ -59,7 +66,7 @@ require 'carousel-temp1.php';
                 <div class="col">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img
+                            <div class="mx-auto" id=""><img class="w-[100px] h-[100px]"
                                     src="<?php bloginfo('template_directory'); ?>/img/course_icons/2.svg"
                                     alt="1"></div>
                             <p class="imgbox_p fw-bold">Hospitality <br>Management</p>
@@ -69,17 +76,18 @@ require 'carousel-temp1.php';
                 <div class="col">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img
+                            <div class="mx-auto" id=""><img class="w-[100px] h-[100px]"
                                     src="<?php bloginfo('template_directory'); ?>/img/course_icons/3.svg"
                                     alt="1"></div>
                             <p class="imgbox_p fw-bold">Culinary <br>Arts</p>
                         </a>
                     </div>
                 </div>
+                
                 <div class="col">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img
+                            <div class="mx-auto" id=""><img class="w-[100px] h-[100px]"
                                     src="<?php bloginfo('template_directory'); ?>/img/course_icons/4.svg"
                                     alt="1"></div>
                             <p class="imgbox_p fw-bold">Food & <br>Beverage</p>

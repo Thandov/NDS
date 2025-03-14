@@ -402,6 +402,11 @@
     height: 550px !important;
   }
 }
+.archive {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .about-logo {
   width: 50px;
   height: auto;
@@ -451,4 +456,29 @@
 .pathlink {
   text-decoration: none;
   color: inherit;
+}
+
+.randpix {
+  width: 100%; /* Ensure the container fills its parent container */
+  height: auto; /* Adjust height automatically based on width */
+  overflow: hidden; /* Hide any overflow if the image is larger than the container */
+}
+.randpix img {
+  width: 100%; /* Make the image take the full width of the container */
+  height: auto; /* Maintain the aspect ratio */
+  -o-object-fit: cover;
+     object-fit: cover; /* This will make the image cover the container while maintaining its aspect ratio */
+}
+
+.overlayglow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Covers the entire div */
+  background: rgba(0, 0, 0, 0.5);
+  /* Optional: Adds a blur effect */
+  z-index: 1;
+  /* Ensures it appears above the background */
+  border-radius: inherit;
+  /* Inherits border-radius if any */
 }/*# sourceMappingURL=styles.css.map */

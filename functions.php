@@ -77,7 +77,7 @@ if (! function_exists('NDStheme_setup')) :
 			wp_register_style('style', get_stylesheet_directory_uri() . '/style.css', [], 1, 'all');
 			wp_enqueue_style('style');
 
-			wp_enqueue_style('flaticon', get_template_directory_uri() . '/assets/css/flaticon.css', array(), null, 'all');
+			wp_enqueue_style('flaticon', get_template_directory_uri() . '/css/flaticon.css', array(), null, 'all');
 
 			wp_register_style('headcara', get_stylesheet_directory_uri() . '/css/headcara.css', [], 1, 'all');
 			wp_enqueue_style('headcara');
@@ -167,7 +167,6 @@ if (! function_exists('NDStheme_setup')) :
 
 		function getEducationPaths()
 		{
-
 			global $wpdb;
 
 			$query = "SELECT * FROM `wp_nds_education_paths`";
@@ -176,9 +175,11 @@ if (! function_exists('NDStheme_setup')) :
 			$result = $wpdb->get_results($query);
 			$paths = $result;
 
+			
 
 			if (!empty($paths)) {
 				foreach ($paths as $path) {
+					$pathSlug = sanitize_title_with_dashes($path->name);
 					// Split the name into words
 					$words = explode(' ', $path->name);
 
@@ -189,12 +190,11 @@ if (! function_exists('NDStheme_setup')) :
 					foreach ($words as $word) {
 						$formattedName .= '<span class="block">' . $word . '</span>';
 					}
-
 					$out .= '<div class="flex items-center justify-start">';
 					$out .= '<div>';
 					$out .= '<a href="/' . sanitize_title_with_dashes($path->name) . '" class="pathlink text-decoration-none">';
 					$out .= '<div class="circles mx-auto flex items-center justify-center">';
-					//$out .= '<img src="' . $path->name . '" alt="image" class="w-full h-auto object-cover opacity-80 hover:opacity-100">';
+					$out .= '<img src="/img/paths/' . $pathSlug . '.jpg" alt="' . $pathSlug . '" class="w-full h-auto object-cover opacity-80 hover:opacity-100">';
 					$out .= '</div>';
 					$out .= '<div class="text-center">';
 					$out .= '<h6 id="' . $path->id . '" class="theSelectedPath mt-3 fw-bold">' . $path->name . '</h6>';
@@ -300,7 +300,7 @@ if (! function_exists('NDStheme_setup')) :
 					</div>
 				</a>
 			</div>
-	<?php
+		<?php
 			return ob_get_clean(); // Capture and return the output
 		}
 
@@ -325,229 +325,306 @@ if (! function_exists('NDStheme_setup')) :
 			return $out;
 		}
 		add_shortcode('displaySelectedPathPrgramTypes', 'wpb_displaySelectedPathPrgramTypes');
-	}
+
+		function wpb_displaySelectedPathListPrgramTypes($slug)
+		{
+
+			$slu = str_replace('-', ' ', $slug['slug']);
+
+			global $wpdb;
+
+			$query = "SELECT * FROM `wp_nds_education_paths` WHERE LOWER(`name`) = LOWER('$slu');";
+			$out = '';
+			$result = $wpdb->get_row($query);
+
+			$query2 = "SELECT * FROM `wp_nds_program_types` WHERE `path_id` = '$result->id';";
+			$program_types = $wpdb->get_results($query2);
+
+			$out .= '<ul class="list-group list-group-flush">';
+			foreach ($program_types as $key => $program_type) {
+				$path_slug = sanitize_title_with_dashes($result->name);
+				$program_slug = sanitize_title_with_dashes($program_type->name);
+
+				$out .= '<li class="list-group-item"><a href="/category/' . $program_slug . '" class="text-blue-600 hover:underline m-0 shutup">' . $program_type->name . '</a></li>';
+			}
+
+			$out .= '</ul>';
+			return $out;
+		}
+		add_shortcode('displaySelectedPathList', 'wpb_displaySelectedPathListPrgramTypes');
 
 
-endif; // NDStheme_setup
-add_action('after_setup_theme', 'NDStheme_setup');
 
-function recp_card($recipe = null)
-{
-	ob_start();
-	echo "dfsdfsdf";
-	?>
-	<div class="max-w-xs border-0 mb-3 recipe_card">
-		<div class="flex items-center space-x-3">
-			<div>
-				<img src="<?php bloginfo('template_directory'); ?>/img/recipes/<?php echo ($recipe) ? $recipe['img'] : 'r1.png'; ?>" height="100" class="rounded" alt="recipe pic">
-			</div>
-			<div>
-				<div class="p-3 border-l-2 border-yellow-300">
-					<h5 class="text-lg font-semibold"><?php echo ($recipe) ? $recipe["recipe_name"] : "Recipe Name"; ?></h5>
-					<p class="text-sm text-gray-500"><?php echo ($recipe) ? $recipe["recipe_desc"] : "Description"; ?></p>
-					<p class="text-xs text-gray-400"><small>Last updated 3 mins ago</small></p>
-				</div>
-			</div>
-		</div>
-	</div>
 
-<?php
-	return ob_get_clean(); // Capture and return the output
-}
-
-function display_recipes_blog()
-{
-	$recipe = "";
-	echo recp_card($recipe);
-}
-add_shortcode('recipes_blog', 'display_recipes_blog');
-
-function staff_card($staff_member = null)
-{
-	ob_start();
-?>
-	<div class="team_wrp text-center">
-		<div class="circleprofile mx-auto">
-			<img src="<?php bloginfo('template_directory'); ?>/img/staff/<?php echo ($staff_member) ? $staff_member["staff_img"] : "placeholder.png"; ?>" alt="<?php echo ($staff_member) ? $staff_member["staff_name"] : "Recipe Name"; ?>">
-		</div>
-		<h5 class="empname fw-bold m-0"><?php echo ($staff_member) ? $staff_member["staff_name"] : "Recipe Name"; ?></h5>
-		<div class="jobtitle"><?php echo ($staff_member) ? $staff_member["Job_title"] : "Recipe Name"; ?></div>
-	</div>
-<?php
-	return ob_get_clean(); // Capture and return the output
-}
-
-function display_staff()
-{
-	$staff_member = [
-		'staff_img' => 'placeholder.png',
-		'staff_name' => 'Lebo Lekotokoto',
-		'Job_title' => 'Founder & Director',
-	];
-
-	echo staff_card($staff_member);
-}
-add_shortcode('show_staff_members', 'display_staff');
-
-function showCourses($category_id)
-{
-
-	global $wpdb;
-	$out = "";
-	$category_id = $category_id['id'];
-	$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE category_id = $category_id;";
-
-	$program_name = $wpdb->get_row($program_query);
-
-	$category = get_category($category_id);
-	$program_slug = $category->slug;
-
-	$query = "SELECT * FROM `wp_nds_courses` WHERE program_id = $program_name->id;";
-	$courses = $wpdb->get_results($query);
-?>
-	<table class="table table-bordered">
-		<thead>
-			<tr>
-				<th scope="col">Course Image</th>
-				<th scope="col">Course Name</th>
-				<th scope="col">Course Level</th>
-				<th scope="col">Duration</th>
-				<th scope="col">Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php
-			foreach ($courses as $key => $course):
-				$post = get_post($course->post_id);
-				$course_slug = $post->post_name;
-			?>
-				<tr>
-					<td><img src="receptionist-level-2.jpg" alt="<?php echo $course->name; ?>" class="img-fluid" style="max-width: 100px;"></td>
-					td><a class="shutup" href="<?php echo site_url('/' . $program_slug . '/' . $course_slug); ?>"><strong><?php echo $course->name; ?></strong></a></td>
-					td>Intermediate</td>
-					<td><?php echo $course->duration; ?> Months</td>
-					<td><button class="btn btn-primary">Apply Now</button> <button class="btn btn-secondary">Book a Visit</button></td>
-				</tr>
-			<?php
-			endforeach;
-			?>
-		</tbody>
-	</table>
-<?php
-}
-add_shortcode('wpd_showCourses', 'showCourses');
-
-function coursePanel($course, $possible_employment)
-{
-?>
-	<div class="container py-3">
-		<div class="row">
-			<div class="col-md-7 head_and_desc">
-				<p class="text-base/7 font-semibold m-0 text-base/7 font-semibold" style="color: #2a344e;"><a href="/category/<?php echo  str_replace(' ', '-', $course->program_type_name); ?>" class="text-decoration-none text-reset"><?php echo ($course && $course->program_type_name) ? $course->program_type_name : "eeeeee"; ?></a></p>
-				<h2 class="mt-2 text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl" style="color: #ffc500;"><?php echo ($course && $course->course_name) ? $course->course_name : "eeeeee"; ?></h2>
-			</div>
-			<div class="col-md-5 d-flex align-items-center">
-				<div class="d-flex align-items-center gap-3">
-					<?php echo $course->accrediation_body; ?>
-					<img class="s" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 0.png" style="height: 40px; width: 140px; " alt="./img/partners/Asset 0.png" />
-					<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 1.png" alt="./img/partners/Asset 1.png" />
-					<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 2.png" alt="./img/partners/Asset 2.png" />
-					<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 3.png" alt="./img/partners/Asset 3.png" />
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-7">
-				<div class="grid grid-cols-2 mb-4">
-					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Enrollment date:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
-					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Duration:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
-					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">program_id:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->course_name) ? $course->nqf_level : "eeeeee"; ?></span></p>
-					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">course_name:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->course_name) ? "     " . $course->course_name : " " ?></span></p>
-					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Accredited By:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->accrediation_body) ? "     " . $course->accrediation_body : " " ?></span></p>
-					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Credits:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->credits) ? "     " . $course->credits : " " ?></span></p>
-					<p class="text-base "><span class="text-sm/6 font-semibold text-gray-900">Price:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->price) ? "     " . $course->price : " " ?></span></p>
-				</div>
-				<hr>
-				<h5 class="fw-bold text-base mt-4">Course Description:</h5>
-				<p><?php echo ($course && $course->course_description) ? $course->course_description : "eeeeee"; ?></p>
-				<button class="nds_btn me-3">Apply Here</button>
-			</div>
-			<div class="col-md-5">
-				<div class="boxing bg-white shadwo-sm rounded p-3 mb-4">
-					<p class="fw-bold">Related <a href="/category/<?php echo  str_replace(' ', '-', $course->program_type_name); ?>" class="text-decoration-none text-reset"><?php echo ($course && $course->program_type_name) ? $course->program_type_name : "eeeeee"; ?></a> </p>
-				</div>
-				<div class="boxing bg-white shadow-sm rounded p-3">
-					<p class="fw-bold">Course Potential careers</p>
-					<ul role="list" class="divide-y divide-gray-100">
-						<?php
-						foreach ($possible_employment as $key => $pe):
-						?>
-							<li class="flex justify-between gap-x-6 px-2">
-								<div class="flex min-w-0 gap-x-4">
-									<div class="min-w-0 flex-auto">
-										<p class="text-sm/6 font-semibold text-gray-900"><?php echo $pe->job_title; ?></p>
-										<p class="truncate text-xs/5 text-gray-500"><?php echo $pe->salary_range; ?></p>
-									</div>
-								</div>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-
-				</div>
-			</div>
-		</div>
-	</div>
-<?php
-}
-
-function wpd_showCoursesNavTabs($category_id)
-{
-	global $wpdb;
-	$out = "";
-	$category_id = $category_id['id'];
-
-	$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE category_id = $category_id;";
-	$program_name = $wpdb->get_row($program_query);
-
-	$category = get_category($category_id);
-	$program_slug = $category->slug;
-
-	$query = "SELECT * FROM `wp_nds_courses` WHERE program_id = $program_name->id;";
-	$courses = $wpdb->get_results($query);
-?>
-	<ul class="nav nav-tabs" id="myTab" role="tablist">
-		<?php
-		foreach ($courses as $key => $course):
-			$slugish = str_replace(' ', '-', $course->name);
-			// Add the 'active' class to the first tab
-			$active_class = ($key === 0) ? 'active' : '';
+		function recp_card($recipe = null)
+		{
+			ob_start();
+			echo "dfsdfsdf";
 		?>
-			<li class="nav-item" role="presentation">
-				<button class="fw-bold text-base mt-4 shutup nav-link <?php echo $active_class; ?>" id="<?php echo $slugish; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $slugish; ?>" type="button" role="tab" aria-controls="<?php echo $slugish; ?>" aria-selected="true"><?php echo $course->name; ?></button>
-			</li>
-		<?php endforeach; ?>
-	</ul>
-<?php
-}
+			<div class="max-w-xs border-0 mb-3 recipe_card">
+				<div class="flex items-center space-x-3">
+					<div>
+						<img src="<?php bloginfo('template_directory'); ?>/img/recipes/<?php echo ($recipe) ? $recipe['img'] : 'r1.png'; ?>" height="100" class="rounded" alt="recipe pic">
+					</div>
+					<div>
+						<div class="p-3 border-l-2 border-yellow-300">
+							<h5 class="text-lg font-semibold"><?php echo ($recipe) ? $recipe["recipe_name"] : "Recipe Name"; ?></h5>
+							<p class="text-sm text-gray-500"><?php echo ($recipe) ? $recipe["recipe_desc"] : "Description"; ?></p>
+							<p class="text-xs text-gray-400"><small>Last updated 3 mins ago</small></p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-add_shortcode('showCoursesNavTabs', 'wpd_showCoursesNavTabs');
+		<?php
+			return ob_get_clean(); // Capture and return the output
+		}
 
-function wpd_showPanelCoursesNavTabs($category_id)
-{
-	global $wpdb;
-	$out = "";
-	$category_id = $category_id['id'];
+		function display_recipes_blog()
+		{
+			$recipe = "";
+			echo recp_card($recipe);
+		}
+		add_shortcode('recipes_blog', 'display_recipes_blog');
 
-	$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE category_id = $category_id;";
-	$program_name = $wpdb->get_row($program_query);
+		function staff_card($staff_member = null)
+		{
+			ob_start();
+		?>
+			<div class="team_wrp text-center">
+				<div class="circleprofile mx-auto">
+					<img src="<?php bloginfo('template_directory'); ?>/img/staff/<?php echo ($staff_member) ? $staff_member["staff_img"] : "placeholder.png"; ?>" alt="<?php echo ($staff_member) ? $staff_member["staff_name"] : "Recipe Name"; ?>">
+				</div>
+				<h5 class="empname fw-bold m-0"><?php echo ($staff_member) ? $staff_member["staff_name"] : "Recipe Name"; ?></h5>
+				<div class="jobtitle"><?php echo ($staff_member) ? $staff_member["Job_title"] : "Recipe Name"; ?></div>
+			</div>
+		<?php
+			return ob_get_clean(); // Capture and return the output
+		}
 
-	$category = get_category($category_id);
-	$program_slug = $category->slug;
+		function display_staff()
+		{
+			/* Sort them out via alphabet */
+			$staff_members = [
+				[
+					'staff_img' => 'lebo_lekotokoto.png',
+					'staff_name' => 'Lebo Lekotokoto',
+					'Job_title' => 'Founder & Director',
+				],
+				[
+					'staff_img' => 'estelle_holtzhausen.png',
+					'staff_name' => 'Mrs Estelle Holtzhausen',
+					'Job_title' => 'Marketing Manager',
+				],
+				[
+					'staff_img' => 'jacobus_sutton.png',
+					'staff_name' => 'Mr Jacobus Sutton',
+					'Job_title' => 'Lecturer',
+				],
+				[
+					'staff_img' => 'lwethu_htlatswayo.png',
+					'staff_name' => 'Ms Lwethu Htlatswayo',
+					'Job_title' => 'Lecturer',
+				],
+				[
+					'staff_img' => 'pontsho_mogiwa.png',
+					'staff_name' => 'Mrs Pontsho Mogiwa',
+					'Job_title' => 'Lecturer',
+				],
+				[
+					'staff_img' => 'tumi_motsamai.png',
+					'staff_name' => 'Ms Tumi Motsamai',
+					'Job_title' => 'Lecturer',
+				],
+				[
+					'staff_img' => 'tumi_motsamai.png', // Assuming same person with same image
+					'staff_name' => 'Ms Tumi Motsamai',
+					'Job_title' => 'Office Administrator',
+				],
+				[
+					'staff_img' => 'tshepiso_tunzi.png',
+					'staff_name' => 'Mrs Tshepiso Tunzi',
+					'Job_title' => 'Project Manager',
+				],
+				
+				[
+					'staff_img' => 'irene_xaba.png',
+					'staff_name' => 'Ms Irene Xaba',
+					'Job_title' => 'Office Cleaner',
+				],
+				[
+					'staff_img' => 'mpuse_mnguni.png',
+					'staff_name' => 'Mrs Mpuse Mnguni',
+					'Job_title' => 'Training Kitchen Assistant',
+				],
+			];
 
-	$query = "SELECT 
+
+
+			echo '<div class="grid grid-cols-4">';
+			foreach ($staff_members as $staff_member) {
+				echo staff_card($staff_member);  // Call the function for each staff member
+			}
+			echo '</div>';
+		}
+		add_shortcode('show_staff_members', 'display_staff');
+
+		function showCourses($atts)
+		{
+
+			global $wpdb;
+
+			$out = "";
+			//$category_id = $category_id['id'];
+			$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE name =" . $atts['name'];
+
+			$program_name = $wpdb->get_row($program_query);
+			exit(var_dump($wpdb->last_query));
+			echo '<pre>';
+			print_r($program_name);
+			echo '</pre>';
+			exit();
+
+			$category = get_category($category_id);
+			$program_slug = $category->slug;
+
+			$query = "SELECT * FROM `wp_nds_courses` WHERE program_id = $program_name->id;";
+			$courses = $wpdb->get_results($query);
+
+
+		?>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th scope="col">Course Image</th>
+						<th scope="col">Course Name</th>
+						<th scope="col">Course Level</th>
+						<th scope="col">Duration</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					foreach ($courses as $key => $course):
+						$post = get_post($course->post_id);
+						$course_slug = $post->post_name;
+					?>
+						<tr>
+							<td><img src="receptionist-level-2.jpg" alt="<?php echo $course->name; ?>" class="img-fluid" style="max-width: 100px;"></td>
+							td><a class="shutup" href="<?php echo site_url('/' . $program_slug . '/' . $course_slug); ?>"><strong><?php echo $course->name; ?></strong></a></td>
+							td>Intermediate</td>
+							<td><?php echo $course->duration; ?> Months</td>
+							<td><button class="btn btn-primary">Apply Now</button> <button class="btn btn-secondary">Book a Visit</button></td>
+						</tr>
+					<?php
+					endforeach;
+					?>
+				</tbody>
+			</table>
+		<?php
+		}
+		add_shortcode('wpd_showingCourses', 'showCourses');
+
+		function coursePanel($course, $program_name)
+		{
+		?>
+			<div class="bg-white p-4 shadow-sm py-3">
+				<div class="row">
+					<div class="col-md-7 head_and_desc">
+						<?php echo do_shortcode('[marqueText smTxt="' . (($course && $course->course_name) ? $course->course_name : "eeeeee") . '" bgTxt="' . (($course && $course->program_type_name) ? $course->program_type_name : "eeeeee") . '" align=""]'); ?>
+						<hr>
+					</div>
+					<div class="col-md-5 d-flex align-items-center">
+						<div class="d-flex align-items-center gap-3">
+							<?php echo $course->accreditation_body; ?>
+							<img class="s" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 0.png" style="height: 40px; width: 140px; " alt="./img/partners/Asset 0.png" />
+							<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 1.png" alt="./img/partners/Asset 1.png" />
+							<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 2.png" alt="./img/partners/Asset 2.png" />
+							<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 3.png" alt="./img/partners/Asset 3.png" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-7">
+						<div class="grid grid-cols-2 mb-4">
+							<p class="text-base flex items-end gap-3"><span class="text-sm/6 font-semibold text-gray-900">Enrollment date:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
+							<p class="text-base flex items-end gap-3"><span class="text-sm/6 font-semibold text-gray-900">Duration:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
+							<p class="text-base flex items-end gap-3"><span class="text-sm/6 font-semibold text-gray-900">Course Name:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->course_name) ? "     " . $course->course_name : " " ?></span></p>
+							<p class="text-base flex items-end gap-3"><span class="text-sm/6 font-semibold text-gray-900">Price:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->price) ? "     " . $course->price : " " ?></span></p>
+						</div>
+						<hr>
+						<h5 class="fw-bold text-base">Course Description:</h5>
+						<p><?php echo ($course && $course->course_description) ? $course->course_description : "eeeeee"; ?></p>
+						<a class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition" href="/student-registration?xxxxxx">Apply Here</a>
+					</div>
+					<div class="col-md-5">
+						<div class="boxing bg-white shadwo-sm rounded p-3 mb-4">
+							<h6 class="text-base ">Gallery:</h6>
+							<?php echo do_shortcode('[folderName_gallery slug="' . $program_name->program_name . '"]'); ?>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		<?php
+		}
+
+		function wpd_showCoursesNavTabs($program)
+		{
+			global $wpdb;
+
+			$programName = $program['program'];
+
+			$out = "";
+
+			$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE name = '$programName';";
+			$program_name = $wpdb->get_row($program_query);
+
+			$category_id = get_cat_ID($program_name->program_name);
+
+			$category = get_category($category_id);
+			$program_slug = $category->slug;
+
+			$query = "SELECT * FROM `wp_nds_courses` WHERE program_id = $program_name->id;";
+			$courses = $wpdb->get_results($query);
+		?>
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<?php
+				foreach ($courses as $key => $course):
+					$slugish = str_replace(' ', '-', $course->name);
+					// Add the 'active' class to the first tab
+					$active_class = ($key === 0) ? 'active' : '';
+				?>
+					<li class="nav-item" role="presentation">
+						<button class="fw-bold text-base mt-4 shutup nav-link <?php echo $active_class; ?>" id="<?php echo $slugish; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $slugish; ?>" type="button" role="tab" aria-controls="<?php echo $slugish; ?>" aria-selected="true"><?php echo $course->name; ?></button>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		<?php
+		}
+
+		add_shortcode('showCoursesNavTabs', 'wpd_showCoursesNavTabs');
+
+		function wpd_showPanelCoursesNavTabs($program)
+		{
+			global $wpdb;
+			$out = "";
+
+			$programName = $program['program'];
+
+
+			$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE name = '$programName';";
+			$program_name = $wpdb->get_row($program_query);
+
+			$category_id = get_cat_ID($program_name->program_name);
+
+			$category = get_category($category_id);
+			$program_slug = $category->slug;
+
+			$query = "SELECT 
 		courses.id AS course_id,
 		courses.name AS course_name,
-		courses.accrediation_body,
+		courses.accreditation_body,
 		courses.code,
 		courses.nqf_level,
 		courses.description AS course_description,
@@ -573,170 +650,214 @@ function wpd_showPanelCoursesNavTabs($category_id)
 		WHERE 
 		courses.program_id = $program_name->id;
 	";
-	$courses = $wpdb->get_results($query);
-?>
+			$courses = $wpdb->get_results($query);
 
-	<div class="tab-content" id="myTabContent">
-		<?php
-		foreach ($courses as $key => $course):
-			$slugish = str_replace(' ', '-', $course->course_name);
-			// Add the 'active show' class to the first tab panel
-			$active_panel_class = ($key === 0) ? 'active show' : '';
-
-			$query_possible_employment = "SELECT * FROM `wp_nds_possible_employment` WHERE `course_id` = $course->course_id;";
-			$possible_employment = $wpdb->get_results($query_possible_employment);
 		?>
-			<div class="tab-pane fade <?php echo $active_panel_class; ?>" id="<?php echo $slugish; ?>" role="tabpanel" aria-labelledby="<?php echo $slugish; ?>-tab">
-				<?php coursePanel($course, $possible_employment); ?>
+			<div class="tab-content" id="myTabContent">
+				<?php
+				foreach ($courses as $key => $course):
+					$slugish = str_replace(' ', '-', $course->course_name);
+					// Add the 'active show' class to the first tab panel
+					$active_panel_class = ($key === 0) ? 'active show' : '';
+
+					$query_possible_employment = "SELECT * FROM `wp_nds_possible_employment` WHERE `course_id` = $course->course_id;";
+					$possible_employment = $wpdb->get_results($query_possible_employment);
+				?>
+					<div class="tab-pane fade <?php echo $active_panel_class; ?>" id="<?php echo $slugish; ?>" role="tabpanel" aria-labelledby="<?php echo $slugish; ?>-tab">
+						<?php coursePanel($course, $program_name); ?>
+					</div>
+				<?php endforeach; ?>
 			</div>
-		<?php endforeach; ?>
-	</div>
-<?php
-}
-
-add_shortcode('showPanelCoursesNavTabs', 'wpd_showPanelCoursesNavTabs');
-
-//austin work with the below wpd_breadcrumbs function
-function wpd_breadcrumbs($atts)
-{
-	// Set default attributes
-	$atts = shortcode_atts(
-		array(
-			'data' => '[]', // Default is an empty array
-		),
-		$atts,
-		'custom_breadcrumbs'
-	);
-
-	// Decode the JSON data passed to the shortcode
-	$breadlinks = json_decode(urldecode($atts['data']), true);
-
-	// Check if the decoded data is valid
-	if (!is_array($breadlinks)) {
-		return "Invalid breadcrumb data.";
-	}
-
-	// Start the Bootstrap breadcrumb container
-	$output = '<div class="container"><div class="row"><div class="col"></div><nav aria-label="breadcrumb"><ol class="breadcrumb">';
-
-	// Loop through each breadcrumb and generate the list items
-	$total_links = count($breadlinks);
-	foreach ($breadlinks as $index => $link) {
-		// If it's the last item, make it active
-		if ($index === $total_links - 1) {
-			$output .= '<li class="breadcrumb-item active" aria-current="page">' . $link['name'] . '</li>';
-		} else {
-			$output .= '<li class="breadcrumb-item"><a class="shutup" href="/' . $link['slug'] . '">' . $link['name'] . '</a></li>';
+		<?php
 		}
-	}
 
-	// Close the breadcrumb container
-	$output .= '</ol></nav></div></div></div>';
+		add_shortcode('showPanelCoursesNavTabs', 'wpd_showPanelCoursesNavTabs');
 
-	return $output;
-}
-add_shortcode('crumbs', 'wpd_breadcrumbs');
+		function wpd_breadcrumbs($atts)
+		{
+			// Set default attributes
+			$atts = shortcode_atts(
+				array(
+					'data' => '[]', // Default is an empty array
+				),
+				$atts,
+				'custom_breadcrumbs'
+			);
 
-function wpd_Textmarque($atts)
-{
-	$alignmenting =  ($atts['align'] === "center") ? "text-center" : "";
-	$out = "";
-	$out .= '<div class="head_and_desc scp ' . $alignmenting . '">';
-	$out .= '<p class="text-base/7 font-semibold">' . $atts['smtxt'] . '</p>';
-	$out .= '<h2 class="text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl" style="color: #ffc500;">' . $atts['bgtxt'] . '</h2>';
-	$out .= ' </div>';
+			// Decode the JSON data passed to the shortcode
+			$breadlinks = json_decode(urldecode($atts['data']), true);
 
-	return $out;
-}
-add_shortcode('marqueText', 'wpd_Textmarque');
-
-function custom_image_gallery()
-{
-	$base_dir = get_template_directory() . '/img/gallery/';
-	$base_url = get_template_directory_uri() . '/img/gallery/';
-
-	$output = '<div class="">';
-
-	$years = array('2022', '2023', '2024'); // Add/remove years as needed
-
-	foreach ($years as $year) {
-		$year_path = $base_dir . $year;
-		$year_url = $base_url . $year;
-
-		if (is_dir($year_path)) {
-			$output .= "<h2 class='mt-4'>$year</h2>";
-			$output .= '<div class="row g-3">'; // Bootstrap grid row
-
-			$images = glob($year_path . '/*.{jpg,png,gif}', GLOB_BRACE);
-
-			foreach ($images as $image) {
-				$img_url = $year_url . '/' . basename($image);
-				$output .= '
-                    <div class="col-md-3 col-sm-6">
-                        <div class="card shadow-sm overflow-hidden" style="height: 140px">
-                            <a href="' . $img_url . '" data-lightbox="gallery">
-                                <img src="' . $img_url . '" class="card-img-top img-fluid object-fit-cover" loading="lazy" alt="Gallery Image" style="height: 100%; width: 100%; object-fit: cover;">
-                            </a>
-                        </div>
-                    </div>
-                ';
+			// Check if the decoded data is valid
+			if (!is_array($breadlinks)) {
+				return "Invalid breadcrumb data.";
 			}
 
-			$output .= '</div>'; // Close row
+			// Start the breadcrumb container
+			$output = '<div class="max-w-7xl mx-auto px-4 py-3"><nav aria-label="breadcrumb"><ol class="flex items-center text-sm text-gray-500">';
+
+			// Loop through each breadcrumb and generate the list items
+			$total_links = count($breadlinks);
+			foreach ($breadlinks as $index => $link) {
+				if ($index !== 0) {
+					$output .= '<li class="mx-1 text-gray-400">/</li>'; // Adjusted spacing for separator
+				}
+
+				// If it's the last item, make it active
+				if ($index === $total_links - 1) {
+					$output .= '<li class="text-gray-900 font-medium">' . $link['name'] . '</li>';
+				} else {
+					$output .= '<li><a href="/' . $link['slug'] . '" class="text-blue-600 hover:underline m-0">' . $link['name'] . '</a></li>';
+				}
+			}
+
+			// Close the breadcrumb container
+			$output .= '</ol></nav></div>';
+
+			return $output;
 		}
-	}
+		add_shortcode('crumbs', 'wpd_breadcrumbs');
 
-	$output .= '</div>'; // Close container
-	return $output;
-}
-add_shortcode('custom_gallery', 'custom_image_gallery');
+		function wpd_breadcrumbs2($atts)
+		{
+			// Set default attributes
+			$atts = shortcode_atts(
+				array(
+					'data' => '[]', // Default is an empty array
+				),
+				$atts,
+				'custom_breadcrumbs'
+			);
 
-function student_register_form()
-{
-	ob_start();
-?>
-	<div class="flex items-center justify-center min-h-screen bg-gray-100">
-		<div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-			<h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Student Register</h2>
+			// Decode the JSON data passed to the shortcode
+			$breadlinks = json_decode(urldecode($atts['data']), true);
 
-			<form method="POST" class="space-y-4">
-				<div>
-					<label class="block text-gray-700 font-medium">Full Name</label>
-					<input type="text" name="name" required
-						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+			// Check if the decoded data is valid
+			if (!is_array($breadlinks)) {
+				return "Invalid breadcrumb data.";
+			}
+
+			// Start the breadcrumb container
+			$output = '<div class="max-w-7xl mx-auto px-4 py-3"><nav aria-label="breadcrumb"><ol class="flex items-center text-sm text-gray-500">';
+
+			// Loop through each breadcrumb and generate the list items
+			$total_links = count($breadlinks);
+			foreach ($breadlinks as $index => $link) {
+				if ($index !== 0) {
+					$output .= '<li class="mx-1 text-white">/</li>'; // Adjusted spacing for separator
+				}
+
+				// If it's the last item, make it active
+				if ($index === $total_links - 1) {
+					$output .= '<li class="text-white font-medium"><p class="m-0 text-white">' . $link['name'] . '</p></li>';
+				} else {
+					$output .= '<li><a href="/' . $link['slug'] . '" class="shutup text-white font-medium hover:underline m-0"><p class="m-0 text-white">' . $link['name'] . '</p></a></li>';
+				}
+			}
+
+			// Close the breadcrumb container
+			$output .= '</ol></nav></div>';
+
+			return $output;
+		}
+		add_shortcode('nds_breadcrumb2', 'wpd_breadcrumbs2');
+
+
+
+		function wpd_Textmarque($atts)
+		{
+			$alignmenting =  ($atts['align'] === "center") ? "text-center" : "";
+			$out = "";
+			$out .= '<div class="head_and_desc scp ' . $alignmenting . '">';
+			$out .= '<p class="text-base/7 font-semibold">' . $atts['smtxt'] . '</p>';
+			$out .= '<h2 class="text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl" style="color: #ffc500;">' . $atts['bgtxt'] . '</h2>';
+			$out .= ' </div>';
+
+			return $out;
+		}
+		add_shortcode('marqueText', 'wpd_Textmarque');
+
+		function folderName_image_gallery($slugName)
+		{
+			$folderName = $slugName['slug'];
+			// Get the base URL for the images in the gallery folder
+			$base_url = get_template_directory_uri() . '/img/gallery/' . sanitize_title($folderName);
+
+			// Check if the folder exists
+			$gallery_path = get_template_directory() . '/img/gallery/' . sanitize_title($folderName);
+			if (is_dir($gallery_path)) {
+				$images = glob($gallery_path . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE); // Get images with specific extensions
+
+				if ($images) {
+					// Limit to 6 images
+					$images = array_slice($images, 0, 6);
+
+					echo '<div class="grid grid-cols-3 gap-4">'; // Start grid container
+					foreach ($images as $image) {
+						// Output each image inside the grid
+						$image_url = (str_replace($gallery_path, $base_url, $image));
+						echo '<div class="gallery-item h-[80px] overflow-hidden"><img src="' . $image_url . '" alt="' . basename($image) . '" class="gallery-image w-full h-auto" /></div>';
+					}
+					echo '</div>'; // Close grid container
+				} else {
+					echo 'No images found in this gallery.';
+				}
+			} else {
+				echo 'Gallery folder not found.';
+			}
+		}
+
+		add_shortcode('folderName_gallery', 'folderName_image_gallery');
+
+
+		function student_register_form()
+		{
+			ob_start();
+		?>
+			<div class="flex items-center justify-center min-h-screen bg-gray-100">
+				<div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+					<h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Student Register</h2>
+
+					<form method="POST" class="space-y-4">
+						<div>
+							<label class="block text-gray-700 font-medium">Full Name</label>
+							<input type="text" name="name" required
+								class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+						</div>
+						<div>
+							<label class="block text-gray-700 font-medium">Email</label>
+							<input type="email" name="email" required
+								class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+						</div>
+						<div>
+							<label class="block text-gray-700 font-medium">Phone</label>
+							<input type="text" name="phone"
+								class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+						</div>
+						<div>
+							<label class="block text-gray-700 font-medium">Course</label>
+							<select name="course"
+								class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+								<option value="Web Development">Web Development</option>
+								<option value="Data Science">Data Science</option>
+								<option value="Cyber Security">Cyber Security</option>
+							</select>
+						</div>
+						<div>
+							<label class="block text-gray-700 font-medium">Password</label>
+							<input type="password" name="password" required
+								class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
+						</div>
+						<button type="submit"
+							class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition">
+							Register
+						</button>
+					</form>
 				</div>
-				<div>
-					<label class="block text-gray-700 font-medium">Email</label>
-					<input type="email" name="email" required
-						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
-				</div>
-				<div>
-					<label class="block text-gray-700 font-medium">Phone</label>
-					<input type="text" name="phone"
-						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
-				</div>
-				<div>
-					<label class="block text-gray-700 font-medium">Course</label>
-					<select name="course"
-						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
-						<option value="Web Development">Web Development</option>
-						<option value="Data Science">Data Science</option>
-						<option value="Cyber Security">Cyber Security</option>
-					</select>
-				</div>
-				<div>
-					<label class="block text-gray-700 font-medium">Password</label>
-					<input type="password" name="password" required
-						class="w-full p-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none">
-				</div>
-				<button type="submit"
-					class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition">
-					Register
-				</button>
-			</form>
-		</div>
-	</div>
+			</div>
 <?php
-	return ob_get_clean();
-}
-add_shortcode('student_register', 'student_register_form');
+			return ob_get_clean();
+		}
+		add_shortcode('student_register', 'student_register_form');
+	}
+endif; // NDStheme_setup
+add_action('after_setup_theme', 'NDStheme_setup');

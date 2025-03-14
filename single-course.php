@@ -7,7 +7,7 @@
 
 get_header();
 
-$category_id = $_GET['category_id'];
+$page_title = get_the_title();
 ?>
 <div class="head_section d-flex align-items-center justify-content-center">
     <h1 class="header_txt">dsfgdsfgdsfg<?php the_title(); ?></h1>
@@ -19,7 +19,7 @@ $category_id = $_GET['category_id'];
         </div>
         <div class="col h-100 sec">
             <div class="head_and_desc scp">
-                <?php echo do_shortcode('[wpd_showCourses id="' . $category_id . '"]'); ?>
+                <?php echo do_shortcode('[wpd_showingCourses name="' . $page_title . '"]'); ?>
             </div>
         </div>
     </div>
