@@ -175,7 +175,7 @@ if (! function_exists('NDStheme_setup')) :
 			$result = $wpdb->get_results($query);
 			$paths = $result;
 
-			
+
 
 			if (!empty($paths)) {
 				foreach ($paths as $path) {
@@ -194,7 +194,7 @@ if (! function_exists('NDStheme_setup')) :
 					$out .= '<div>';
 					$out .= '<a href="/' . sanitize_title_with_dashes($path->name) . '" class="pathlink text-decoration-none">';
 					$out .= '<div class="circles mx-auto flex items-center justify-center">';
-					$out .= '<img src="/img/paths/' . $pathSlug . '.jpg" alt="' . $pathSlug . '" class="w-full h-auto object-cover opacity-80 hover:opacity-100">';
+					$out .= '<img src="' . get_template_directory_uri() . '/img/paths/' . $pathSlug . '.jpg" alt="' . $pathSlug . '" class="max-auto w-full h-full object-cover opacity-80 hover:opacity-100">';
 					$out .= '</div>';
 					$out .= '<div class="text-center">';
 					$out .= '<h6 id="' . $path->id . '" class="theSelectedPath mt-3 fw-bold">' . $path->name . '</h6>';
@@ -336,19 +336,22 @@ if (! function_exists('NDStheme_setup')) :
 			$query = "SELECT * FROM `wp_nds_education_paths` WHERE LOWER(`name`) = LOWER('$slu');";
 			$out = '';
 			$result = $wpdb->get_row($query);
+			if ($result):
+				$query2 = "SELECT * FROM `wp_nds_program_types` WHERE `path_id` = '$result->id';";
+				$program_types = $wpdb->get_results($query2);
 
-			$query2 = "SELECT * FROM `wp_nds_program_types` WHERE `path_id` = '$result->id';";
-			$program_types = $wpdb->get_results($query2);
+				$out .= '<ul class="list-group list-group-flush">';
+				foreach ($program_types as $key => $program_type) {
+					$path_slug = sanitize_title_with_dashes($result->name);
+					$program_slug = sanitize_title_with_dashes($program_type->name);
 
-			$out .= '<ul class="list-group list-group-flush">';
-			foreach ($program_types as $key => $program_type) {
-				$path_slug = sanitize_title_with_dashes($result->name);
-				$program_slug = sanitize_title_with_dashes($program_type->name);
+					$out .= '<li class="list-group-item"><a href="/category/' . $program_slug . '" class="text-blue-600 hover:underline m-0 shutup">' . $program_type->name . '</a></li>';
+				}
 
-				$out .= '<li class="list-group-item"><a href="/category/' . $program_slug . '" class="text-blue-600 hover:underline m-0 shutup">' . $program_type->name . '</a></li>';
-			}
-
-			$out .= '</ul>';
+				$out .= '</ul>';
+			else:
+				$out .= "<p>No courses added</p>";
+			endif;
 			return $out;
 		}
 		add_shortcode('displaySelectedPathList', 'wpb_displaySelectedPathListPrgramTypes');
@@ -393,10 +396,11 @@ if (! function_exists('NDStheme_setup')) :
 		?>
 			<div class="team_wrp text-center">
 				<div class="circleprofile mx-auto">
-					<img src="<?php bloginfo('template_directory'); ?>/img/staff/<?php echo ($staff_member) ? $staff_member["staff_img"] : "placeholder.png"; ?>" alt="<?php echo ($staff_member) ? $staff_member["staff_name"] : "Recipe Name"; ?>">
+					<img id="profile_picture_preview" src="<?php echo esc_url($staff_member->profile_picture ? wp_get_attachment_url($staff_member->profile_picture) : ''); ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
+
 				</div>
-				<h5 class="empname fw-bold m-0"><?php echo ($staff_member) ? $staff_member["staff_name"] : "Recipe Name"; ?></h5>
-				<div class="jobtitle"><?php echo ($staff_member) ? $staff_member["Job_title"] : "Recipe Name"; ?></div>
+				<h5 class="empname fw-bold m-0"><?php echo ($staff_member) ? $staff_member->first_name : "Recipe Name"; ?></h5>
+				<div class="jobtitle"><?php echo ($staff_member) ? $staff_member->role : "Recipe Name"; ?></div>
 			</div>
 		<?php
 			return ob_get_clean(); // Capture and return the output
@@ -446,7 +450,7 @@ if (! function_exists('NDStheme_setup')) :
 					'staff_name' => 'Mrs Tshepiso Tunzi',
 					'Job_title' => 'Project Manager',
 				],
-				
+
 				[
 					'staff_img' => 'irene_xaba.png',
 					'staff_name' => 'Ms Irene Xaba',
@@ -460,6 +464,9 @@ if (! function_exists('NDStheme_setup')) :
 			];
 
 
+			global $wpdb;
+			$program_query = "SELECT * FROM `wp_nds_staff`";
+			$staff_members = $wpdb->get_results($program_query);
 
 			echo '<div class="grid grid-cols-4">';
 			foreach ($staff_members as $staff_member) {
@@ -693,7 +700,7 @@ if (! function_exists('NDStheme_setup')) :
 			}
 
 			// Start the breadcrumb container
-			$output = '<div class="max-w-7xl mx-auto px-4 py-3"><nav aria-label="breadcrumb"><ol class="flex items-center text-sm text-gray-500">';
+			$output = '<div class="max-w-7xl mx-auto px-4 py-3"><nav aria-label="breadcrumb"><ol class="flex items-center justify-center text-sm text-gray-500">';
 
 			// Loop through each breadcrumb and generate the list items
 			$total_links = count($breadlinks);

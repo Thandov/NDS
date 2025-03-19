@@ -9,7 +9,7 @@ $pagename = ucwords(str_replace('-', ' ', $page_name));
 $page_slug = sanitize_title($page_name);
 
 $page_title = get_the_title();
-$imgpp = (ucwords($pagename) == ucwords($page_title)) ? "fulltime.jpeg" : "adasd";
+$imgpp = (ucwords($pagename) == ucwords($page_title)) ? $page_slug.'.jpg' : $page_slug.".jpg";
 ?>
 
 <div class="head_section d-flex align-items-center justify-content-center">
@@ -26,7 +26,7 @@ $imgpp = (ucwords($pagename) == ucwords($page_title)) ? "fulltime.jpeg" : "adasd
 </div>
 <div class="">
     <div class="grid md:grid-cols-3 h-full">
-        <div class="md:col-span-1 overlayglow relative" style="background-image: url(<?php echo esc_url(get_template_directory_uri() . '/img/' . $imgpp); ?>); background-position: center; background-repeat: no-repeat; background-size: cover; "></div>
+        <div class="md:col-span-1 overlayglow relative" style="background-image: url(<?php echo esc_url(get_template_directory_uri() . '/img/paths/' . $imgpp); ?>); background-position: center; background-repeat: no-repeat; background-size: cover; "></div>
         <div class="md:col-span-2">
             <div class="space-y-4 p-4">
                 <?php echo do_shortcode('[marqueText smTxt="We are here for" bgTxt="Our Courses" align=""]'); ?>

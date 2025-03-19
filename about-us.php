@@ -30,7 +30,9 @@ get_header(); ?>
 <div class="sec flex items-center justify-center">
     <div class="md:w-[85%]">
         <?php echo do_shortcode('[marqueText smTxt="Meet The Team" bgTxt="Our Team" align=""]'); ?>
-        <?php echo do_shortcode('[show_staff_members]'); ?>
+        <div>
+            <?php echo do_shortcode('[show_staff_members]'); ?>
+        </div>
     </div>
 </div>
 <div class="bglight">

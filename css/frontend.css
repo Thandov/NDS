@@ -826,12 +826,12 @@ video {
   height: 100%;
 }
 
-.h-\[200px\] {
-  height: 200px;
+.h-\[100px\] {
+  height: 100px;
 }
 
-.h-\[400px\] {
-  height: 400px;
+.h-\[200px\] {
+  height: 200px;
 }
 
 .h-\[500px\] {
@@ -842,20 +842,16 @@ video {
   height: 71.49px;
 }
 
+.h-\[80px\] {
+  height: 80px;
+}
+
 .h-auto {
   height: auto;
 }
 
 .h-full {
   height: 100%;
-}
-
-.h-\[80px\] {
-  height: 80px;
-}
-
-.h-\[100px\] {
-  height: 100px;
 }
 
 .min-h-screen {
@@ -874,6 +870,10 @@ video {
   width: 100%;
 }
 
+.w-\[100px\] {
+  width: 100px;
+}
+
 .w-\[74px\] {
   width: 74px;
 }
@@ -884,10 +884,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[100px\] {
-  width: 100px;
 }
 
 .min-w-0 {
