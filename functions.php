@@ -399,7 +399,7 @@ if (! function_exists('NDStheme_setup')) :
 					<img id="profile_picture_preview" src="<?php echo esc_url($staff_member->profile_picture ? wp_get_attachment_url($staff_member->profile_picture) : ''); ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
 
 				</div>
-				<h5 class="empname fw-bold m-0"><?php echo ($staff_member) ? $staff_member->first_name : "Recipe Name"; ?></h5>
+				<h5 class="empname fw-bold m-0"><?php echo ($staff_member) ? $staff_member->first_name ." ". $staff_member->last_name : "Recipe Name"; ?></h5>
 				<div class="jobtitle"><?php echo ($staff_member) ? $staff_member->role : "Recipe Name"; ?></div>
 			</div>
 		<?php
