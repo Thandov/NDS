@@ -27,7 +27,7 @@ get_header(); ?>
     </div>
 </div>
 <?php require get_template_directory() . '/includes/cta2.php'; ?>
-<div class="sec flex items-center justify-center">
+<div class="sec flex items-center justify-center p-6">
     <div class="md:w-[85%]">
         <?php echo do_shortcode('[marqueText smTxt="Meet The Team" bgTxt="Our Team" align=""]'); ?>
         <div>

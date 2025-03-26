@@ -361,46 +361,56 @@ if (! function_exists('NDStheme_setup')) :
 
 		function recp_card($recipe = null)
 		{
-			ob_start();
-			echo "dfsdfsdf";
-		?>
-			<div class="max-w-xs border-0 mb-3 recipe_card">
-				<div class="flex items-center space-x-3">
-					<div>
-						<img src="<?php bloginfo('template_directory'); ?>/img/recipes/<?php echo ($recipe) ? $recipe['img'] : 'r1.png'; ?>" height="100" class="rounded" alt="recipe pic">
+			// Unserialize the 'gallery' field
+			$gallery = unserialize($recipe['gallery']);
+			// Unserialize the 'the_recipe' field (which contains the steps and other details)
+			$the_recipe = unserialize($recipe['the_recipe']);
+			// You can also access individual fields from 'the_recipe', like steps:
+			$steps = json_decode($the_recipe['steps']); // Decoding steps as it seems to be a JSON-encoded string
+			ob_start(); ?>
+			<div class="recipe_card">
+				<div class="grid grid-cols-3 items-center space-x-3">
+					<div class="w-full h-24 m-1">
+						<img src="<?php echo ($recipe['image']) ? wp_get_attachment_url($recipe['image']) : 'r1.png'; ?>" class="w-full h-full object-cover rounded" alt="recipe pic">
 					</div>
-					<div>
-						<div class="p-3 border-l-2 border-yellow-300">
-							<h5 class="text-lg font-semibold"><?php echo ($recipe) ? $recipe["recipe_name"] : "Recipe Name"; ?></h5>
+					<div class="col-span-2">
+						<div class="py-3 px-1 border-l-2 border-yellow-300 space-y-2">
+							<h6 class="text-md font-semibold"><?php echo ($recipe) ? $recipe["recipe_name"] : "Recipe Name"; ?></h6>
 							<p class="text-sm text-gray-500"><?php echo ($recipe) ? $recipe["recipe_desc"] : "Description"; ?></p>
-							<p class="text-xs text-gray-400"><small>Last updated 3 mins ago</small></p>
+							<p class="text-xs text-gray-400">Servings: <small><?php echo ($recipe) ? $the_recipe['servings'] : "Recipe Name"; ?></small></p>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		<?php
 			return ob_get_clean(); // Capture and return the output
 		}
 
 		function display_recipes_blog()
 		{
+			global $wpdb;
 			$recipe = "";
-			echo recp_card($recipe);
+			$recipes_query = "SELECT * FROM `wp_nds_recipes`";
+			$recipes = $wpdb->get_results($recipes_query, ARRAY_A);
+			echo '<div class="grid grid-cols-3 gap-4">';
+			foreach ($recipes as $key => $recipe) {
+				echo recp_card($recipe);
+			}
+			echo '</div>';
 		}
 		add_shortcode('recipes_blog', 'display_recipes_blog');
 
 		function staff_card($staff_member = null)
 		{
-			ob_start();
-		?>
-			<div class="team_wrp text-center">
-				<div class="circleprofile mx-auto">
-					<img id="profile_picture_preview" src="<?php echo esc_url($staff_member->profile_picture ? wp_get_attachment_url($staff_member->profile_picture) : ''); ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
-
+			ob_start(); ?>
+			<div class="mb-4">
+				<div class="team_wrp text-center space-y-2">
+					<div class="circleprofile mx-auto">
+						<img id="profile_picture_preview" src="<?php echo esc_url($staff_member->profile_picture ? wp_get_attachment_url($staff_member->profile_picture) : ''); ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
+					</div>
+					<h5 class="text-lg empname fw-bold"><?php echo ($staff_member) ? $staff_member->first_name . " " . $staff_member->last_name : "Recipe Name"; ?></h5>
+					<div class="jobtitle text-sm"><?php echo ($staff_member) ? $staff_member->role : "Recipe Name"; ?></div>
 				</div>
-				<h5 class="empname fw-bold m-0"><?php echo ($staff_member) ? $staff_member->first_name ." ". $staff_member->last_name : "Recipe Name"; ?></h5>
-				<div class="jobtitle"><?php echo ($staff_member) ? $staff_member->role : "Recipe Name"; ?></div>
 			</div>
 		<?php
 			return ob_get_clean(); // Capture and return the output
@@ -774,8 +784,8 @@ if (! function_exists('NDStheme_setup')) :
 		{
 			$alignmenting =  ($atts['align'] === "center") ? "text-center" : "";
 			$out = "";
-			$out .= '<div class="head_and_desc scp ' . $alignmenting . '">';
-			$out .= '<p class="text-base/7 font-semibold">' . $atts['smtxt'] . '</p>';
+			$out .= '<div class="head_and_desc scp' . $alignmenting . '">';
+			$out .= '<p class="text-base/7 font-semibold m-0">' . $atts['smtxt'] . '</p>';
 			$out .= '<h2 class="text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl" style="color: #ffc500;">' . $atts['bgtxt'] . '</h2>';
 			$out .= ' </div>';
 

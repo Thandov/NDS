@@ -440,11 +440,9 @@
      object-fit: cover; /* or "contain" */
 }
 .team_wrp .empname {
-  font-size: 24px;
   color: #2a344e;
 }
 .team_wrp .jobtitle {
-  font-size: 20px;
   color: #969696;
 }
 
