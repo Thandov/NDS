@@ -51,51 +51,11 @@ require 'carousel-temp1.php';
 <div class="sec bglight fv500 flex items-center justify-center text-center">
     <div class="md:w-[85%]">
         <?php echo do_shortcode('[marqueText smTxt="Taking you on a your culinary & hospitality journey" bgTxt="Our Courses" align="center"]'); ?>
-        <div class=" space-y-4">
+        <div class="mt-6 space-y-6">
             <div class="md:grid md:grid-cols-4 md:gap-4">
-                <div class="col">
-                    <div class="imgbox text-center">
-                        <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img
-                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/1.svg"
-                                    alt="1"></div>
-                            <p class="imgbox_p fw-bold">Reception <br> Management</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="imgbox text-center">
-                        <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img class="w-[100px] h-[100px]"
-                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/2.svg"
-                                    alt="1"></div>
-                            <p class="imgbox_p fw-bold">Hospitality <br>Management</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="imgbox text-center">
-                        <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img class="w-[100px] h-[100px]"
-                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/3.svg"
-                                    alt="1"></div>
-                            <p class="imgbox_p fw-bold">Culinary <br>Arts</p>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="imgbox text-center">
-                        <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img class="w-[100px] h-[100px]"
-                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/4.svg"
-                                    alt="1"></div>
-                            <p class="imgbox_p fw-bold">Food & <br>Beverage</p>
-                        </a>
-                    </div>
-                </div>
+                <?php echo do_shortcode('[displayPathPage]'); ?>
             </div>
-            <div class="flex justify-center items-center">
+            <div class="mt-6 flex justify-center items-center">
                 <div class="md:w-3/4 flex items-center justify-center">
                     <button class="nds_btn me-3">Apply Here</button>
                     <button class="nds_outline_btn">Apply Here</button>

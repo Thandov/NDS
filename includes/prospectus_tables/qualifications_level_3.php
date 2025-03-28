@@ -1,10 +1,10 @@
 <!-- Qualifications Level 3 NQF LEVEL 5 -->
 <div class="max-w-6xl mx-auto bg-white p-6 shadow-lg rounded-lg">
-    <h2 class="text-xl font-bold text-yellow-600 mb-4">QUALIFICATIONS LEVEL 3 - NQF Level 5</h2>
+    <h2 class="text-xl font-bold text-[#ffc500] mb-4">QUALIFICATIONS LEVEL 3 - NQF Level 5</h2>
     <div class="overflow-x-auto">
         <table class=" border-collapse border border-gray-400 w-full text-xs text-left">
             <thead>
-                <tr class="bg-yellow-500 text-white">
+                <tr class="bg-[#ffc500] text-white">
                     <th class="border border-gray-400 px-4 py-2 font-bold">QUALIFICATION TYPE</th>
                     <th class="border border-gray-400 px-4 py-2 font-bold">ADVANCED DIPLOMA IN CULINARY ARTS & SUPERVISION</th>
                     <th class="border border-gray-400 px-4 py-2 font-bold">DIPLOMA PATISSERIE AND CONFECTIONERY</th>

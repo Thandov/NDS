@@ -1,13 +1,47 @@
 $primaryColor: #ffc500;
-$secondaryColor: #2a344e;
+$secondaryColor: #2a344e; //2A344E
+$secondaryColor2: #0d2973; //2A344E
 $circleDie: 100px;
 $bossTxt: 64px;
 $smallTxt: 24px;
 $grey: #f8f8f8;
 $gfont: #969696;
+$inputheight: 40px;
 
 .fv500 {
     height: 500px;
+}
+.hlophe {
+    .wpcf7-submit {
+        width: 100%;
+        background-color: $secondaryColor !important; /* Tailwind's bg-blue-600 */
+        color: white;
+        font-weight: 600;
+        padding: 10px;
+        padding: 5px 45px !important;
+        border-radius: 20px !important;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+}
+
+.thando {
+    .wpcf7-submit {
+        width: 100%;
+        height: $inputheight;
+        background-color: $primaryColor !important; /* Tailwind's bg-blue-600 */
+        color: white;
+        font-weight: 600;
+        padding: 10px;
+        padding: 5px 45px !important;
+        border-radius: 0 20px 20px 0 !important;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+}
+
+.wpcf7-submit:hover {
+    background-color: #1e40af; /* Tailwind's bg-blue-700 */
 }
 
 .bglight {
@@ -28,7 +62,9 @@ $gfont: #969696;
         font-weight: 900;
     }
 }
-
+.secolor {
+    color: $secondaryColor2;
+}
 .section {
     height: auto;
 }
@@ -54,6 +90,10 @@ $gfont: #969696;
 }
 .head_and_desc {
     align-items: center;
+
+    p {
+        color: $secondaryColor;
+    }
 
     .head_header {
         font-size: $bossTxt;
@@ -119,25 +159,40 @@ $gfont: #969696;
     width: 478px;
     margin: auto;
 }
-
-.contact_form_wrp {
+.contact_form_foot {
     input.form-control {
         border-radius: 0;
-        height: 40px;
+        height: $inputheight!important;
         border: none;
         border-bottom: 3px solid $primaryColor;
         margin-bottom: 20px;
         background-color: #f8f8f8;
+        width: 100%;
+    }
+}
+
+.contact_form_wrp {
+    input.form-control {
+        border-radius: 0;
+        height: $inputheight!important;
+        border: none;
+        border-bottom: 3px solid $secondaryColor;
+        margin-bottom: 20px;
+        background-color: #f8f8f8;
+        width: 100%;
     }
 
     textarea.form-control {
         border-radius: 0;
         height: 80px;
         border: none;
-        border-bottom: 3px solid $primaryColor;
+        border-bottom: 3px solid $secondaryColor;
         margin-bottom: 20px;
         background-color: #f8f8f8;
     }
+}
+.wpcf7-form-control-wrap {
+    width: 100% !important;
 }
 
 .coursecard {
@@ -521,14 +576,14 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
     }
 }
 .overlayglow::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        /* Covers the entire div */
-        background: rgba(0, 0, 0, 0.5);
-        /* Optional: Adds a blur effect */
-        z-index: 1;
-        /* Ensures it appears above the background */
-        border-radius: inherit;
-        /* Inherits border-radius if any */
-    }
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Covers the entire div */
+    background: rgba(0, 0, 0, 0.5);
+    /* Optional: Adds a blur effect */
+    z-index: 1;
+    /* Ensures it appears above the background */
+    border-radius: inherit;
+    /* Inherits border-radius if any */
+}

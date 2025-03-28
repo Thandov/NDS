@@ -11,7 +11,7 @@ if ($category) {
 
     $breadlinks = [
         ["name" => "Home", "slug" => "home"],
-        ["name" => "Short Courses", "slug" => "short-courses"],
+        ["name" => '<span class="text-red-500">Oops</span>', "slug" => "Oops"],
         ["name" => "$program_name", "slug" => $program_slug],
     ];
     $breadlinks_json = urlencode(json_encode($breadlinks));

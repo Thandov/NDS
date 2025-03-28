@@ -190,18 +190,16 @@ if (! function_exists('NDStheme_setup')) :
 					foreach ($words as $word) {
 						$formattedName .= '<span class="block">' . $word . '</span>';
 					}
-					$out .= '<div class="flex items-center justify-start">';
-					$out .= '<div>';
 					$out .= '<a href="/' . sanitize_title_with_dashes($path->name) . '" class="pathlink text-decoration-none">';
+					$out .= '<div class="">';
 					$out .= '<div class="circles mx-auto flex items-center justify-center">';
-					$out .= '<img src="' . get_template_directory_uri() . '/img/paths/' . $pathSlug . '.jpg" alt="' . $pathSlug . '" class="max-auto w-full h-full object-cover opacity-80 hover:opacity-100">';
+					$out .= '<img src="' . get_template_directory_uri() . '/img/paths/' . $pathSlug . '.jpg" alt="' . $pathSlug . '" class="mx-auto w-full h-full object-cover opacity-80 hover:opacity-100">';
 					$out .= '</div>';
 					$out .= '<div class="text-center">';
 					$out .= '<h6 id="' . $path->id . '" class="theSelectedPath mt-3 fw-bold">' . $path->name . '</h6>';
+					$out .= '</div>';
+					$out .= '</div>';
 					$out .= '</a>';
-					$out .= '</div>';
-					$out .= '</div>';
-					$out .= '</div>';
 				}
 			}
 			$out .= '</div>';
@@ -376,7 +374,7 @@ if (! function_exists('NDStheme_setup')) :
 					<div class="col-span-2">
 						<div class="py-3 px-1 border-l-2 border-yellow-300 space-y-2">
 							<h6 class="text-md font-semibold"><?php echo ($recipe) ? $recipe["recipe_name"] : "Recipe Name"; ?></h6>
-							<p class="text-sm text-gray-500"><?php echo ($recipe) ? $recipe["recipe_desc"] : "Description"; ?></p>
+							<p class="secolor text-sm text-gray-500"><?php echo ($recipe) ? $recipe["recipe_desc"] : "Description"; ?></p>
 							<p class="text-xs text-gray-400">Servings: <small><?php echo ($recipe) ? $the_recipe['servings'] : "Recipe Name"; ?></small></p>
 						</div>
 					</div>
@@ -542,49 +540,91 @@ if (! function_exists('NDStheme_setup')) :
 		}
 		add_shortcode('wpd_showingCourses', 'showCourses');
 
+		function showAccredFn($atts)
+		{
+
+			$courseId = $atts['courseid'];
+
+			echo '.';
+		}
+		add_shortcode('displayAccred', 'showAccredFn');
+
+		add_shortcode('displaysideContact', 'sideContactFn');
+		function sideContactFn($course, $program_name) {
+			echo do_shortcode('[contact-form-7 id="db3849b" title="sidecontact"]');
+		}
+
 		function coursePanel($course, $program_name)
 		{
 		?>
 			<div class="bg-white p-4 shadow-sm py-3">
 				<div class="row">
-					<div class="col-md-7 head_and_desc">
-						<?php echo do_shortcode('[marqueText smTxt="' . (($course && $course->course_name) ? $course->course_name : "eeeeee") . '" bgTxt="' . (($course && $course->program_type_name) ? $course->program_type_name : "eeeeee") . '" align=""]'); ?>
+					<div class="col head_and_desc">
+						<?php echo do_shortcode('[marqueText smTxt="" bgTxt="' . (($course && $course->program_type_name) ? $course->program_type_name : "eeeeee") . '" align=""]'); ?>
 						<hr>
-					</div>
-					<div class="col-md-5 d-flex align-items-center">
-						<div class="d-flex align-items-center gap-3">
-							<?php echo $course->accreditation_body; ?>
-							<img class="s" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 0.png" style="height: 40px; width: 140px; " alt="./img/partners/Asset 0.png" />
-							<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 1.png" alt="./img/partners/Asset 1.png" />
-							<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 2.png" alt="./img/partners/Asset 2.png" />
-							<img class="tttt" src="<?php bloginfo('template_directory'); ?>/img/partners/Asset 3.png" alt="./img/partners/Asset 3.png" />
-						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-7">
-						<div class="grid grid-cols-2 mb-4">
-							<p class="text-base flex items-end gap-3"><span class="text-sm/6 font-semibold text-gray-900">Enrollment date:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
-							<p class="text-base flex items-end gap-3"><span class="text-sm/6 font-semibold text-gray-900">Duration:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
-							<p class="text-base flex items-end gap-3"><span class="text-sm/6 font-semibold text-gray-900">Course Name:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->course_name) ? "     " . $course->course_name : " " ?></span></p>
-							<p class="text-base flex items-end gap-3"><span class="text-sm/6 font-semibold text-gray-900">Price:</span> <span class="truncate text-xs/5 text-gray-500"><?php echo (isset($course) && $course->price) ? "     " . $course->price : " " ?></span></p>
+						<div class="grid grid-cols-3">
+							<p class="text-base flex items-end gap-3 p-0 m-0"><span class="font-bold secolor">Enrollment date:</span> <span class="truncate text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
+							<p class="text-base flex items-end gap-3 p-0 m-0"><span class="font-bold secolor">Duration:</span> <span class="truncate text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?>Months</span></p>
+							<p class="text-base flex items-end gap-3 p-0 m-0"><span class="font-bold secolor">Price:</span> <span class="truncate text-gray-500">R<?php echo (isset($course) && $course->price) ? $course->price : " " ?></span></p>
 						</div>
 						<hr>
-						<h5 class="fw-bold text-base">Course Description:</h5>
+						<div class="d-flex align-items-center">
+							<div class="d-flex align-items-center gap-3">
+								<?php echo do_shortcode('[displayAccred courseid="' . $course->accreditation_body . '"]'); ?>
+							</div>
+						</div>
+						<h5 class="fw-bold text-base secolor">Course Description:</h5>
 						<p><?php echo ($course && $course->course_description) ? $course->course_description : "eeeeee"; ?></p>
-						<a class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition" href="/student-registration?xxxxxx">Apply Here</a>
+						<div class="flex">
+							<?php echo do_shortcode('[buttonFn type="outline" name="Enquire" href="/contact?course=' . $program_name->course_id . '"]'); ?>
+						</div>
 					</div>
 					<div class="col-md-5">
-						<div class="boxing bg-white shadwo-sm rounded p-3 mb-4">
-							<h6 class="text-base ">Gallery:</h6>
+						<div class="boxing bg-white shadow rounded p-3 mb-4 space-y-4">
+							<!-- Header -->
+							<div class="bg-slate-100 rounded flex py-2 px-4">
+								<h6 class="text-lg font-bold secolor p-0 m-0">Gallery</h6>
+							</div>
 							<?php echo do_shortcode('[folderName_gallery slug="' . $program_name->program_name . '"]'); ?>
+
 						</div>
 
+						<div class="boxing bg-white shadow rounded p-3 mb-4 space-y-4">
+							<!-- Header -->
+							<div class="bg-slate-100 rounded flex py-2 px-4">
+								<h6 class="text-lg font-bold secolor p-0 m-0">Get In Touch</h6>
+							</div>
+							<div>
+								<?php echo do_shortcode('[contact-form-7 id="db3849b" title="sidecontact"]'); ?>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		<?php
 		}
+
+		function btnFn($atts)
+		{
+			$atts = shortcode_atts(
+				array(
+					'type' => 'solid',
+					'name' => 'Button',
+					'href' => '#'
+				),
+				$atts
+			);
+
+			$btnClass = ($atts['type'] == 'outline') ? 'nds_outline_btn' : 'nds_btn me-3';
+
+			return '<button class="' . esc_attr($btnClass) . '" onclick="window.location.href=\'' . esc_url($atts['href']) . '\'">' . esc_html($atts['name']) . '</button>';
+		}
+
+		add_shortcode('buttonFn', 'btnFn');
 
 		function wpd_showCoursesNavTabs($program)
 		{
@@ -605,7 +645,7 @@ if (! function_exists('NDStheme_setup')) :
 			$query = "SELECT * FROM `wp_nds_courses` WHERE program_id = $program_name->id;";
 			$courses = $wpdb->get_results($query);
 		?>
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<ul class="nav nav-tabs border-0" id="myTab" role="tablist">
 				<?php
 				foreach ($courses as $key => $course):
 					$slugish = str_replace(' ', '-', $course->name);
@@ -613,7 +653,9 @@ if (! function_exists('NDStheme_setup')) :
 					$active_class = ($key === 0) ? 'active' : '';
 				?>
 					<li class="nav-item" role="presentation">
-						<button class="fw-bold text-base mt-4 shutup nav-link <?php echo $active_class; ?>" id="<?php echo $slugish; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $slugish; ?>" type="button" role="tab" aria-controls="<?php echo $slugish; ?>" aria-selected="true"><?php echo $course->name; ?></button>
+						<button class="fw-bold text-base mt-4 shutup nav-link <?php echo $active_class; ?>" id="<?php echo $slugish; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $slugish; ?>" type="button" role="tab" aria-controls="<?php echo $slugish; ?>" aria-selected="true">
+							<p class="w-[200px] truncate text-xs m-0"><?php echo $course->name; ?></p>
+						</button>
 					</li>
 				<?php endforeach; ?>
 			</ul>
@@ -808,11 +850,11 @@ if (! function_exists('NDStheme_setup')) :
 					// Limit to 6 images
 					$images = array_slice($images, 0, 6);
 
-					echo '<div class="grid grid-cols-3 gap-4">'; // Start grid container
+					echo '<div class="grid grid-cols-3 gap-2">'; // Start grid container
 					foreach ($images as $image) {
 						// Output each image inside the grid
 						$image_url = (str_replace($gallery_path, $base_url, $image));
-						echo '<div class="gallery-item h-[80px] overflow-hidden"><img src="' . $image_url . '" alt="' . basename($image) . '" class="gallery-image w-full h-auto" /></div>';
+						echo '<div class="gallery-item h-[80px] rounded overflow-hidden"><img src="' . $image_url . '" alt="' . basename($image) . '" class="gallery-image w-full h-auto" /></div>';
 					}
 					echo '</div>'; // Close grid container
 				} else {

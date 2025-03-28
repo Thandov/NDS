@@ -2,9 +2,9 @@
 <footer class="footer-04" style="background:#2A344E">
     <div class="w-100 border-top py-3">
         <div class="container">
-            <div class="p-3 grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="p-3 grid grid-cols-1 md:flex gap-4 ">
                 <!-- Education Section -->
-                <div>
+                <div class="md:w-[21%]">
                     <h5 class="font-bold text-white">Education</h5>
                     <ul class="list-none text-[#F5F5F5] opacity-50">
                         <li class="block">Short courses</li>
@@ -16,7 +16,7 @@
                 </div>
 
                 <!-- Information Section -->
-                <div>
+                <div class="md:w-[21%]">
                     <h5 class="font-bold text-white">Information</h5>
                     <ul class="list-none text-[#F5F5F5] opacity-50">
                         <li class="block">FAQ</li>
@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- Company Section -->
-                <div>
+                <div class="md:w-[21%]">
                     <h5 class="font-bold text-white">Company</h5>
                     <ul class="list-none text-[#F5F5F5] opacity-50">
                         <li class="block">About us</li>
@@ -36,13 +36,14 @@
                 </div>
 
                 <!-- Contact Form Section with Background -->
-                <div class="p-4 rounded-lg bg-white bg-opacity-5">
+                <div class="md:w-[35%]">
                     <!-- PHP shortcode for form -->
                     <div class="mb-4">
                         <!-- Assuming you have your contact form code here -->
+                        <?php echo do_shortcode('[contact-form-7 id="a260e6f" title="footerContact"]'); ?>
                     </div>
 
-                    <p class="text-white mt-4 text-sm">
+                    <p class="text-white text-sm">
                         At NDSCA we pride ourselves on our excellent customer and personal service.
                     </p>
                 </div>
@@ -52,8 +53,7 @@
             <div class="p-3 flex items-center justify-between">
                 <!-- Logo -->
                 <div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyymzm38d1o9TCnSZVDPm8kyV3n4A-UzSovw&s"
-                        alt="Logo" class="w-[74px] h-[71.49px] rounded-full object-cover">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyymzm38d1o9TCnSZVDPm8kyV3n4A-UzSovw&s" alt="Logo" class="w-[74px] h-[71.49px] rounded-full object-cover">
                 </div>
 
                 <!-- Footer Links -->
