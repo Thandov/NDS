@@ -8,9 +8,6 @@ $grey: #f8f8f8;
 $gfont: #969696;
 $inputheight: 40px;
 
-.fv500 {
-    height: 500px;
-}
 .hlophe {
     .wpcf7-submit {
         width: 100%;
@@ -162,7 +159,7 @@ $inputheight: 40px;
 .contact_form_foot {
     input.form-control {
         border-radius: 0;
-        height: $inputheight!important;
+        height: $inputheight !important;
         border: none;
         border-bottom: 3px solid $primaryColor;
         margin-bottom: 20px;
@@ -174,7 +171,7 @@ $inputheight: 40px;
 .contact_form_wrp {
     input.form-control {
         border-radius: 0;
-        height: $inputheight!important;
+        height: $inputheight !important;
         border: none;
         border-bottom: 3px solid $secondaryColor;
         margin-bottom: 20px;
@@ -323,6 +320,7 @@ $inputheight: 40px;
 .ctarel {
     height: 200px;
     position: relative;
+    
     .ctatxtspc {
         font-size: 24px;
         position: absolute;
@@ -366,7 +364,6 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
     }
 }
 .ctaspecialhead {
-    font-size: 64px;
     font-weight: bold;
 }
 .ctaspecial {

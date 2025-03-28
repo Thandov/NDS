@@ -384,13 +384,72 @@ if (! function_exists('NDStheme_setup')) :
 			return ob_get_clean(); // Capture and return the output
 		}
 
+		function display_recipes_carousel()
+		{
+			global $wpdb;
+			$recipe = "";
+			$recipes_query = "SELECT * FROM `wp_nds_recipes`";
+			$recipes = $wpdb->get_results($recipes_query, ARRAY_A);
+
+			// Begin the carousel structure with custom navigation controls
+			echo '<div class="carousel-container relative">';
+			echo '<div class="owl-carousel owl-theme">';
+
+			// Loop through the recipes and display each card
+			foreach ($recipes as $key => $recipe) {
+				echo recp_card($recipe);  // Assuming recp_card() outputs the recipe card HTML
+			}
+
+			echo '</div>';
+
+			// Arrows for navigation
+			echo '<div class="carousel-nav absolute top-0 bottom-0 left-0 right-0 flex justify-between items-center">';
+			echo '<span class="owl-prev bg-gray-600 p-4 text-white rounded-full cursor-pointer">←</span>';
+			echo '<span class="owl-next bg-gray-600 p-4 text-white rounded-full cursor-pointer">→</span>';
+			echo '</div>';
+
+			echo '</div>';
+
+			// Initialize Owl Carousel JavaScript
+		?>
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					$(".owl-carousel").owlCarousel({
+						items: 3, // Number of items to display
+						loop: true,
+						margin: 10, // Spacing between items
+						nav: true, // Enable navigation
+						navText: ['←', '→'], // Custom text for arrows
+						autoplay: true, // Enable auto-play
+						autoplayTimeout: 8000, // 8 seconds auto-change
+						autoplayHoverPause: true, // Pause on hover
+						smartSpeed: 500, // Smooth transition
+						responsive: {
+							0: {
+								items: 1 // 1 item for small screens
+							},
+							600: {
+								items: 2 // 2 items for medium screens
+							},
+							1000: {
+								items: 3 // 3 items for large screens
+							}
+						}
+					});
+				});
+			</script>
+		<?php
+		}
+		add_shortcode('recipes_carousel', 'display_recipes_carousel');
+
+
 		function display_recipes_blog()
 		{
 			global $wpdb;
 			$recipe = "";
 			$recipes_query = "SELECT * FROM `wp_nds_recipes`";
 			$recipes = $wpdb->get_results($recipes_query, ARRAY_A);
-			echo '<div class="grid grid-cols-3 gap-4">';
+			echo '<div class="grid sm:grid-cols-3 gap-4">';
 			foreach ($recipes as $key => $recipe) {
 				echo recp_card($recipe);
 			}
@@ -550,7 +609,8 @@ if (! function_exists('NDStheme_setup')) :
 		add_shortcode('displayAccred', 'showAccredFn');
 
 		add_shortcode('displaysideContact', 'sideContactFn');
-		function sideContactFn($course, $program_name) {
+		function sideContactFn($course, $program_name)
+		{
 			echo do_shortcode('[contact-form-7 id="db3849b" title="sidecontact"]');
 		}
 
@@ -826,7 +886,7 @@ if (! function_exists('NDStheme_setup')) :
 		{
 			$alignmenting =  ($atts['align'] === "center") ? "text-center" : "";
 			$out = "";
-			$out .= '<div class="head_and_desc scp' . $alignmenting . '">';
+			$out .= '<div class="head_and_desc scp ' . $alignmenting . '">';
 			$out .= '<p class="text-base/7 font-semibold m-0">' . $atts['smtxt'] . '</p>';
 			$out .= '<h2 class="text-2xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl" style="color: #ffc500;">' . $atts['bgtxt'] . '</h2>';
 			$out .= ' </div>';
