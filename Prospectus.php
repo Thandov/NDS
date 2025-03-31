@@ -15,5 +15,5 @@ get_header(); ?>
     <?php include(get_template_directory() . '/includes/prospectus_tables/seta_programme.php'); ?>
     <?php include(get_template_directory() . '/includes/prospectus_tables/arpl_trade_test.php'); ?>
 </div>
-<?php require get_template_directory() . '/includes/cta2.php'; ?>
+<?php include get_template_directory() . '/includes/cta2.php'; ?>
 <?php get_footer(); ?>

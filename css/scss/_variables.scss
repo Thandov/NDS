@@ -6,7 +6,9 @@ $roboto: 'Roboto', sans-serif;
 
 // Colors ---------------
 
-$primary_color:#086AD7;
+$primary_color:#2a344e;
+$secondary_color:#ffc500;
+$third_color:#0d2973;
 $body_text: #878787;
 
 
@@ -16,6 +18,12 @@ $text-gray: #9F9F9F;
 $white: #fff;
 $black: #444;
 
+$circleDie: 100px;
+$bossTxt: 64px;
+$smallTxt: 24px;
+$grey: #f8f8f8;
+$gfont: #969696;
+$inputheight: 40px;
 
 // Responsive Variables
 $xl: 'only screen and (min-width: 1200px) and (max-width: 1600px)';

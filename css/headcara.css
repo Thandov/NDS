@@ -7,7 +7,7 @@
   height: 95px;
   border-radius: 25px;
   background-color: #FFFAE9;
-  z-index: 999999999999;
+  z-index: 4;
   padding: 25px;
   box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.1);
   display: flex;

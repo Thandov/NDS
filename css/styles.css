@@ -130,6 +130,7 @@
 }
 .nds_outline_btn:hover {
   background-color: #252d44;
+  color: white;
 }
 .nds_outline_btn:hover i {
   color: black;

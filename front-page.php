@@ -7,13 +7,14 @@
 get_header();
 require 'carousel-temp1.php';
 ?>
+
 <div class="sec grid md:grid-cols-5">
     <div class="md:col-span-2" id="landsideimg"></div>
     <div class="py-12 md:col-span-3 flex items-center justify-center">
         <div class="w-[85%] md:mr-32">
             <?php echo do_shortcode('[marqueText smTxt="Culinary Arts & Hospitality" bgTxt="Excellence" align="center"]'); ?>
 
-            <div class="grid md:grid-cols-3 space-y-12 sm:space-y-0">
+            <div class="grid grid-span-2 sm:grid-cols-3 sm:space-y-0 md:grid-cols-3">
                 <div class="md:col">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
@@ -34,7 +35,7 @@ require 'carousel-temp1.php';
                         </a>
                     </div>
                 </div>
-                <div class="md:col">
+                <div class="col-span-2 sm:col-span-1 md:col-span-1">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
                             <div class="circles mx-auto" id="employ">
@@ -54,6 +55,7 @@ require 'carousel-temp1.php';
         <div class="mt-6 space-y-6">
             <div class="grid grid-rows-2 grid-cols-2 gap-y-4 md:grid-rows-1 md:grid-cols-4 md:gap-4">
                 <?php echo do_shortcode('[displayPathPage]'); ?>
+                
             </div>
             <div class="mt-6 flex justify-center items-center">
                 <div class="md:w-3/4 flex items-center justify-center">

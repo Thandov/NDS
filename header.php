@@ -29,7 +29,7 @@
                     <a class="navbar-brand" href="home"><?php dynamic_sidebar('navbar_logo'); ?></a>
                 </div>
 
-                <div class="main-menu d-none d-lg-block">
+                <div class="main-menu hidden md:block">
                     <?php
                     wp_nav_menu(array(
                         'theme_location' => 'primary', // Change this to your menu location
@@ -39,19 +39,20 @@
                     ?>
                 </div>
 
-                <div class="header-right-content">
-                    <a href="/quote" class="theme-btn">Login</a>
+                <div class="hidden md:block header-right-content">
+                    <a href="/quote" class="nds_outline_btn">Login</a>
+                    
                 </div>
 
-                <div class="mobile-nav-bar d-block col-sm-1 col-6 d-lg-none">
+                <div class="mobile-nav-bar block md:hidden">
                     <div class="mobile-nav-wrap">
                         <div id="hamburger">
-                            <i class="las la-bars"></i>
+                            <i class="fa fa-bars"></i>
                         </div>
                         <!-- mobile menu - responsive menu  -->
                         <div class="mobile-nav">
                             <button type="button" class="close-nav">
-                                <i class="las la-times-circle"></i>
+                                <i class="fa fa-times-circle"></i>
                             </button>
                             <nav class="sidebar-nav">
                                 <?php
@@ -68,7 +69,7 @@
                                 ?>
                             </nav>
                             <div class="action-bar">
-                                <a href="mailto:<?php echo esc_html(get_option('email_address', 'No address set')); ?>"><i class="las la-envelope"></i><?php echo esc_html(get_option('email_address', 'No address set')); ?></a>
+                                <a href="mailto:<?php echo esc_html(get_option('email_address', 'No address set')); ?>"><i class="fa fa-envelope"></i><?php echo esc_html(get_option('email_address', 'No address set')); ?></a>
                                 <a href="tel:<?php echo esc_html(get_option('contact_1', 'No contact set')); ?>"><i class="fal fa-phone"></i><?php echo esc_html(get_option('contact_1', 'No contact set')); ?></a>
                                 <a href="/contact" class="theme-btn bordered-btn">Contact Us</a>
                             </div>
@@ -83,6 +84,31 @@
 <script>
     var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.getElementById("hamburger");
+    const mobileNav = document.querySelector(".mobile-nav");
+    const closeNav = document.querySelector(".close-nav");
+
+    if (hamburger && mobileNav && closeNav) {
+        // Open menu
+        hamburger.addEventListener("click", function() {
+            mobileNav.classList.add("show");
+        });
+
+        // Close menu
+        closeNav.addEventListener("click", function() {
+            mobileNav.classList.remove("show");
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function(event) {
+            if (!mobileNav.contains(event.target) && !hamburger.contains(event.target)) {
+                mobileNav.classList.remove("show");
+            }
+        });
+    }
+});
 </script>
 
 <body <?php body_class(); ?> id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">

@@ -1,6 +1,9 @@
 
 // Header Top Area
 
+$secondaryColor: #ffc500;
+$secondaryColor: #2a344e; //2A344E
+$secondaryColor2: #0d2973; //2A344E
 
 .header-top {
 	background: #1F2437;
@@ -170,10 +173,10 @@
 	scroll-behavior: smooth;
 	overflow-y: scroll;
 	transition: right .5s ease-in;
-	background-color: #086AD7;
+	background-color: $secondaryColor;
 	padding: 20px;
 	z-index: 9999;
-	box-shadow: 0 13px 35px -12px #086AD7;
+	box-shadow: 0 13px 35px -12px $secondaryColor;
 
 	&.show {
 		right: 0px;
@@ -282,7 +285,7 @@
 }
 
 #hamburger {
-	color: #171717;
+	color: #2a344e;
 	font-size: 32px;
 	line-height: 1;
 	text-align: right;
