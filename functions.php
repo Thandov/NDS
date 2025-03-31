@@ -459,11 +459,13 @@ if (! function_exists('NDStheme_setup')) :
 
 		function staff_card($staff_member = null)
 		{
+			$staff_member = json_decode(json_encode($staff_member)); // Convert to object
+
 			ob_start(); ?>
 			<div class="mb-4">
 				<div class="team_wrp text-center space-y-2">
 					<div class="circleprofile mx-auto">
-						<img id="profile_picture_preview" src="<?php echo esc_url($staff_member->profile_picture ? wp_get_attachment_url($staff_member->profile_picture) : ''); ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
+						<img id="profile_picture_preview" src="<?php echo bloginfo('template_directory') ."/img/staff/". $staff_member->profile_picture; ?>" alt="<?php echo $staff_member->profile_picture; ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
 					</div>
 					<h5 class="text-lg empname fw-bold"><?php echo ($staff_member) ? $staff_member->first_name . " " . $staff_member->last_name : "Recipe Name"; ?></h5>
 					<div class="jobtitle text-sm"><?php echo ($staff_member) ? $staff_member->role : "Recipe Name"; ?></div>
@@ -478,62 +480,66 @@ if (! function_exists('NDStheme_setup')) :
 			/* Sort them out via alphabet */
 			$staff_members = [
 				[
-					'staff_img' => 'lebo_lekotokoto.png',
-					'staff_name' => 'Lebo Lekotokoto',
-					'Job_title' => 'Founder & Director',
+					'profile_picture' => 'lebo_lekotokoto.jpg',
+					'first_name' => 'Lebo',
+					'last_name' => 'Lekotokoto',
+					'role' => 'Founder & Director',
 				],
 				[
-					'staff_img' => 'estelle_holtzhausen.png',
-					'staff_name' => 'Mrs Estelle Holtzhausen',
-					'Job_title' => 'Marketing Manager',
+					'profile_picture' => 'tshepiso_tunzi.jpg',
+					'first_name' => 'Mrs Tshepiso',
+					'last_name' => 'Tunzi',
+					'role' => 'Project Manager',
 				],
 				[
-					'staff_img' => 'jacobus_sutton.png',
-					'staff_name' => 'Mr Jacobus Sutton',
-					'Job_title' => 'Lecturer',
-				],
-				[
-					'staff_img' => 'lwethu_htlatswayo.png',
-					'staff_name' => 'Ms Lwethu Htlatswayo',
-					'Job_title' => 'Lecturer',
-				],
-				[
-					'staff_img' => 'pontsho_mogiwa.png',
-					'staff_name' => 'Mrs Pontsho Mogiwa',
-					'Job_title' => 'Lecturer',
-				],
-				[
-					'staff_img' => 'tumi_motsamai.png',
-					'staff_name' => 'Ms Tumi Motsamai',
-					'Job_title' => 'Lecturer',
-				],
-				[
-					'staff_img' => 'tumi_motsamai.png', // Assuming same person with same image
-					'staff_name' => 'Ms Tumi Motsamai',
-					'Job_title' => 'Office Administrator',
-				],
-				[
-					'staff_img' => 'tshepiso_tunzi.png',
-					'staff_name' => 'Mrs Tshepiso Tunzi',
-					'Job_title' => 'Project Manager',
+					'profile_picture' => 'estelle_holtzhausen.jpg',
+					'first_name' => 'Mrs Estelle',
+					'last_name' => 'Holtzhausen',
+					'role' => 'Marketing Manager',
 				],
 
 				[
-					'staff_img' => 'irene_xaba.png',
-					'staff_name' => 'Ms Irene Xaba',
-					'Job_title' => 'Office Cleaner',
+					'profile_picture' => 'pontsho_mogiwa.jpg',
+					'first_name' => 'Mrs Pontsho',
+					'last_name' => 'Mogiwa',
+					'role' => 'Lecturer',
 				],
 				[
-					'staff_img' => 'mpuse_mnguni.png',
-					'staff_name' => 'Mrs Mpuse Mnguni',
-					'Job_title' => 'Training Kitchen Assistant',
+					'profile_picture' => 'jacobus_sutton.jpg',
+					'first_name' => 'Mr Jacobus',
+					'last_name' => 'Sutton',
+					'role' => 'Lecturer',
 				],
+				[
+					'profile_picture' => 'lwethu_htlatswayo.jpg',
+					'first_name' => 'Ms Lwethu',
+					'last_name' => 'Htlatswayo',
+					'role' => 'Lecturer',
+				],
+				[
+					'profile_picture' => 'tumi_motsamai.jpg',
+					'first_name' => 'Ms Tumi',
+					'last_name' => 'Motsamai',
+					'role' => 'Lecturer',
+				],
+				[
+					'profile_picture' => 'mpuse_mnguni.jpg',
+					'first_name' => 'Mrs Mpuse',
+					'last_name' => 'Mnguni',
+					'role' => 'Training Kitchen Assistant',
+				],
+				[
+					'profile_picture' => 'irene_xaba.jpg',
+					'first_name' => 'Ms Irene',
+					'last_name' => 'Xaba',
+					'role' => 'Office Cleaner',
+				]
 			];
 
 
 			global $wpdb;
 			$program_query = "SELECT * FROM `wp_nds_staff`";
-			$staff_members = $wpdb->get_results($program_query);
+			//$staff_members = $wpdb->get_results($program_query);
 
 			echo '<div class="grid grid-cols-4">';
 			foreach ($staff_members as $staff_member) {
@@ -613,6 +619,37 @@ if (! function_exists('NDStheme_setup')) :
 		{
 			echo do_shortcode('[contact-form-7 id="db3849b" title="sidecontact"]');
 		}
+
+		function custom_image_gallery()
+		{
+			$base_dir = get_template_directory() . '/img/gallery/';
+			$base_url = get_template_directory_uri() . '/img/gallery/';
+			$output = '<div class="image-gallery">';
+
+			$years = array('2022', '2023', '2024'); // Update this as needed
+
+			foreach ($years as $year) {
+				$year_path = $base_dir . $year;
+				$year_url = $base_url . $year;
+
+				if (is_dir($year_path)) {
+					$output .= "<p>$year</p><div class='gallery'>";
+					$images = glob($year_path . '/*.{jpg,png,gif}', GLOB_BRACE);
+
+					foreach ($images as $image) {
+						$img_url = $year_url . '/' . basename($image);
+						$output .= "<img src='$img_url' class='gallery-img' loading='lazy' />";
+					}
+
+					$output .= '</div>';
+				}
+			}
+
+			$output .= '</div>';
+			return $output;
+		}
+		add_shortcode('custom_gallery', 'custom_image_gallery');
+
 
 		function coursePanel($course, $program_name)
 		{

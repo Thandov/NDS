@@ -1,19 +1,14 @@
 <?php
+
 /**
  * Template Name: Gallery
  */
 
 get_header(); ?>
 
-
-<?php
-if ( have_posts() ) :
-    while ( have_posts() ) : the_post();
-        the_title( '<h1>', '</h1>' );
-        the_content();
-    endwhile;
-else:
-    _e( 'Sorry, no pages matched your criteria.', 'textdomain' );
-endif;
-?>
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div>
+        <h3 class="fw-bold">Ooops gallery link broken</h3>
+    </div>
+</div>
 <?php get_footer(); ?>

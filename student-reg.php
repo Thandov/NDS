@@ -8,7 +8,7 @@ get_header();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     global $wpdb;
-    
+
     // Sanitize Inputs
     $name = sanitize_text_field($_POST['name']);
     $surname = sanitize_text_field($_POST['surname']);
@@ -39,9 +39,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $wpdb->insert(
         $wpdb->prefix . 'students',
         compact(
-            'name', 'surname', 'id_number', 'dob', 'age', 'contact', 'email', 'address',
-            'kin_name', 'kin_surname', 'kin_contact', 'kin_relation',
-            'acc_name', 'acc_surname', 'acc_contact', 'acc_email', 'acc_address',
+            'name',
+            'surname',
+            'id_number',
+            'dob',
+            'age',
+            'contact',
+            'email',
+            'address',
+            'kin_name',
+            'kin_surname',
+            'kin_contact',
+            'kin_relation',
+            'acc_name',
+            'acc_surname',
+            'acc_contact',
+            'acc_email',
+            'acc_address',
             'education'
         )
     );
@@ -49,8 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "<p class='text-green-600 text-center font-bold'>Registration successful!</p>";
 }
 ?>
-
 <div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div>
+        <p>Student Registration</p>
+        <h3 class="fw-bold">Coming Soon</h3>
+    </div>
+</div>
+<div class="hidden flex justify-center items-center min-h-screen bg-gray-100">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
         <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Student Registration</h2>
 
@@ -110,20 +129,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <script>
-let currentStep = 0;
-const steps = document.querySelectorAll('.step');
+    let currentStep = 0;
+    const steps = document.querySelectorAll('.step');
 
-function nextStep() {
-    steps[currentStep].classList.add('hidden');
-    currentStep++;
-    steps[currentStep].classList.remove('hidden');
-}
+    function nextStep() {
+        steps[currentStep].classList.add('hidden');
+        currentStep++;
+        steps[currentStep].classList.remove('hidden');
+    }
 
-function prevStep() {
-    steps[currentStep].classList.add('hidden');
-    currentStep--;
-    steps[currentStep].classList.remove('hidden');
-}
+    function prevStep() {
+        steps[currentStep].classList.add('hidden');
+        currentStep--;
+        steps[currentStep].classList.remove('hidden');
+    }
 </script>
 
 <?php get_footer(); ?>

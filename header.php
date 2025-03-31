@@ -40,8 +40,8 @@
                 </div>
 
                 <div class="hidden md:block header-right-content">
-                    <a href="/quote" class="nds_outline_btn">Login</a>
-                    
+                    <a href="/student-registration" class="nds_outline_btn">Login</a>
+
                 </div>
 
                 <div class="mobile-nav-bar block md:hidden">
@@ -86,29 +86,29 @@
     var tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
     document.addEventListener("DOMContentLoaded", function() {
-    const hamburger = document.getElementById("hamburger");
-    const mobileNav = document.querySelector(".mobile-nav");
-    const closeNav = document.querySelector(".close-nav");
+        const hamburger = document.getElementById("hamburger");
+        const mobileNav = document.querySelector(".mobile-nav");
+        const closeNav = document.querySelector(".close-nav");
 
-    if (hamburger && mobileNav && closeNav) {
-        // Open menu
-        hamburger.addEventListener("click", function() {
-            mobileNav.classList.add("show");
-        });
+        if (hamburger && mobileNav && closeNav) {
+            // Open menu
+            hamburger.addEventListener("click", function() {
+                mobileNav.classList.add("show");
+            });
 
-        // Close menu
-        closeNav.addEventListener("click", function() {
-            mobileNav.classList.remove("show");
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener("click", function(event) {
-            if (!mobileNav.contains(event.target) && !hamburger.contains(event.target)) {
+            // Close menu
+            closeNav.addEventListener("click", function() {
                 mobileNav.classList.remove("show");
-            }
-        });
-    }
-});
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener("click", function(event) {
+                if (!mobileNav.contains(event.target) && !hamburger.contains(event.target)) {
+                    mobileNav.classList.remove("show");
+                }
+            });
+        }
+    });
 </script>
 
 <body <?php body_class(); ?> id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">

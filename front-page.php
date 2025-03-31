@@ -91,7 +91,7 @@ require 'carousel-temp1.php';
                 <h3 class="ctaspecialhead fw-bold text-white">Lets begin your journey</h3>
             </div>
         </div>
-        <div class="grid md:grid-cols-4 sm:h-[300px]">
+        <div class="grid md:grid-cols-3 sm:h-[300px]">
             <div class="ctarel">
                 <p class="ctaspecial text-center md:text-left">1</p>
                 <p class="ctatxtspc text-center md:text-left">Choose a course</p>
@@ -103,9 +103,6 @@ require 'carousel-temp1.php';
             <div class="ctarel">
                 <p class="ctaspecial text-center md:text-left">3</p>
                 <div class="ctatxtspc text-center md:text-left"><button class="nds_btn">Start Journey</button></div>
-            </div>
-            <div class="">
-                <img src="<?php bloginfo('template_directory'); ?>/img/cheflady.png" alt="" srcset="">
             </div>
         </div>
     </div>
