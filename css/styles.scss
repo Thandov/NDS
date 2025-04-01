@@ -47,7 +47,6 @@
     height: 200px;
     background-color: $primary_color;
     .header_txt {
-        font-size: $bossTxt;
         color:$secondary_color;
         font-weight: 900;
     }
@@ -524,7 +523,6 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
 }
 .team_wrp {
     border: 1px;
-    width: 200px;
     .circleprofile {
         height: 100px;
         width: 100px;

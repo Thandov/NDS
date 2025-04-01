@@ -190,7 +190,7 @@ if (! function_exists('NDStheme_setup')) :
 					foreach ($words as $word) {
 						$formattedName .= '<span class="block">' . $word . '</span>';
 					}
-					$out .= '<a href="/' . sanitize_title_with_dashes($path->name) . '" class="pathlink text-decoration-none">';
+					$out .= '<a href="/' . sanitize_title_with_dashes($path->name) . '" class="pathlink text-decoration-none sm:flex">';
 					$out .= '<div class="">';
 					$out .= '<div class="circles mx-auto flex items-center justify-center">';
 					$out .= '<img src="' . get_template_directory_uri() . '/img/paths/' . $pathSlug . '.jpg" alt="' . $pathSlug . '" class="mx-auto w-full h-full object-cover opacity-80 hover:opacity-100">';
@@ -359,6 +359,9 @@ if (! function_exists('NDStheme_setup')) :
 
 		function recp_card($recipe = null)
 		{
+
+			$recip = json_decode($recipe['the_recipe']); // Convert to object
+
 			// Unserialize the 'gallery' field
 			$gallery = unserialize($recipe['gallery']);
 			// Unserialize the 'the_recipe' field (which contains the steps and other details)
@@ -367,7 +370,7 @@ if (! function_exists('NDStheme_setup')) :
 			$steps = json_decode($the_recipe['steps']); // Decoding steps as it seems to be a JSON-encoded string
 			ob_start(); ?>
 			<div class="recipe_card">
-				<div class="grid grid-cols-3 items-center space-x-3">
+				<a href="xxxxx" class="grid grid-cols-3 items-center space-x-3">
 					<div class="w-full h-24 m-1">
 						<img src="<?php echo ($recipe['image']) ? wp_get_attachment_url($recipe['image']) : 'r1.png'; ?>" class="w-full h-full object-cover rounded" alt="recipe pic">
 					</div>
@@ -375,10 +378,10 @@ if (! function_exists('NDStheme_setup')) :
 						<div class="py-3 px-1 border-l-2 border-yellow-300 space-y-2">
 							<h6 class="text-md font-semibold"><?php echo ($recipe) ? $recipe["recipe_name"] : "Recipe Name"; ?></h6>
 							<p class="secolor text-sm text-gray-500"><?php echo ($recipe) ? $recipe["recipe_desc"] : "Description"; ?></p>
-							<p class="text-xs text-gray-400">Servings: <small><?php echo ($recipe) ? $the_recipe['servings'] : "Recipe Name"; ?></small></p>
+							<p class="text-xs text-gray-400">Servings: <small><?php echo ($recipe) ? $recip->servings : "Recipe Name"; ?></small></p>
 						</div>
 					</div>
-				</div>
+				</a>
 			</div>
 		<?php
 			return ob_get_clean(); // Capture and return the output
@@ -459,13 +462,15 @@ if (! function_exists('NDStheme_setup')) :
 
 		function staff_card($staff_member = null)
 		{
+			$staff_member = json_decode(json_encode($staff_member)); // Convert to object
+
 			ob_start(); ?>
 			<div class="mb-4">
 				<div class="team_wrp text-center space-y-2">
 					<div class="circleprofile mx-auto">
-						<img id="profile_picture_preview" src="<?php echo esc_url($staff_member->profile_picture ? wp_get_attachment_url($staff_member->profile_picture) : ''); ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
+						<img id="profile_picture_preview" src="<?php echo bloginfo('template_directory') . "/img/staff/" . $staff_member->profile_picture; ?>" alt="<?php echo $staff_member->profile_picture; ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
 					</div>
-					<h5 class="text-lg empname fw-bold"><?php echo ($staff_member) ? $staff_member->first_name . " " . $staff_member->last_name : "Recipe Name"; ?></h5>
+					<h5 class="text-sm sm:text-lg empname fw-bold"><?php echo ($staff_member) ? $staff_member->first_name . " " . $staff_member->last_name : "Recipe Name"; ?></h5>
 					<div class="jobtitle text-sm"><?php echo ($staff_member) ? $staff_member->role : "Recipe Name"; ?></div>
 				</div>
 			</div>
@@ -478,64 +483,68 @@ if (! function_exists('NDStheme_setup')) :
 			/* Sort them out via alphabet */
 			$staff_members = [
 				[
-					'staff_img' => 'lebo_lekotokoto.png',
-					'staff_name' => 'Lebo Lekotokoto',
-					'Job_title' => 'Founder & Director',
+					'profile_picture' => 'lebo_lekotokoto.jpg',
+					'first_name' => 'Lebo',
+					'last_name' => 'Lekotokoto',
+					'role' => 'Founder & Director',
 				],
 				[
-					'staff_img' => 'estelle_holtzhausen.png',
-					'staff_name' => 'Mrs Estelle Holtzhausen',
-					'Job_title' => 'Marketing Manager',
+					'profile_picture' => 'tshepiso_tunzi.jpg',
+					'first_name' => 'Mrs Tshepiso',
+					'last_name' => 'Tunzi',
+					'role' => 'Project Manager',
 				],
 				[
-					'staff_img' => 'jacobus_sutton.png',
-					'staff_name' => 'Mr Jacobus Sutton',
-					'Job_title' => 'Lecturer',
-				],
-				[
-					'staff_img' => 'lwethu_htlatswayo.png',
-					'staff_name' => 'Ms Lwethu Htlatswayo',
-					'Job_title' => 'Lecturer',
-				],
-				[
-					'staff_img' => 'pontsho_mogiwa.png',
-					'staff_name' => 'Mrs Pontsho Mogiwa',
-					'Job_title' => 'Lecturer',
-				],
-				[
-					'staff_img' => 'tumi_motsamai.png',
-					'staff_name' => 'Ms Tumi Motsamai',
-					'Job_title' => 'Lecturer',
-				],
-				[
-					'staff_img' => 'tumi_motsamai.png', // Assuming same person with same image
-					'staff_name' => 'Ms Tumi Motsamai',
-					'Job_title' => 'Office Administrator',
-				],
-				[
-					'staff_img' => 'tshepiso_tunzi.png',
-					'staff_name' => 'Mrs Tshepiso Tunzi',
-					'Job_title' => 'Project Manager',
+					'profile_picture' => 'estelle_holtzhausen.jpg',
+					'first_name' => 'Mrs Estelle',
+					'last_name' => 'Holtzhausen',
+					'role' => 'Marketing Manager',
 				],
 
 				[
-					'staff_img' => 'irene_xaba.png',
-					'staff_name' => 'Ms Irene Xaba',
-					'Job_title' => 'Office Cleaner',
+					'profile_picture' => 'pontsho_mogiwa.jpg',
+					'first_name' => 'Mrs Pontsho',
+					'last_name' => 'Mogiwa',
+					'role' => 'Lecturer',
 				],
 				[
-					'staff_img' => 'mpuse_mnguni.png',
-					'staff_name' => 'Mrs Mpuse Mnguni',
-					'Job_title' => 'Training Kitchen Assistant',
+					'profile_picture' => 'jacobus_sutton.jpg',
+					'first_name' => 'Mr Jacobus',
+					'last_name' => 'Sutton',
+					'role' => 'Lecturer',
 				],
+				[
+					'profile_picture' => 'lwethu_htlatswayo.jpg',
+					'first_name' => 'Ms Lwethu',
+					'last_name' => 'Htlatswayo',
+					'role' => 'Lecturer',
+				],
+				[
+					'profile_picture' => 'tumi_motsamai.jpg',
+					'first_name' => 'Ms Tumi',
+					'last_name' => 'Motsamai',
+					'role' => 'Lecturer',
+				],
+				[
+					'profile_picture' => 'mpuse_mnguni.jpg',
+					'first_name' => 'Mrs Mpuse',
+					'last_name' => 'Mnguni',
+					'role' => 'Training Kitchen Assistant',
+				],
+				[
+					'profile_picture' => 'irene_xaba.jpg',
+					'first_name' => 'Ms Irene',
+					'last_name' => 'Xaba',
+					'role' => 'Office Cleaner',
+				]
 			];
 
 
 			global $wpdb;
 			$program_query = "SELECT * FROM `wp_nds_staff`";
-			$staff_members = $wpdb->get_results($program_query);
+			//$staff_members = $wpdb->get_results($program_query);
 
-			echo '<div class="grid grid-cols-4">';
+			echo '<div class="grid grid-cols-2 sm:grid-cols-4">';
 			foreach ($staff_members as $staff_member) {
 				echo staff_card($staff_member);  // Call the function for each staff member
 			}
@@ -613,6 +622,37 @@ if (! function_exists('NDStheme_setup')) :
 		{
 			echo do_shortcode('[contact-form-7 id="db3849b" title="sidecontact"]');
 		}
+
+		function custom_image_gallery()
+		{
+			$base_dir = get_template_directory() . '/img/gallery/';
+			$base_url = get_template_directory_uri() . '/img/gallery/';
+			$output = '<div class="image-gallery">';
+
+			$years = array('2022', '2023', '2024'); // Update this as needed
+
+			foreach ($years as $year) {
+				$year_path = $base_dir . $year;
+				$year_url = $base_url . $year;
+
+				if (is_dir($year_path)) {
+					$output .= "<p>$year</p><div class='gallery'>";
+					$images = glob($year_path . '/*.{jpg,png,gif}', GLOB_BRACE);
+
+					foreach ($images as $image) {
+						$img_url = $year_url . '/' . basename($image);
+						$output .= "<img src='$img_url' class='gallery-img' loading='lazy' />";
+					}
+
+					$output .= '</div>';
+				}
+			}
+
+			$output .= '</div>';
+			return $output;
+		}
+		add_shortcode('custom_gallery', 'custom_image_gallery');
+
 
 		function coursePanel($course, $program_name)
 		{
@@ -713,7 +753,7 @@ if (! function_exists('NDStheme_setup')) :
 					$active_class = ($key === 0) ? 'active' : '';
 				?>
 					<li class="nav-item" role="presentation">
-						<button class="fw-bold text-base mt-4 shutup nav-link <?php echo $active_class; ?>" id="<?php echo $slugish; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $slugish; ?>" type="button" role="tab" aria-controls="<?php echo $slugish; ?>" aria-selected="true">
+						<button class="fw-bold text-base mt-4 shutup nav-link text-start <?php echo $active_class; ?>" id="<?php echo $slugish; ?>-tab" data-bs-toggle="tab" data-bs-target="#<?php echo $slugish; ?>" type="button" role="tab" aria-controls="<?php echo $slugish; ?>" aria-selected="true">
 							<p class="w-[200px] truncate text-xs m-0"><?php echo $course->name; ?></p>
 						</button>
 					</li>
@@ -973,10 +1013,37 @@ if (! function_exists('NDStheme_setup')) :
 					</form>
 				</div>
 			</div>
-<?php
+		<?php
 			return ob_get_clean();
 		}
 		add_shortcode('student_register', 'student_register_form');
+
+		function testiMonFn()
+		{
+			$test = [];
+			?>
+			<section class="bg-white dark:bg-gray-900">
+				<div class="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-16 lg:px-6">
+					<figure class="max-w-screen-md mx-auto">
+						<svg class="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor" />
+						</svg>
+						<blockquote>
+							<p class="text-2xl font-medium text-gray-900 dark:text-white">"Flowbite is just awesome. It contains tons of predesigned components and pages starting from login screen to complex dashboard. Perfect choice for your next SaaS application."</p>
+						</blockquote>
+						<figcaption class="flex items-center justify-center mt-6 space-x-3">
+							<img class="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture">
+							<div class="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
+								<div class="pr-3 font-medium text-gray-900 dark:text-white">Micheal Gough</div>
+								<div class="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">CEO at Google</div>
+							</div>
+						</figcaption>
+					</figure>
+				</div>
+			</section>
+			<?php
+		}
+		add_shortcode('testiMony', 'testiMonFn');
 	}
 endif; // NDStheme_setup
 add_action('after_setup_theme', 'NDStheme_setup');
