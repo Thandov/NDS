@@ -44,7 +44,6 @@
   background-color: #2a344e;
 }
 .head_section .header_txt {
-  font-size: 64px;
   color: #ffc500;
   font-weight: 900;
 }
@@ -462,22 +461,21 @@
 }
 
 .circles {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   background-color: #ffc500;
-  border-radius: 100px;
+  border-radius: 150px;
   overflow: hidden;
 }
 
 .team_wrp {
   border: 1px;
-  width: 200px;
 }
 .team_wrp .circleprofile {
   height: 100px;
   width: 100px;
   background-color: #ffc500;
-  border-radius: 100px;
+  border-radius: 150px;
   overflow: hidden;
 }
 .team_wrp .circleprofile img {
