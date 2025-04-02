@@ -1,10 +1,10 @@
 <!-- Qualifications Level 3 NQF LEVEL 5 -->
-<div class="max-w-6xl mx-auto bg-white p-6 shadow-lg rounded-lg">
+<div class="mx-auto bg-white p-6 shadow rounded-lg">
     <h2 class="text-xl font-bold text-[#ffc500] mb-4">QUALIFICATIONS LEVEL 3 - NQF Level 5</h2>
     <div class="overflow-x-auto">
         <table class=" border-collapse border border-gray-400 w-full text-xs text-left">
             <thead>
-                <tr class="bg-[#ffc500] text-white">
+                <tr class="bg-[#2a344e] text-white">
                     <th class="border border-gray-400 px-4 py-2 font-bold">QUALIFICATION TYPE</th>
                     <th class="border border-gray-400 px-4 py-2 font-bold">ADVANCED DIPLOMA IN CULINARY ARTS & SUPERVISION</th>
                     <th class="border border-gray-400 px-4 py-2 font-bold">DIPLOMA PATISSERIE AND CONFECTIONERY</th>
@@ -43,40 +43,40 @@
                 <tr>
                     <td class="border border-gray-400 px-4 py-2 font-bold">POTENTIAL CAREER PATHS</td>
                     <td class="border border-gray-400 px-4 py-2">
-                            Chef de Partie<br>
-                            Assistant Chef<br>
-                            Food Blogger<br>
-                            Cookbook Author<br>
-                            Works cruise ships and airlines<br>
+                        Chef de Partie<br>
+                        Assistant Chef<br>
+                        Food Blogger<br>
+                        Cookbook Author<br>
+                        Works cruise ships and airlines<br>
                     </td>
                     <td class="border border-gray-400 px-4 py-2">
-                            Baker<br>
-                            Chef de Partie<br>
-                            Food Blogger<br>
-                            Cookbook Author<br>
-                            Works cruise ships and airlines<br>
-                        
+                        Baker<br>
+                        Chef de Partie<br>
+                        Food Blogger<br>
+                        Cookbook Author<br>
+                        Works cruise ships and airlines<br>
+
                     </td>
                     <td class="border border-gray-400 px-4 py-2">
-                            Customer Service Specialist<br>
-                            Host or Hostess<br>
-                            Café Manager<br>
-                        
+                        Customer Service Specialist<br>
+                        Host or Hostess<br>
+                        Café Manager<br>
+
                     </td>
                     <td class="border border-gray-400 px-4 py-2">
-                            Restaurant Consultant<br>
-                            Sommelier<br>
-                            Food & Beverage Supervisor<br>
-                            Events Coordinator<br>
-                            Maitre d' Head Waiter<br>
-                            Concierge Supervisor<br>
-                        
+                        Restaurant Consultant<br>
+                        Sommelier<br>
+                        Food & Beverage Supervisor<br>
+                        Events Coordinator<br>
+                        Maitre d' Head Waiter<br>
+                        Concierge Supervisor<br>
+
                     </td>
                     <td class="border border-gray-400 px-4 py-2">
-                            Housekeeping Supervisor<br>
-                            Cleaning Services<br>
-                            Lodge Supervisor (Small Establishment)<br>
-                        
+                        Housekeeping Supervisor<br>
+                        Cleaning Services<br>
+                        Lodge Supervisor (Small Establishment)<br>
+
                     </td>
                 </tr>
             </tbody>

@@ -39,10 +39,7 @@
                     ?>
                 </div>
 
-                <div class="hidden md:block header-right-content">
-                    <a href="/student-registration" class="nds_outline_btn">Login</a>
 
-                </div>
 
                 <div class="mobile-nav-bar block md:hidden">
                     <div class="mobile-nav-wrap">

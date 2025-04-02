@@ -55,7 +55,7 @@ require 'carousel-temp1.php';
         <div class="mt-6 space-y-6">
             <div class="grid grid-rows-2 grid-cols-2 gap-y-4 md:grid-rows-1 md:grid-cols-4 md:gap-4">
                 <?php echo do_shortcode('[displayPathPage]'); ?>
-                
+
             </div>
             <div class="mt-6 flex justify-center items-center">
                 <div class="md:w-3/4 flex items-center justify-center">
@@ -74,51 +74,61 @@ require 'carousel-temp1.php';
                     <?php echo do_shortcode('[marqueText smTxt="Walk With Us" bgTxt="Walk with Us" align=""]'); ?>
                     <div class="space-y-4">
                         <p>At NDSCA we pride ourselves with our excellent customer and personal service which ensures we meet and exceed our students and clients expectations. </p>
-                        <div class="videobox h-[200px] w-[100%]"></div>
-                        <button class="nds_btn">Book Visit</button>
+                        <div class="videobox h-[200px] w-[100%] grid sm:grid-cols-3 gap-4">
+                            <div class="rounded img-wrap overflow-hidden">
+                                <img src="<?php bloginfo('template_directory'); ?>/img/videobox/v1.jpg" alt="v1" class="mx-auto w-full h-full object-cover opacity-80 hover:opacity-100">
+                            </div>
+                            <div class="rounded img-wrap overflow-hidden">
+                                <img src="<?php bloginfo('template_directory'); ?>/img/videobox/v2.jpg" alt="v2" class="mx-auto w-full h-full object-cover opacity-80 hover:opacity-100">
+                            </div>
+                            <div class="rounded img-wrap overflow-hidden">
+                                <img src="<?php bloginfo('template_directory'); ?>/img/videobox/v3.jpg" alt="v3" class="mx-auto w-full h-full object-cover opacity-80 hover:opacity-100">
+                            </div>
+                        </div>
+                        <button class=" nds_btn">Book Visit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-2" id="sideright"></div>
+            </div>
+        </div>
+
+        <div class="secsmall flex items-center justify-center bgprimary position-relative">
+            <div class="py-12 md:py-0 md:w-[85%]">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="ctaspecialhead fw-bold text-white">Lets begin your journey</h3>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 sm:h-[300px]">
+                    <div class="ctarel">
+                        <p class="ctaspecial text-center md:text-left">1</p>
+                        <p class="ctatxtspc text-center md:text-left">Choose a course</p>
+                    </div>
+                    <div class="ctarel">
+                        <p class="ctaspecial text-center md:text-left">2</p>
+                        <p class="ctatxtspc text-center md:text-left">Enroll Online</p>
+                    </div>
+                    <div class="ctarel">
+                        <p class="ctaspecial text-center md:text-left">3</p>
+                        <div class="ctatxtspc text-center md:text-left"><button class="nds_btn">Start Journey</button></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="md:col-span-2" id="sideright"></div>
-    </div>
-</div>
 
-<div class="secsmall flex items-center justify-center bgprimary position-relative">
-    <div class="py-12 md:py-0 md:w-[85%]">
-        <div class="row">
-            <div class="col">
-                <h3 class="ctaspecialhead fw-bold text-white">Lets begin your journey</h3>
-            </div>
-        </div>
-        <div class="grid md:grid-cols-3 sm:h-[300px]">
-            <div class="ctarel">
-                <p class="ctaspecial text-center md:text-left">1</p>
-                <p class="ctatxtspc text-center md:text-left">Choose a course</p>
-            </div>
-            <div class="ctarel">
-                <p class="ctaspecial text-center md:text-left">2</p>
-                <p class="ctatxtspc text-center md:text-left">Enroll Online</p>
-            </div>
-            <div class="ctarel">
-                <p class="ctaspecial text-center md:text-left">3</p>
-                <div class="ctatxtspc text-center md:text-left"><button class="nds_btn">Start Journey</button></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Gallery Section -->
-<div class="h-[500px] flex items-center justify-center" id="gallery">
+        <!-- Gallery Section -->
+        <!-- <div class="h-[500px] flex items-center justify-center" id="gallery">
     <div class="md:w-[85%]">
         <?php echo do_shortcode('[marqueText smTxt="We’ve been cooking up a storm" bgTxt="Our Gallery" align="center"]'); ?>
         <?php echo do_shortcode('[custom_gallery]'); ?>
     </div>
-</div>
-<div class="hidden sm:block">
-    <?php require get_template_directory() . '/includes/recipe_blog.php'; ?>
-</div>
-<div class="sm:hidden">
-    <?php echo do_shortcode('[recipes_carousel]'); ?>
-</div>
-<?php get_footer(); ?>
+</div> -->
+        <div class="hidden sm:block">
+            <?php require get_template_directory() . '/includes/recipe_blog.php'; ?>
+        </div>
+        <div class="sm:hidden">
+            <?php echo do_shortcode('[recipes_carousel]'); ?>
+        </div>
+        <?php get_footer(); ?>

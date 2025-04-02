@@ -11,7 +11,7 @@ get_header(); ?>
 
 <div class="bg-white md:grid md:grid-cols-8">
     <div class="col-span-4 h-100 d-flex align-items-center justify-content-center md:px-[15px]">
-        <div class="col p-[25px]">
+        <div class="md:w-[60%] sm:mt-6 mx-auto">
             <?php echo do_shortcode('[marqueText smTxt="We are happy to hear from you" bgTxt="Get In Touch"]'); ?>
 
             <div class="md:flex gap-4 scp space-y-4">

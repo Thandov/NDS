@@ -5,11 +5,10 @@
  */
 
 get_header(); ?>
-<div class="head_section d-flex align-items-center justify-content-center">
-    <h1 class="header_txt"><?php the_title(); ?></h1>
-</div>
+
+<?php require get_template_directory() . '/includes/herosec.php'; ?>
 <div class="sec flex items-center justify-center" id="about_sec">
-    <div class="w-[85%] my-6 md:grid md:grid-cols-7 md:gap-4">
+    <div class="w-[85%] md:w-[70%] my-6 md:grid md:grid-cols-7 md:gap-4">
         <div class="md:col-span-4">
             <?php echo do_shortcode('[marqueText smTxt="About Us" bgTxt="NDS Academy" align=""]'); ?>
             <p class="text-justify md:w-[90%]">Founded in 2013, NDS Chefs Academy was established to bridge the gap for students unable to meet traditional university admission requirements. We provide an alternative pathway to quality education, helping students build rewarding careers in hospitality.<br><br>
@@ -28,7 +27,7 @@ get_header(); ?>
 </div>
 <?php include get_template_directory() . '/includes/cta2.php'; ?>
 <div class="sec flex items-center justify-center p-6">
-    <div class="w-[85%]">
+    <div class="w-[85%] md:w-[70%]">
         <?php echo do_shortcode('[marqueText smTxt="Meet The Team" bgTxt="Our Team" align=""]'); ?>
         <div>
             <?php echo do_shortcode('[show_staff_members]'); ?>

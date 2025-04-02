@@ -11,26 +11,19 @@ $zoom-duration: 10s; // Match Owl Carousel timing
   bottom: 5%;
   transform: translateX(-50%);
   width: auto;
-  height: 95px;
   border-radius: 25px;
   background-color: #FFFAE9;
   z-index: 4;
-  padding: 25px;
   box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
-  p{
-    font-size: 25px;
-    font-weight: bolder;
-    margin-right: 50px;
-    margin-bottom: 0;
-  }
+
   .partner_wrapper {
+    
     figure {
       margin: 0;
       img {
-        width: 70px;
-        height: auto;
+
         margin-right: 50px;
       }
     }

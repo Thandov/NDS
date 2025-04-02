@@ -7,11 +7,18 @@
                 <div class="md:w-[21%]">
                     <h5 class="font-bold text-white">Education</h5>
                     <ul class="list-none text-[#F5F5F5] opacity-50">
-                        <li class="block">Short courses</li>
-                        <li class="block">Full Qualification</li>
-                        <li class="block">Skills Program</li>
-                        <li class="block">Trade Test</li>
-                        <li class="block">Learnerships</li>
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location'  => 'footer',
+                            'depth'           => 1, // Allows dropdowns.
+                            'container'       => 'ul', // Wraps the menu in a nav tag.
+                            'container_class' => 'xwxw', // Add Bootstrap navbar class.
+                            'menu_class'      => 'metismenu', // Bootstrap compatible class.
+                            'menu_id'         => 'mobile-menu',
+                            'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
+                            'walker'          => new WP_Bootstrap_Navwalker(),
+                        ));
+                        ?>
                     </ul>
                 </div>
 
@@ -19,9 +26,9 @@
                 <div class="md:w-[21%]">
                     <h5 class="font-bold text-white">Information</h5>
                     <ul class="list-none text-[#F5F5F5] opacity-50">
-                        <li class="block">FAQ</li>
-                        <li class="block">Blog</li>
-                        <li class="block">Support</li>
+                        <li class="block"><a class="shutup" href="#ssssssssss">FAQ</a></li>
+                        <li class="block"><a class="shutup" href="#ssssssssss">Blog</a></li>
+                        <li class="block"><a class="shutup" href="#ssssssssss">Support</a></li>
                     </ul>
                 </div>
 
@@ -29,9 +36,9 @@
                 <div class="md:w-[21%]">
                     <h5 class="font-bold text-white">Company</h5>
                     <ul class="list-none text-[#F5F5F5] opacity-50">
-                        <li class="block">About us</li>
-                        <li class="block">Careers</li>
-                        <li class="block">Contacts</li>
+                        <li class="block"><a class="shutup" href="#ssssssssss">About us</a></li>
+                        <li class="block"><a class="shutup" href="#ssssssssss">Careers</a></li>
+                        <li class="block"><a class="shutup" href="#ssssssssss">Contacts</a></li>
                     </ul>
                 </div>
 

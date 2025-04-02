@@ -169,7 +169,7 @@ if (! function_exists('NDStheme_setup')) :
 		{
 			global $wpdb;
 
-			$query = "SELECT * FROM `wp_nds_education_paths`";
+			$query = "SELECT * FROM `{$wpdb->prefix}nds_education_paths`";
 			$out = '';
 
 			$result = $wpdb->get_results($query);
@@ -309,11 +309,11 @@ if (! function_exists('NDStheme_setup')) :
 
 			global $wpdb;
 
-			$query = "SELECT * FROM `wp_nds_education_paths` WHERE LOWER(`name`) = LOWER('$slu');";
+			$query = "SELECT * FROM `{$wpdb->prefix}nds_education_paths` WHERE LOWER(`name`) = LOWER('$slu');";
 			$out = '';
 			$result = $wpdb->get_row($query);
 
-			$query2 = "SELECT * FROM `wp_nds_program_types` WHERE `path_id` = '$result->id';";
+			$query2 = "SELECT * FROM `{$wpdb->prefix}nds_program_types` WHERE `path_id` = '$result->id';";
 			$program_types = $wpdb->get_results($query2);
 
 			foreach ($program_types as $key => $program_type) {
@@ -331,11 +331,11 @@ if (! function_exists('NDStheme_setup')) :
 
 			global $wpdb;
 
-			$query = "SELECT * FROM `wp_nds_education_paths` WHERE LOWER(`name`) = LOWER('$slu');";
+			$query = "SELECT * FROM `{$wpdb->prefix}nds_education_paths` WHERE LOWER(`name`) = LOWER('$slu');";
 			$out = '';
 			$result = $wpdb->get_row($query);
 			if ($result):
-				$query2 = "SELECT * FROM `wp_nds_program_types` WHERE `path_id` = '$result->id';";
+				$query2 = "SELECT * FROM `{$wpdb->prefix}nds_program_types` WHERE `path_id` = '$result->id';";
 				$program_types = $wpdb->get_results($query2);
 
 				$out .= '<ul class="list-group list-group-flush">';
@@ -388,7 +388,7 @@ if (! function_exists('NDStheme_setup')) :
 		{
 			global $wpdb;
 			$recipe = "";
-			$recipes_query = "SELECT * FROM `wp_nds_recipes`";
+			$recipes_query = "SELECT * FROM `{$wpdb->prefix}nds_recipes`";
 			$recipes = $wpdb->get_results($recipes_query, ARRAY_A);
 
 			// Begin the carousel structure with custom navigation controls
@@ -447,8 +447,9 @@ if (! function_exists('NDStheme_setup')) :
 		{
 			global $wpdb;
 			$recipe = "";
-			$recipes_query = "SELECT * FROM `wp_nds_recipes`";
+			$recipes_query = "SELECT * FROM `{$wpdb->prefix}nds_recipes`";
 			$recipes = $wpdb->get_results($recipes_query, ARRAY_A);
+			
 			echo '<div class="grid sm:grid-cols-3 gap-4">';
 			foreach ($recipes as $key => $recipe) {
 				echo recp_card($recipe);
@@ -460,12 +461,19 @@ if (! function_exists('NDStheme_setup')) :
 		function staff_card($staff_member = null)
 		{
 			$staff_member = json_decode(json_encode($staff_member)); // Convert to object
-
+			$picture = "";
+			if(is_int($staff_member->profile_picture)){
+				$picture = wp_get_attachment_url($staff_member->profile_picture);
+			} else {
+				echo "asdasdsad";
+				echo var_dump($staff_member->profile_picture);
+				$picture = $staff_member->profile_picture;
+			}
 			ob_start(); ?>
 			<div class="mb-4">
 				<div class="team_wrp text-center space-y-2">
 					<div class="circleprofile mx-auto">
-						<img id="profile_picture_preview" src="<?php echo bloginfo('template_directory') ."/img/staff/". $staff_member->profile_picture; ?>" alt="<?php echo $staff_member->profile_picture; ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
+						<img id="profile_picture_preview" src="<?php echo $picture; ?>" alt="<?php echo $staff_member->profile_picture; ?>" style="max-width: 150px; display: <?php echo $staff_member->profile_picture ? 'block' : 'none'; ?>;">
 					</div>
 					<h5 class="text-lg empname fw-bold"><?php echo ($staff_member) ? $staff_member->first_name . " " . $staff_member->last_name : "Recipe Name"; ?></h5>
 					<div class="jobtitle text-sm"><?php echo ($staff_member) ? $staff_member->role : "Recipe Name"; ?></div>
@@ -538,11 +546,13 @@ if (! function_exists('NDStheme_setup')) :
 
 
 			global $wpdb;
-			$program_query = "SELECT * FROM `wp_nds_staff`";
-			//$staff_members = $wpdb->get_results($program_query);
+			$program_query = "SELECT * FROM `{$wpdb->prefix}nds_staff`";
+			$staff_members = $wpdb->get_results($program_query);
 
-			echo '<div class="grid grid-cols-4">';
+			echo '<div class="grid md:grid-cols-4">';
 			foreach ($staff_members as $staff_member) {
+				$staff_member->profile_picture = (int)$staff_member->profile_picture;
+				
 				echo staff_card($staff_member);  // Call the function for each staff member
 			}
 			echo '</div>';
@@ -556,7 +566,7 @@ if (! function_exists('NDStheme_setup')) :
 
 			$out = "";
 			//$category_id = $category_id['id'];
-			$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE name =" . $atts['name'];
+			$program_query = "SELECT `id`, `name` AS program_name FROM `{$wpdb->prefix}nds_program_types` WHERE name =" . $atts['name'];
 
 			$program_name = $wpdb->get_row($program_query);
 			exit(var_dump($wpdb->last_query));
@@ -568,7 +578,7 @@ if (! function_exists('NDStheme_setup')) :
 			$category = get_category($category_id);
 			$program_slug = $category->slug;
 
-			$query = "SELECT * FROM `wp_nds_courses` WHERE program_id = $program_name->id;";
+			$query = "SELECT * FROM `{$wpdb->prefix}nds_courses` WHERE program_id = $program_name->id;";
 			$courses = $wpdb->get_results($query);
 
 
@@ -731,7 +741,7 @@ if (! function_exists('NDStheme_setup')) :
 
 			$out = "";
 
-			$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE name = '$programName';";
+			$program_query = "SELECT `id`, `name` AS program_name FROM `{$wpdb->prefix}nds_program_types` WHERE name = '$programName';";
 			$program_name = $wpdb->get_row($program_query);
 
 			$category_id = get_cat_ID($program_name->program_name);
@@ -739,7 +749,7 @@ if (! function_exists('NDStheme_setup')) :
 			$category = get_category($category_id);
 			$program_slug = $category->slug;
 
-			$query = "SELECT * FROM `wp_nds_courses` WHERE program_id = $program_name->id;";
+			$query = "SELECT * FROM `{$wpdb->prefix}nds_courses` WHERE program_id = $program_name->id;";
 			$courses = $wpdb->get_results($query);
 		?>
 			<ul class="nav nav-tabs border-0" id="myTab" role="tablist">
@@ -769,7 +779,7 @@ if (! function_exists('NDStheme_setup')) :
 			$programName = $program['program'];
 
 
-			$program_query = "SELECT `id`, `name` AS program_name FROM `wp_nds_program_types` WHERE name = '$programName';";
+			$program_query = "SELECT `id`, `name` AS program_name FROM `{$wpdb->prefix}nds_program_types` WHERE name = '$programName';";
 			$program_name = $wpdb->get_row($program_query);
 
 			$category_id = get_cat_ID($program_name->program_name);
@@ -798,11 +808,11 @@ if (! function_exists('NDStheme_setup')) :
 		education_paths.name AS education_path_name,
 		education_paths.description AS education_path_description
 		FROM 
-		wp_nds_courses AS courses
+		{$wpdb->prefix}nds_courses AS courses
 		JOIN 
-		wp_nds_program_types AS program_types ON courses.program_id = program_types.id
+		{$wpdb->prefix}nds_program_types AS program_types ON courses.program_id = program_types.id
 		JOIN 
-		wp_nds_education_paths AS education_paths ON program_types.path_id = education_paths.id
+		{$wpdb->prefix}nds_education_paths AS education_paths ON program_types.path_id = education_paths.id
 		WHERE 
 		courses.program_id = $program_name->id;
 	";
@@ -816,7 +826,7 @@ if (! function_exists('NDStheme_setup')) :
 					// Add the 'active show' class to the first tab panel
 					$active_panel_class = ($key === 0) ? 'active show' : '';
 
-					$query_possible_employment = "SELECT * FROM `wp_nds_possible_employment` WHERE `course_id` = $course->course_id;";
+					$query_possible_employment = "SELECT * FROM `{$wpdb->prefix}nds_possible_employment` WHERE `course_id` = $course->course_id;";
 					$possible_employment = $wpdb->get_results($query_possible_employment);
 				?>
 					<div class="tab-pane fade <?php echo $active_panel_class; ?>" id="<?php echo $slugish; ?>" role="tabpanel" aria-labelledby="<?php echo $slugish; ?>-tab">
