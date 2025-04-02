@@ -362,6 +362,10 @@ if (! function_exists('NDStheme_setup')) :
 
 			$recip = json_decode($recipe['the_recipe']); // Convert to object
 
+			echo '<pre>';
+			print_r($recip);
+			echo '</pre>';
+			
 			// Unserialize the 'gallery' field
 			$gallery = unserialize($recipe['gallery']);
 			// Unserialize the 'the_recipe' field (which contains the steps and other details)
