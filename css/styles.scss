@@ -1,13 +1,37 @@
-$primaryColor: #ffc500;
-$secondaryColor: #2a344e;
-$circleDie: 100px;
-$bossTxt: 64px;
-$smallTxt: 24px;
-$grey: #f8f8f8;
-$gfont: #969696;
+@import './scss/variables';
 
-.fv500 {
-    height: 500px;
+
+.hlophe {
+    .wpcf7-submit {
+        width: 100%;
+        background-color: $primary_color !important; /* Tailwind's bg-blue-600 */
+        color: white;
+        font-weight: 600;
+        padding: 10px;
+        padding: 5px 45px !important;
+        border-radius: 20px !important;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+}
+
+.thando {
+    .wpcf7-submit {
+        width: 100%;
+        height: $inputheight;
+        background-color:$secondary_color !important; /* Tailwind's bg-blue-600 */
+        color: white;
+        font-weight: 600;
+        padding: 10px;
+        padding: 5px 45px !important;
+        border-radius: 0 20px 20px 0 !important;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+}
+
+.wpcf7-submit:hover {
+    background-color: #1e40af; /* Tailwind's bg-blue-700 */
 }
 
 .bglight {
@@ -21,24 +45,25 @@ $gfont: #969696;
 }
 .head_section {
     height: 200px;
-    background-color: $secondaryColor;
+    background-color: $primary_color;
     .header_txt {
-        font-size: $bossTxt;
-        color: $primaryColor;
+        color:$secondary_color;
         font-weight: 900;
     }
 }
-
+.secolor {
+    color: $third_color;
+}
 .section {
     height: auto;
 }
 
 .bigtxt {
-    color: $primaryColor;
+    color:$secondary_color;
 }
 
 .smltxt {
-    color: $secondaryColor;
+    color: $primary_color;
 }
 .cta2_wrp {
     padding: 30px 50px;
@@ -55,9 +80,13 @@ $gfont: #969696;
 .head_and_desc {
     align-items: center;
 
+    p {
+        color: $primary_color;
+    }
+
     .head_header {
         font-size: $bossTxt;
-        color: $primaryColor;
+        color:$secondary_color;
         font-weight: 900;
         margin-top: -30px;
     }
@@ -68,7 +97,7 @@ $gfont: #969696;
 }
 
 .nds_btn {
-    background-color: $secondaryColor;
+    background-color: $primary_color;
     border: none;
     border-radius: 20px;
     height: 35px;
@@ -79,7 +108,7 @@ $gfont: #969696;
     color: white;
 
     &:hover {
-        background-color: darken($color: $secondaryColor, $amount: 3);
+        background-color: darken($color: $primary_color, $amount: 3);
 
         i {
             color: black;
@@ -93,18 +122,18 @@ $gfont: #969696;
 
 .nds_outline_btn {
     background-color: none;
-    border: 3px solid $secondaryColor;
+    border: 3px solid $primary_color;
     border-radius: 20px;
     height: 35px;
     width: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $secondaryColor;
+    color: $primary_color;
 
     &:hover {
-        background-color: darken($color: $secondaryColor, $amount: 3);
-
+        background-color: darken($color: $primary_color, $amount: 3);
+        color: white;
         i {
             color: black;
         }
@@ -119,25 +148,40 @@ $gfont: #969696;
     width: 478px;
     margin: auto;
 }
+.contact_form_foot {
+    input.form-control {
+        border-radius: 0;
+        height: $inputheight !important;
+        border: none;
+        border-bottom: 3px solid$secondary_color;
+        margin-bottom: 20px;
+        background-color: #f8f8f8;
+        width: 100%;
+    }
+}
 
 .contact_form_wrp {
     input.form-control {
         border-radius: 0;
-        height: 40px;
+        height: $inputheight !important;
         border: none;
-        border-bottom: 3px solid $primaryColor;
+        border-bottom: 3px solid $primary_color;
         margin-bottom: 20px;
         background-color: #f8f8f8;
+        width: 100%;
     }
 
     textarea.form-control {
         border-radius: 0;
         height: 80px;
         border: none;
-        border-bottom: 3px solid $primaryColor;
+        border-bottom: 3px solid $primary_color;
         margin-bottom: 20px;
         background-color: #f8f8f8;
     }
+}
+.wpcf7-form-control-wrap {
+    width: 100% !important;
 }
 
 .coursecard {
@@ -157,7 +201,7 @@ $gfont: #969696;
     }
 
     .bdrleft {
-        border-left: 5px solid $primaryColor;
+        border-left: 5px solid$secondary_color;
         margin-left: -5px;
         height: 90%;
     }
@@ -166,7 +210,7 @@ $gfont: #969696;
         border-radius: 5px;
         height: 100%;
         width: 100px;
-        background-color: $secondaryColor;
+        background-color: $primary_color;
     }
 }
 
@@ -191,7 +235,7 @@ $gfont: #969696;
         position: relative; // Ensure proper positioning for dropdown
 
         &.active {
-            background-color: $primaryColor;
+            background-color:$secondary_color;
 
             a {
                 color: #fff;
@@ -205,7 +249,7 @@ $gfont: #969696;
             transition: all 0.3s ease;
 
             &:hover {
-                color: $primaryColor; // Change color on hover
+                color:$secondary_color; // Change color on hover
             }
         }
 
@@ -250,14 +294,14 @@ $gfont: #969696;
 
 .imgbox {
     .imgbox_p {
-        color: $secondaryColor !important;
+        color: $primary_color !important;
     }
 }
 .bgprimary {
-    background-color: $primaryColor;
+    background-color:$secondary_color;
 }
 .bgsecondary {
-    background-color: $secondaryColor;
+    background-color: $primary_color;
 }
 .videobox {
     background-color: $grey;
@@ -268,6 +312,7 @@ $gfont: #969696;
 .ctarel {
     height: 200px;
     position: relative;
+    
     .ctatxtspc {
         font-size: 24px;
         position: absolute;
@@ -311,7 +356,6 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
     }
 }
 .ctaspecialhead {
-    font-size: 64px;
     font-weight: bold;
 }
 .ctaspecial {
@@ -367,7 +411,7 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
 
                 /* Center the items vertically */
                 &.active {
-                    background-color: $primaryColor;
+                    background-color:$secondary_color;
 
                     a {
                         color: #fff;
@@ -381,7 +425,7 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
                     transition: all 0.3s ease;
 
                     &:hover {
-                        color: $primaryColor; // Change color on hover
+                        color:$secondary_color; // Change color on hover
                     }
                 }
 
@@ -473,17 +517,16 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
 .circles {
     height: $circleDie;
     width: $circleDie;
-    background-color: $primaryColor;
+    background-color:$secondary_color;
     border-radius: $circleDie;
     overflow: hidden;
 }
 .team_wrp {
     border: 1px;
-    width: 200px;
     .circleprofile {
         height: 100px;
         width: 100px;
-        background-color: $primaryColor;
+        background-color:$secondary_color;
         border-radius: $circleDie;
         overflow: hidden;
         img {
@@ -493,17 +536,15 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
         }
     }
     .empname {
-        font-size: 24px;
-        color: $secondaryColor;
+        color: $primary_color;
     }
     .jobtitle {
-        font-size: 20px;
         color: $gfont;
     }
 }
 .recipe_card {
     .card-body {
-        border-left: 5px solid $primaryColor;
+        border-left: 5px solid$secondary_color;
     }
 }
 .shutup,
@@ -523,14 +564,14 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
     }
 }
 .overlayglow::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        /* Covers the entire div */
-        background: rgba(0, 0, 0, 0.5);
-        /* Optional: Adds a blur effect */
-        z-index: 1;
-        /* Ensures it appears above the background */
-        border-radius: inherit;
-        /* Inherits border-radius if any */
-    }
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Covers the entire div */
+    background: rgba(0, 0, 0, 0.5);
+    /* Optional: Adds a blur effect */
+    z-index: 1;
+    /* Ensures it appears above the background */
+    border-radius: inherit;
+    /* Inherits border-radius if any */
+}

@@ -7,12 +7,14 @@
 get_header();
 require 'carousel-temp1.php';
 ?>
+
 <div class="sec grid md:grid-cols-5">
     <div class="md:col-span-2" id="landsideimg"></div>
-    <div class="md:col-span-3 flex items-center justify-center">
-        <div class="w-[100%] mr-32">
+    <div class="py-12 md:col-span-3 flex items-center justify-center">
+        <div class="w-[85%] md:mr-32">
             <?php echo do_shortcode('[marqueText smTxt="Culinary Arts & Hospitality" bgTxt="Excellence" align="center"]'); ?>
-            <div class="grid md:grid-cols-3">
+
+            <div class="grid grid-span-2 sm:grid-cols-3 sm:space-y-0 md:grid-cols-3">
                 <div class="md:col">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
@@ -23,7 +25,6 @@ require 'carousel-temp1.php';
                         </a>
                     </div>
                 </div>
-
                 <div class="md:col">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
@@ -34,7 +35,7 @@ require 'carousel-temp1.php';
                         </a>
                     </div>
                 </div>
-                <div class="md:col">
+                <div class="col-span-2 sm:col-span-1 md:col-span-1">
                     <div class="imgbox text-center">
                         <a class="shutup space-y-3" href="#">
                             <div class="circles mx-auto" id="employ">
@@ -48,54 +49,15 @@ require 'carousel-temp1.php';
         </div>
     </div>
 </div>
-<div class="sec bglight fv500 flex items-center justify-center text-center">
-    <div class="md:w-[85%]">
+<div class="sec bglight flex items-center justify-center text-center">
+    <div class="py-12 w-[85%]">
         <?php echo do_shortcode('[marqueText smTxt="Taking you on a your culinary & hospitality journey" bgTxt="Our Courses" align="center"]'); ?>
-        <div class=" space-y-4">
-            <div class="md:grid md:grid-cols-4 md:gap-4">
-                <div class="col">
-                    <div class="imgbox text-center">
-                        <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img
-                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/1.svg"
-                                    alt="1"></div>
-                            <p class="imgbox_p fw-bold">Reception <br> Management</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="imgbox text-center">
-                        <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img class="w-[100px] h-[100px]"
-                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/2.svg"
-                                    alt="1"></div>
-                            <p class="imgbox_p fw-bold">Hospitality <br>Management</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="imgbox text-center">
-                        <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img class="w-[100px] h-[100px]"
-                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/3.svg"
-                                    alt="1"></div>
-                            <p class="imgbox_p fw-bold">Culinary <br>Arts</p>
-                        </a>
-                    </div>
-                </div>
+        <div class="mt-6 space-y-6">
+            <div class="grid grid-rows-2 grid-cols-2 gap-y-4 md:grid-rows-1 md:grid-cols-4 md:gap-4">
+                <?php echo do_shortcode('[displayPathPage]'); ?>
                 
-                <div class="col">
-                    <div class="imgbox text-center">
-                        <a class="shutup space-y-3" href="#">
-                            <div class="mx-auto" id=""><img class="w-[100px] h-[100px]"
-                                    src="<?php bloginfo('template_directory'); ?>/img/course_icons/4.svg"
-                                    alt="1"></div>
-                            <p class="imgbox_p fw-bold">Food & <br>Beverage</p>
-                        </a>
-                    </div>
-                </div>
             </div>
-            <div class="flex justify-center items-center">
+            <div class="mt-6 flex justify-center items-center">
                 <div class="md:w-3/4 flex items-center justify-center">
                     <button class="nds_btn me-3">Apply Here</button>
                     <button class="nds_outline_btn">Apply Here</button>
@@ -104,9 +66,8 @@ require 'carousel-temp1.php';
         </div>
     </div>
 </div>
-
-<div class="h-[500px] flex items-center justify-center">
-    <div class="md:grid md:grid-cols-5 h-[100%]">
+<div class=" flex items-center justify-center md:h-[500px]">
+    <div class="py-12 w-[85%] sm:w-[100%] sm:py-0 md:grid md:grid-cols-5 h-[100%]">
         <div class="md:col-span-3 flex items-center justify-center">
             <div class="md:grid md:grid-cols-12">
                 <div class="col-start-3 col-span-11 space-y-4">
@@ -124,26 +85,26 @@ require 'carousel-temp1.php';
 </div>
 
 <div class="secsmall flex items-center justify-center bgprimary position-relative">
-    <div class="md:w-[85%]">
+    <div class="py-12 md:py-0 md:w-[85%]">
         <div class="row">
             <div class="col">
                 <h3 class="ctaspecialhead fw-bold text-white">Lets begin your journey</h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3 ctarel">
-                <p class="ctaspecial">1</p>
-                <p class="ctatxtspc">Choose a course</p>
+        <div class="grid md:grid-cols-4 sm:h-[300px]">
+            <div class="ctarel">
+                <p class="ctaspecial text-center md:text-left">1</p>
+                <p class="ctatxtspc text-center md:text-left">Choose a course</p>
             </div>
-            <div class="col-md-3 ctarel">
-                <p class="ctaspecial">2</p>
-                <p class="ctatxtspc">Enroll Online</p>
+            <div class="ctarel">
+                <p class="ctaspecial text-center md:text-left">2</p>
+                <p class="ctatxtspc text-center md:text-left">Enroll Online</p>
             </div>
-            <div class="col-md-3 ctarel">
-                <p class="ctaspecial">3</p>
-                <div class="ctatxtspc"><button class="nds_btn">Start Journey</button></div>
+            <div class="ctarel">
+                <p class="ctaspecial text-center md:text-left">3</p>
+                <div class="ctatxtspc text-center md:text-left"><button class="nds_btn">Start Journey</button></div>
             </div>
-            <div class="col-md-3">
+            <div class="">
                 <img src="<?php bloginfo('template_directory'); ?>/img/cheflady.png" alt="" srcset="">
             </div>
         </div>
@@ -157,35 +118,10 @@ require 'carousel-temp1.php';
         <?php echo do_shortcode('[custom_gallery]'); ?>
     </div>
 </div>
-<div class="sec flex items-center justify-center bgsecondary">
-    <div class="md:w-[85%] md:grid md:grid-cols-3 md:gap-4">
-        <div class="col-span-1">
-            <img src="<?php bloginfo('template_directory'); ?>/img/students.png" alt="Students">
-        </div>
-        <div class="col-span-2 flex items-center" style="color: #fff">
-            <div class="relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:px-8">
-                <div class="mx-auto max-w-2xl lg:max-w-4xl">
-                    <figure class="mt-10">
-                        <blockquote class="text-center text-xl/8 font-semibold text-white sm:text-2xl/9">
-                            <p>“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”</p>
-                        </blockquote>
-                        <figcaption class="mt-10">
-                            <div class="mt-4 flex items-center justify-center space-x-3 text-base">
-                                <div class="font-semibold text-white">Judith Black</div>
-                                <svg viewBox="0 0 2 2" width="3" height="3" aria-hidden="true" class="fill-gray-900">
-                                    <circle cx="1" cy="1" r="1" />
-                                </svg>
-                                <div class="text-gray-600">CEO of Workcation</div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
-            </div>
-
-        </div>
-    </div>
+<div class="hidden sm:block">
+    <?php require get_template_directory() . '/includes/recipe_blog.php'; ?>
 </div>
-
-<?php require get_template_directory() . '/includes/recipe_blog.php';
-
-get_footer(); ?>
+<div class="sm:hidden">
+    <?php echo do_shortcode('[recipes_carousel]'); ?>
+</div>
+<?php get_footer(); ?>

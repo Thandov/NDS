@@ -554,14 +554,14 @@ hr {
 /*Button Style */
 .theme-btn, .bordered-btn, .primary-btn {
   display: inline-block;
-  background: #086AD7;
+  background: #2a344e;
   color: #fff;
   font-family: "Roboto", sans-serif;
   font-size: 15px;
   font-weight: 500;
   line-height: 20px;
   padding: 16px 45px;
-  border: 1px solid #086AD7;
+  border: 1px solid #2a344e;
   border-radius: 7px;
   text-align: center;
   vertical-align: middle;
@@ -621,7 +621,7 @@ button[type=submit] {
   border: none;
   border-radius: 0;
   display: inline-block;
-  background: #086AD7;
+  background: #2a344e;
   color: #fff;
   padding: 15px 45px;
   width: auto;
@@ -632,7 +632,7 @@ button[type=submit] {
 
 input[type=submit]:hover,
 button[type=submit]:hover {
-  background: #086AD7;
+  background: #2a344e;
   color: #fff;
 }
 
@@ -687,7 +687,7 @@ input.form-control {
 }
 
 .blue-bg {
-  background: #086AD7;
+  background: #2a344e;
 }
 
 .bg-cover {
@@ -771,7 +771,7 @@ input.form-control {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: #086AD7;
+  background-color: #2a344e;
   opacity: 0.6;
   position: absolute;
   top: 0;
@@ -1429,7 +1429,7 @@ input.form-control {
   position: absolute;
   top: 100%;
   width: 230px;
-  background-color: #086AD7;
+  background-color: #2a344e;
   left: 0;
   z-index: 999;
   box-shadow: 0 13px 35px -12px rgba(35, 35, 35, 0.15);
@@ -1467,10 +1467,10 @@ input.form-control {
   scroll-behavior: smooth;
   overflow-y: scroll;
   transition: right 0.5s ease-in;
-  background-color: #086AD7;
+  background-color: #2a344e;
   padding: 20px;
   z-index: 9999;
-  box-shadow: 0 13px 35px -12px #086AD7;
+  box-shadow: 0 13px 35px -12px #2a344e;
   /* Vertical Menu Style */
 }
 .mobile-nav.show {
@@ -1562,7 +1562,7 @@ input.form-control {
 }
 
 #hamburger {
-  color: #171717;
+  color: #2a344e;
   font-size: 32px;
   line-height: 1;
   text-align: right;
@@ -2243,7 +2243,7 @@ input.form-control {
   color: #fff;
 }
 .single-service-area:hover a.read-more {
-  color: #086AD7;
+  color: #2a344e;
 }
 
 .single-service-area:before {
@@ -2902,7 +2902,7 @@ input.form-control {
 }
 
 .quotation-dtl {
-  background-color: #086AD7;
+  background-color: #2a344e;
   width: 100%;
   height: 70px;
   display: flex;

@@ -13,7 +13,7 @@
         </div>
         <!-- Right Column: Image -->
         <div class="col-span-1 flex justify-center items-center">
-            <img src="<?php bloginfo('template_directory'); ?>/img/about/knife.png" alt="Knife" class="w-[70%] sm:max-w-full h-auto rounded-lg transform transition-all hover:scale-105">
+            <img src="<?php bloginfo('template_directory'); ?>/img/about/knife.png" alt="Knife" class="w-[80%] sm:max-w-full h-auto rounded-lg transform transition-all hover:scale-105">
         </div>
     </div>
 </div>

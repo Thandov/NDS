@@ -24,6 +24,7 @@ $imgpp = (ucwords($pagename) == ucwords($page_title)) ? $page_slug.'.jpg' : $pag
         echo do_shortcode('[nds_breadcrumb2 data="' . $breadlinks_json . '"]'); ?>
     </div>
 </div>
+
 <div class="">
     <div class="grid md:grid-cols-3 h-full">
         <div class="md:col-span-1 overlayglow relative" style="background-image: url(<?php echo esc_url(get_template_directory_uri() . '/img/paths/' . $imgpp); ?>); background-position: center; background-repeat: no-repeat; background-size: cover; "></div>
