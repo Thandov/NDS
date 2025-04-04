@@ -450,7 +450,7 @@ if (! function_exists('NDStheme_setup')) :
 			$recipes_query = "SELECT * FROM `{$wpdb->prefix}nds_recipes`";
 			$recipes = $wpdb->get_results($recipes_query, ARRAY_A);
 			
-			echo '<div class="grid sm:grid-cols-3 gap-4">';
+			echo '<div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4">';
 			foreach ($recipes as $key => $recipe) {
 				echo recp_card($recipe);
 			}
@@ -667,16 +667,16 @@ if (! function_exists('NDStheme_setup')) :
 			<div class="bg-white p-4 shadow-sm py-3">
 				<div class="row">
 					<div class="col head_and_desc">
-						<?php echo do_shortcode('[marqueText smTxt="" bgTxt="' . (($course && $course->program_type_name) ? $course->program_type_name : "eeeeee") . '" align=""]'); ?>
+						<?php echo do_shortcode('[marqueText smTxt="" bgTxt="' . (($course && $course->program_type_name) ? $course->program_type_name : "n/a") . '" align=""]'); ?>
 						<hr>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-7">
-						<div class="grid grid-cols-3">
-							<p class="text-base flex items-end gap-3 p-0 m-0"><span class="font-bold secolor">Enrollment date:</span> <span class="truncate text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?></span></p>
-							<p class="text-base flex items-end gap-3 p-0 m-0"><span class="font-bold secolor">Duration:</span> <span class="truncate text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "eeeeee"; ?>Months</span></p>
-							<p class="text-base flex items-end gap-3 p-0 m-0"><span class="font-bold secolor">Price:</span> <span class="truncate text-gray-500">R<?php echo (isset($course) && $course->price) ? $course->price : " " ?></span></p>
+						<div class="grid sm:grid-cols-3">
+							<p class="text-base flex items-end gap-1 sm:gap-3 p-0 m-0"><span class="font-bold secolor">Enrollment date:</span> <span class="truncate text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : ""; ?></span></p>
+							<p class="text-base flex items-end gap-1 sm:gap-3 p-0 m-0"><span class="font-bold secolor">Duration:</span> <span class="truncate text-gray-500"><?php echo ($course && $course->duration) ? $course->duration : "n/a"; ?> Months</span></p>
+							<p class="text-base flex items-end gap-1 sm:gap-3 p-0 m-0"><span class="font-bold secolor">Price:</span> <span class="truncate text-gray-500">R<?php echo (isset($course) && $course->price) ? $course->price : " " ?></span></p>
 						</div>
 						<hr>
 						<div class="d-flex align-items-center">
@@ -685,7 +685,7 @@ if (! function_exists('NDStheme_setup')) :
 							</div>
 						</div>
 						<h5 class="fw-bold text-base secolor">Course Description:</h5>
-						<p><?php echo ($course && $course->course_description) ? $course->course_description : "eeeeee"; ?></p>
+						<p><?php echo ($course && $course->course_description) ? $course->course_description : "n/a"; ?></p>
 						<div class="flex">
 							<?php echo do_shortcode('[buttonFn type="outline" name="Enquire" href="/contact?course=' . $program_name->course_id . '"]'); ?>
 						</div>
@@ -778,7 +778,6 @@ if (! function_exists('NDStheme_setup')) :
 
 			$programName = $program['program'];
 
-
 			$program_query = "SELECT `id`, `name` AS program_name FROM `{$wpdb->prefix}nds_program_types` WHERE name = '$programName';";
 			$program_name = $wpdb->get_row($program_query);
 
@@ -791,7 +790,6 @@ if (! function_exists('NDStheme_setup')) :
 		courses.id AS course_id,
 		courses.name AS course_name,
 		courses.accreditation_body,
-		courses.code,
 		courses.nqf_level,
 		courses.description AS course_description,
 		courses.duration,
@@ -817,6 +815,7 @@ if (! function_exists('NDStheme_setup')) :
 		courses.program_id = $program_name->id;
 	";
 			$courses = $wpdb->get_results($query);
+
 
 		?>
 			<div class="tab-content" id="myTabContent">

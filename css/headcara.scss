@@ -10,7 +10,6 @@ $zoom-duration: 10s; // Match Owl Carousel timing
   left: 50%;
   bottom: 5%;
   transform: translateX(-50%);
-  width: auto;
   border-radius: 25px;
   background-color: #FFFAE9;
   z-index: 4;
@@ -22,10 +21,7 @@ $zoom-duration: 10s; // Match Owl Carousel timing
     
     figure {
       margin: 0;
-      img {
-
-        margin-right: 50px;
-      }
+    
     }
   }
 }

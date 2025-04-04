@@ -3,7 +3,6 @@
   left: 50%;
   bottom: 5%;
   transform: translateX(-50%);
-  width: auto;
   border-radius: 25px;
   background-color: #FFFAE9;
   z-index: 4;
@@ -13,9 +12,6 @@
 }
 .bgfloat .partner_wrapper figure {
   margin: 0;
-}
-.bgfloat .partner_wrapper figure img {
-  margin-right: 50px;
 }
 
 #headercara {

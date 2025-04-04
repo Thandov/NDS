@@ -1,10 +1,8 @@
 <div class="carwrap">
-    <div class="bgfloat">
-        <div class="grid grid-cols-3">
-            <div class="col-span-1 flex items-center justify-center">
-                <p class="bold font-sm m-0">Our Partners: </p>
-            </div>
-            <div class="col-span-2 flex items-center justify-center p-1">
+    <div class="bgfloat w-[90%] sm:w-[80%] md:w-[50%]">
+        <div class="flex items-baseline gap-4 mx-auto">
+            <p class="font-medium text-sm whitespace-nowrap m-0">Our Partners:</p>
+            <div class="flex items-center gap-4 h-full">
                 <?php dynamic_sidebar('partners'); ?>
             </div>
         </div>
@@ -12,7 +10,7 @@
     <div class="owl-carousel owl-theme p-0" id="headercara">
         <?php
         global $wpdb;
-        $query = 'SELECT * FROM '. $wpdb->prefix.'carkit';
+        $query = 'SELECT * FROM ' . $wpdb->prefix . 'carkit';
         $out = '';
         $subout = '';
         $result = $wpdb->get_results($query);

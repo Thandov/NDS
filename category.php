@@ -26,8 +26,8 @@ if ($category) {
     <div class="container">
         <div class="row">
             <div class="col">
-                <?php echo do_shortcode('[showCoursesNavTabs program="' . $page_title . '"]'); ?>
-                <?php echo do_shortcode('[showPanelCoursesNavTabs program="' . $page_title . '"]'); ?>
+                <?php echo do_shortcode('[showCoursesNavTabs program="' . $category->name . '"]'); ?>
+                <?php echo do_shortcode('[showPanelCoursesNavTabs program="' . $category->name . '"]'); ?>
             </div>
         </div>
     </div>

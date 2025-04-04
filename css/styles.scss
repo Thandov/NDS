@@ -520,7 +520,25 @@ $email-placeholder: rgba(0, 0, 0, 0.3);
     background-color:$secondary_color;
     border-radius: $circleDie;
     overflow: hidden;
+    
+    h3{
+        color: white;
+    }
 }
+.circleOverlay{
+    &::after{
+        content: " "; 
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba($secondary_color, 0.7);
+    }
+}
+
 .team_wrp {
     border: 1px;
     .circleprofile {
