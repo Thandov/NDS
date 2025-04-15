@@ -18,7 +18,7 @@ require 'carousel-temp1.php';
                 <div class="md:col">
                     <div class="imgbox text-center">
                         <div class="circles circleOverlay mx-auto overflow-hidden relative" id="grads">
-                            <h3 class="font-black absolute inset-0 flex items-center justify-center z-30 m-0">23</h3>
+                            <h3 class="font-black absolute inset-0 flex items-center justify-center z-30 m-0">300+</h3>
                             <img class="w-full h-full object-cover object-center"
                                 src="<?php bloginfo('template_directory'); ?>/img/front/p1.jpg"
                                 alt="p1.jpg">
@@ -28,7 +28,8 @@ require 'carousel-temp1.php';
                 </div>
                 <div class="md:col">
                     <div class="imgbox text-center">
-                        <div class="circles mx-auto" id="lectures">
+                        <div class="circles circleOverlay mx-auto overflow-hidden relative" id="lectures">
+                            <h3 class="font-black absolute inset-0 flex items-center justify-center z-30 m-0">10+</h3>
                             <img style="width: 100%; height: auto; object-fit: cover;" src="<?php bloginfo('template_directory'); ?>/img/front/p2.jpg" alt="p1.jpg">
                         </div>
                         <p class="imgbox_p fw-bold">Experienced Lecturers</p>
@@ -36,7 +37,8 @@ require 'carousel-temp1.php';
                 </div>
                 <div class="col-span-2 sm:col-span-1 md:col-span-1">
                     <div class="imgbox text-center">
-                        <div class="circles mx-auto" id="employ">
+                        <div class="circles circleOverlay mx-auto overflow-hidden relative" id="employ">
+                            <h3 class="font-black absolute inset-0 flex items-center justify-center z-30 m-0">90%</h3>
                             <img style="width: 100%; height: auto; object-fit: cover;" src="<?php bloginfo('template_directory'); ?>/img/front/p3.jpg" alt="p1.jpg">
                         </div>
                         <p class="imgbox_p fw-bold">Employment Guaranteed</p>
